@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+pragmatickm-task-taglib - Tasks nested within SemanticCMS pages and elements in a JSP environment.
+Copyright (C) 2013, 2014, 2015, 2016  AO Industries, Inc.
+	support@aoindustries.com
+	7262 Bull Pen Cir
+	Mobile, AL 36695
+
+This file is part of pragmatickm-task-taglib.
+
+pragmatickm-task-taglib is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+pragmatickm-task-taglib is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<taglib version="2.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">
+	<description>Tasks nested within SemanticCMS pages and elements in a JSP environment.</description>
+	<display-name>pragmatickm-task-taglib</display-name>
+	<tlib-version>1.0</tlib-version>
+	<short-name>pragmatickm-task-taglib</short-name>
+	<uri>https://pragmatickm.com/pragmatickm-task-taglib</uri>
+	<tag>
+		<description><![CDATA[
+			A task is any one-time or recurring task that may be assigned to a
+			person, have an activity log associated with it, and have scheduling.
+			Must be nested inside a &lt;p:page&gt; tag.
+		]]></description>
+		<name>task</name>
+		<tag-class>com.pragmatickm.task.taglib.TaskTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description><![CDATA[
+				A page-unique ID for the task.
+				This will also be used as an anchor when generating links to the task.
+				This ID is also used to generate the filename for the persistence XML file.
+				If not provided, is generated from the label.
+				Ids generated from labels will be unique, but may change as page structure changes.
+			]]></description>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[
+				Optional CSS style attribute.
+			]]></description>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[
+				A brief label for the task.
+				Defaults to the page short title.
+			]]></description>
+			<name>label</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[
+				The date the task is to be accomplished.
+				If a recurring task, this is the first date it occurs.
+				Required for recurring tasks.
+				Format is "YYYY-MM-DD".
+			]]></description>
+			<name>on</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[
+				<p>
+					Tasks may be recurring.  In this case, they must be flagged as
+					Completed/Nothing To Do/Missed for each of the scheduled dates.
+				</p>
+				<p>
+					Supported values are as documented in com.aoindustries.util.schedule.Recurring.parse method:
+					<a href="https://www.aoindustries.com/docs/aocode-public/com/aoindustries/util/schedule/Recurring.html#parse%28java.lang.String%29">Recurring JavaDocs</a>
+				</p>
+			]]></description>
+			<name>recurring</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[
+				<p>
+					Recurring tasks can be recurring in a fixed time interval (the default)
+					or relative to the last time they were flagged as Completed, Missed, or Nothing To Do.
+				</p>
+				<ul>
+					<li>false (the default) - recurring tasks are based on fixed time intervals</li>
+					<li>true - recurring tasks are relative to previous time the task was Completed, Missed, or Nothing To Do.
+				</ul>
+			]]></description>
+			<name>relative</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[
+				The name of the primary person the task is assigned to.
+				Must be the name of a <code>User</code>.
+				Defaults to "Unassigned".
+				To provide multiple assignments, use nested &lt;task:assignedTo who="..." after="..." /&gt; tags.
+			]]></description>
+			<name>assignedTo</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[
+				The pay associated with this task.
+				This is free-form, could be anything, such as "$1000" or "$120/hr".
+			]]></description>
+			<name>pay</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[
+				The cost associated with this task.
+				This is free-form, could be anything, such as "$1000" or "$60/month".
+			]]></description>
+			<name>cost</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[
+				<p>
+					The priority of the task.
+					Defaults to "medium".
+					To provide multiple priorities use nested &lt;task:priority priority="..." after="..." /&gt; tags.
+				</p>
+				<p>
+					Supported values are:
+					<ol>
+						<li>"future" - Task may possibly be done in the future, but should not be worked on yet.</li>
+						<li>"low" - Not much urgency, do in free time</li>
+						<li>"medium" - Default/normal priority</li>
+						<li>"high" - Generally means one step away from a serious problem</li>
+						<li>"critical" - There is a serious problem that interferes with current operations</li>
+					</ol>
+				</p>
+			]]></description>
+			<name>priority</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	<tag>
+		<description><![CDATA[
+			A task may be assigned to multiple people.
+			Must be nested inside a &lt;task:task&gt; tag.
+		]]></description>
+		<name>assignedTo</name>
+		<tag-class>com.pragmatickm.task.taglib.AssignedToTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description><![CDATA[
+				The name of the person the task is assigned to.
+				Must be the name of a <code>User</code>.
+			]]></description>
+			<name>who</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[
+				The number of days late before the task is assigned to this person.
+				At least one person must be assigned the "0 days" task.
+				Accepts format of:
+				<ol>
+					<li># day(s)</li>
+					<li># week(s)</li>
+					<li># month(s)</li>
+					<li># years(s)</li>
+				</ol>
+				Defaults to "0 days".
+			]]></description>
+			<name>after</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	<tag>
+		<description><![CDATA[
+			A task may have multiple priorities.
+			Must be nested inside a &lt;task:task&gt; tag.
+		]]></description>
+		<name>priority</name>
+		<tag-class>com.pragmatickm.task.taglib.PriorityTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description><![CDATA[
+				<p>
+					The priority of the task.
+				</p>
+				<p>
+					Supported values are:
+					<ol>
+						<li>"future" - Task may possibly be done in the future, but should not be worked on yet.</li>
+						<li>"low" - Not much urgency, do in free time</li>
+						<li>"medium" - Default/normal priority</li>
+						<li>"high" - Generally means one step away from a serious problem</li>
+						<li>"critical" - There is a serious problem that interferes with current operations</li>
+					</ol>
+				</p>
+			]]></description>
+			<name>priority</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[
+				The number of days late before the task is assigned this priority.
+				One and only one priority may be assigned the "0 days" task.
+				Accepts format of:
+				<ol>
+					<li># day(s)</li>
+					<li># week(s)</li>
+					<li># month(s)</li>
+					<li># years(s)</li>
+				</ol>
+				Defaults to "0 days".
+			]]></description>
+			<name>after</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	<tag>
+		<description><![CDATA[
+			When two tasks must be performed on the same day, they will be ordered
+			based on the "doBefore" settings.  By providing these value, this task will
+			be scheduled after the other tasks.
+			At least one of page or task must be provided.
+			Must be nested inside a &lt;task:task&gt; tag.
+		]]></description>
+		<name>doBefore</name>
+		<tag-class>com.pragmatickm.task.taglib.DoBeforeTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description><![CDATA[
+				The book containing the page.
+				Defaults to the book of the current JSP file.
+			]]></description>
+			<name>book</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[
+				The page-relative path to the page.
+				If not provided, assumes the current page.
+			]]></description>
+			<name>page</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[
+				The page-unique id of the task.
+				Not allowed to reference task by generated id, set an explicit id on the task.
+			]]></description>
+			<name>task</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	<tag>
+		<description><![CDATA[
+			A task may have any number of additional custom logging fields.
+			Must be nested inside a &lt;task:task&gt; tag.
+		]]></description>
+		<name>customLog</name>
+		<tag-class>com.pragmatickm.task.taglib.CustomLogTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description><![CDATA[
+				The name of the custom log entry.
+				Must be unique per task.
+			]]></description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	<function>
+		<description><![CDATA[
+			Gets the task log given a book, page and task.
+		]]></description>
+		<name>getTaskLogInBook</name>
+		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
+		<function-signature>com.pragmatickm.task.model.TaskLog getTaskLogInBook(java.lang.String,java.lang.String,java.lang.String)</function-signature>
+		<example>${task:getTaskLogInBook(book, page, taskId)}</example>
+	</function>
+	<function>
+		<description><![CDATA[
+			Gets the task log given a page and task.
+		]]></description>
+		<name>getTaskLog</name>
+		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
+		<function-signature>com.pragmatickm.task.model.TaskLog getTaskLog(java.lang.String,java.lang.String)</function-signature>
+		<example>${task:getTaskLog(page, taskId)}</example>
+	</function>
+	<function>
+		<description><![CDATA[
+			Gets the most recent task log entry with the given status(es) or <code>null</code> for none.
+			The statuses is a comma-separated list of statuses to match.
+		]]></description>
+		<name>getMostRecentEntry</name>
+		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
+		<function-signature>com.pragmatickm.task.model.TaskLog.Entry getMostRecentEntry(com.pragmatickm.task.model.TaskLog,java.lang.String)</function-signature>
+		<example>${task:getMostRecentEntry(taskLog, statuses)}</example>
+	</function>
+	<function>
+		<description><![CDATA[
+			Finds all tasks that must be done after this task.
+		]]></description>
+		<name>getDoAfters</name>
+		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
+		<function-signature>java.util.List getDoAfters(com.pragmatickm.task.model.Task)</function-signature>
+		<example>${task:getDoAfters(task)}</example>
+	</function>
+	<function>
+		<description><![CDATA[
+			<p>
+				Gets the user for the current request.
+			</p>
+			<p>
+				Resolves the new user and sets the cookie.
+				A empty username will result in the <code>null</code> user.
+			</p>
+			<p>
+				The cookie is not actually set when exporting,
+				as set by the "X-com-aoindustries-web-page-exporting: true" header.
+			</p>
+		]]></description>
+		<name>getUser</name>
+		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
+		<function-signature>com.pragmatickm.task.model.User getUser()</function-signature>
+		<example>${task:getUser()}</example>
+	</function>
+	<function>
+		<description><![CDATA[
+			Gets all users.
+		]]></description>
+		<name>getAllUsers</name>
+		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
+		<function-signature>java.util.Set getAllUsers()</function-signature>
+		<example>${task:getAllUsers()}</example>
+	</function>
+	<function>
+		<description><![CDATA[
+			<p>
+				Prioritizes tasks by schedule and priority.
+				Scheduled tasks are before unscheduled within a single priority.
+			</p>
+			<p>
+				Priority inheritance: Tasks will inherit any higher priority
+				from tasks that either directly or indirectly must be done after
+				the task.  For example, a low priority task that must be done
+				before a high priority task will be treated as high priority.
+			</p>
+			<p>
+				If dateFirst is true, will sort by date then priority.  Otherwise
+				sorts by priority then date.
+			</p>
+		]]></description>
+		<name>prioritizeTasks</name>
+		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
+		<function-signature>java.util.List prioritizeTasks(java.util.List,boolean)</function-signature>
+		<example>${task:prioritizeTasks(tasks, dateFirst)}</example>
+	</function>
+	<function>
+		<description><![CDATA[
+			Gets all tasks for a page and all sub-pages.
+			Filters for user or all when user is null.
+		]]></description>
+		<name>getAllTasks</name>
+		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
+		<function-signature>java.util.List getAllTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
+		<example>${task:getAllTasks(rootPage, user)}</example>
+	</function>
+	<function>
+		<description><![CDATA[
+			Checks if the given page, or optionally any of its child pages, has at least
+			one task assigned to the given user.
+			Filters for user or all when user is null.
+		]]></description>
+		<name>hasAssignedTask</name>
+		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
+		<function-signature>boolean hasAssignedTask(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User,boolean)</function-signature>
+		<example>${p:hasAssignedTask(page, user, recursive)}</example>
+	</function>
+	<function>
+		<description><![CDATA[
+			Gets all tasks for a page and all sub-pages that are ready to be done at the current
+			moment in time.
+			Filters for user or all when user is null.
+		]]></description>
+		<name>getReadyTasks</name>
+		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
+		<function-signature>java.util.List getReadyTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
+		<example>${task:getReadyTasks(rootPage, user)}</example>
+	</function>
+	<function>
+		<description><![CDATA[
+			Gets all tasks for a page and all sub-pages that are should done at the current
+			moment in time but are waiting for another task.
+			Filters for user or all when user is null.
+		]]></description>
+		<name>getBlockedTasks</name>
+		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
+		<function-signature>java.util.List getBlockedTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
+		<example>${task:getBlockedTasks(rootPage, user)}</example>
+	</function>
+	<function>
+		<description><![CDATA[
+			Gets all tasks for a page and all sub-pages that will be done at a future
+			moment in time.
+			Filters for user or all when user is null.
+		]]></description>
+		<name>getFutureTasks</name>
+		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
+		<function-signature>java.util.List getFutureTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
+		<example>${task:getFutureTasks(rootPage, user)}</example>
+	</function>
+</taglib>
