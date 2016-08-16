@@ -44,7 +44,7 @@ public class CustomLogTag extends SimpleTagSupport {
 		ServletRequest request = pageContext.getRequest();
 		// Find the required task
 		Node currentNode = CurrentNode.getCurrentNode(request);
-		if(!(currentNode instanceof Task)) throw new JspTagException("<d:taskCustomLog> tag must be nested inside a <d:task> tag.");
+		if(!(currentNode instanceof Task)) throw new JspTagException("<task:customLog> tag must be nested inside a <task:task> tag.");
 		Task currentTask = (Task)currentNode;
 		currentTask.addCustomLog(name);
 	}

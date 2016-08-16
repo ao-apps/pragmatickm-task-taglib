@@ -71,7 +71,7 @@ public class DoBeforeTag extends SimpleTagSupport {
 		final HttpServletResponse response = (HttpServletResponse)pageContext.getResponse();
 		// Find the required task
 		Node currentNode = CurrentNode.getCurrentNode(request);
-		if(!(currentNode instanceof Task)) throw new JspTagException("<d:doBefore> tag must be nested inside a <d:task> tag.");
+		if(!(currentNode instanceof Task)) throw new JspTagException("<task:doBefore> tag must be nested inside a <task:task> tag.");
 		Task currentTask = (Task)currentNode;
 		// Resolve the book-relative page path
 		final PageRef pageRef;

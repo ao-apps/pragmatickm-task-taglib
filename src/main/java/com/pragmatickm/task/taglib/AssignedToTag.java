@@ -53,7 +53,7 @@ public class AssignedToTag extends SimpleTagSupport {
 		ServletRequest request = pageContext.getRequest();
 		// Find the required task
 		Node currentNode = CurrentNode.getCurrentNode(request);
-		if(!(currentNode instanceof Task)) throw new JspTagException("<d:taskAssignedTo> tag must be nested inside a <d:task> tag.");
+		if(!(currentNode instanceof Task)) throw new JspTagException("<task:assignedTo> tag must be nested inside a <task:task> tag.");
 		Task currentTask = (Task)currentNode;
 		currentTask.addAssignedTo(who, after);
 	}

@@ -338,7 +338,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			The statuses is a comma-separated list of statuses to match.
 		]]></description>
 		<name>getMostRecentEntry</name>
-		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
+		<function-class>com.pragmatickm.task.servlet.TaskUtil</function-class>
 		<function-signature>com.pragmatickm.task.model.TaskLog.Entry getMostRecentEntry(com.pragmatickm.task.model.TaskLog,java.lang.String)</function-signature>
 		<example>${task:getMostRecentEntry(taskLog, statuses)}</example>
 	</function>
@@ -375,7 +375,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			Gets all users.
 		]]></description>
 		<name>getAllUsers</name>
-		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
+		<function-class>com.pragmatickm.task.servlet.TaskUtil</function-class>
 		<function-signature>java.util.Set getAllUsers()</function-signature>
 		<example>${task:getAllUsers()}</example>
 	</function>
@@ -454,5 +454,32 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
 		<function-signature>java.util.List getFutureTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
 		<example>${task:getFutureTasks(rootPage, user)}</example>
+	</function>
+	<function>
+		<description><![CDATA[
+			Formats a date.
+		]]></description>
+		<name>formatDate</name>
+		<function-class>com.aoindustries.util.CalendarUtils</function-class>
+		<function-signature>java.lang.String formatDate(java.util.Calendar)</function-signature>
+		<example>${task:formatDate(calendar)}</example>
+	</function>
+	<function>
+		<description><![CDATA[
+			Parses a date.
+		]]></description>
+		<name>parseDate</name>
+		<function-class>com.aoindustries.util.CalendarUtils</function-class>
+		<function-signature>java.util.Calendar parseDate(java.lang.String)</function-signature>
+		<example>${task:parseDate("yyyy-mm-dd")}</example>
+	</function>
+	<function>
+		<description><![CDATA[
+			Gets today's date.
+		]]></description>
+		<name>getToday</name>
+		<function-class>com.aoindustries.util.CalendarUtils</function-class>
+		<function-signature>java.util.Calendar getToday()</function-signature>
+		<example>${task:getToday()}</example>
 	</function>
 </taglib>
