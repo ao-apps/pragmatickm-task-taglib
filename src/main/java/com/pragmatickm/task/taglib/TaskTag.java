@@ -144,14 +144,13 @@ public class TaskTag extends ElementTag<Task> {
 			super.doBody(captureLevel);
 
 			// Determine what goes before the body
-			BufferWriter out;
+			BufferWriter capturedOut;
 			if(captureLevel == CaptureLevel.BODY) {
-				out = new SegmentedWriter();
 				// Enable temp files if temp file context active
-				// Java 1.8: out = TempFileContext.wrapTempFileList(out, request, AutoTempFileWriter::new);
-				out = TempFileContext.wrapTempFileList(
-					out,
+				capturedOut = TempFileContext.wrapTempFileList(
+					new SegmentedWriter(),
 					request,
+					// Java 1.8: AutoTempFileWriter::new
 					new TempFileContext.Wrapper<BufferWriter>() {
 						@Override
 						public BufferWriter call(BufferWriter original, TempFileList tempFileList) {
@@ -160,7 +159,7 @@ public class TaskTag extends ElementTag<Task> {
 					}
 				);
 			} else {
-				out = null;
+				capturedOut = null;
 			}
 			try {
 				TaskImpl.writeBeforeBody(
@@ -168,15 +167,15 @@ public class TaskTag extends ElementTag<Task> {
 					request,
 					response,
 					captureLevel,
-					out,
+					capturedOut,
 					element,
 					style
 				);
 			} finally {
-				if(out != null) out.close();
+				if(capturedOut != null) capturedOut.close();
 			}
-			if(out != null) {
-				beforeBody = out.getResult();
+			if(capturedOut != null) {
+				beforeBody = capturedOut.getResult();
 			} else {
 				beforeBody = null;
 			}
