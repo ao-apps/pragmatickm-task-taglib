@@ -54,7 +54,7 @@ final public class Functions {
 	/**
 	 * @see  TaskUtil#getDoAfters(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, com.pragmatickm.task.model.Task)
 	 */
-	public static List<? extends Task> getDoAfters(Task task) throws ServletException, IOException, TaskException {
+	public static List<Task> getDoAfters(Task task) throws ServletException, IOException, TaskException {
 		return TaskUtil.getDoAfters(
 			getServletContext(),
 			getRequest(),
@@ -70,7 +70,7 @@ final public class Functions {
 		);
 	}
 
-	public static List<? extends Task> prioritizeTasks(List<Task> tasks, boolean dateFirst) throws ServletException, IOException, TaskException {
+	public static List<Task> prioritizeTasks(List<Task> tasks, boolean dateFirst) throws ServletException, IOException, TaskException {
 		return TaskUtil.prioritizeTasks(
 			getServletContext(),
 			getRequest(),
@@ -80,7 +80,7 @@ final public class Functions {
 		);
 	}
 
-	public static List<? extends Task> getAllTasks(Page rootPage, User user) throws TaskException, IOException, ServletException {
+	public static List<Task> getAllTasks(Page rootPage, User user) throws TaskException, IOException, ServletException {
 		return TaskUtil.getAllTasks(
 			getServletContext(),
 			getRequest(),
@@ -101,7 +101,7 @@ final public class Functions {
 		);
 	}
 
-	public static List<? extends Task> getReadyTasks(Page rootPage, User user) throws TaskException, IOException, ServletException {
+	public static List<Task> getReadyTasks(Page rootPage, User user) throws TaskException, IOException, ServletException {
 		return TaskUtil.getReadyTasks(
 			getServletContext(),
 			getRequest(),
@@ -111,7 +111,7 @@ final public class Functions {
 		);
 	}
 
-	public static List<? extends Task> getBlockedTasks(Page rootPage, User user) throws TaskException, IOException, ServletException {
+	public static List<Task> getBlockedTasks(Page rootPage, User user) throws TaskException, IOException, ServletException {
 		return TaskUtil.getBlockedTasks(
 			getServletContext(),
 			getRequest(),
@@ -121,7 +121,7 @@ final public class Functions {
 		);
 	}
 
-	public static List<? extends Task> getFutureTasks(Page rootPage, User user) throws TaskException, IOException, ServletException {
+	public static List<Task> getFutureTasks(Page rootPage, User user) throws TaskException, IOException, ServletException {
 		return TaskUtil.getFutureTasks(
 			getServletContext(),
 			getRequest(),
