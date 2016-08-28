@@ -362,7 +362,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			</p>
 			<p>
 				The cookie is not actually set when exporting,
-				as set by the "X-com-aoindustries-web-page-exporting: true" header.
+				as set by the "X-com-semanticcms-core-exporting: true" header.
 			</p>
 		]]></description>
 		<name>getUser</name>
