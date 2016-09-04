@@ -86,27 +86,27 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 		<dependency>
 			<groupId>com.pragmatickm</groupId>
 			<artifactId>pragmatickm-task-model</artifactId>
-			<version>1.1</version>
+			<version>1.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.pragmatickm</groupId>
 			<artifactId>pragmatickm-task-servlet</artifactId>
-			<version>1.1</version>
+			<version>1.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.semanticcms</groupId>
 			<artifactId>semanticcms-core-model</artifactId>
-			<version>1.5</version>
+			<version>1.6-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.semanticcms</groupId>
 			<artifactId>semanticcms-core-servlet</artifactId>
-			<version>1.6</version>
+			<version>1.7-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.semanticcms</groupId>
 			<artifactId>semanticcms-core-taglib</artifactId>
-			<version>1.5</version>
+			<version>1.6-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
