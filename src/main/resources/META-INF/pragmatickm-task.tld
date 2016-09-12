@@ -26,7 +26,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	<display-name>pragmatickm-task-taglib</display-name>
 	<tlib-version>1.0</tlib-version>
 	<short-name>pragmatickm-task-taglib</short-name>
-	<uri>https://pragmatickm.com/pragmatickm-task-taglib</uri>
+	<uri>https://pragmatickm.com/task/taglib/</uri>
 	<tag>
 		<description><![CDATA[
 			A task is any one-time or recurring task that may be assigned to a
