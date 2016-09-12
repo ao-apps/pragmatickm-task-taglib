@@ -25,7 +25,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	<description>Tasks nested within SemanticCMS pages and elements in a JSP environment.</description>
 	<display-name>pragmatickm-task-taglib</display-name>
 	<tlib-version>1.0</tlib-version>
-	<short-name>pragmatickm-task-taglib</short-name>
+	<short-name>task</short-name>
 	<uri>https://pragmatickm.com/task/taglib/</uri>
 	<tag>
 		<description><![CDATA[
