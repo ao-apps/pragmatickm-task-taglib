@@ -36,6 +36,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 	<name>PragmaticKM Task Taglib</name>
 	<url>https://pragmatickm.com/task/taglib/</url>
 	<description>Tasks nested within SemanticCMS pages and elements in a JSP environment.</description>
+	<inceptionYear>2013</inceptionYear>
 
 	<scm>
 		<!--
