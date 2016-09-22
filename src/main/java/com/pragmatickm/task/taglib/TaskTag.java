@@ -131,7 +131,7 @@ public class TaskTag extends ElementTag<Task> {
 			final HttpServletResponse response = (HttpServletResponse)pageContext.getResponse();
 
 			final Page currentPage = CurrentPage.getCurrentPage(request);
-			if(currentPage == null) throw new ServletException("<task:task> tag must be nested inside a <p:page> tag.");
+			if(currentPage == null) throw new ServletException("<task:task> tag must be nested inside a <core:page> tag.");
 
 			// Label defaults to page short title
 			if(element.getLabel() == null) {
