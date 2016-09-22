@@ -46,7 +46,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>id</name>
 			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
+			<rtexprvalue>false</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
@@ -55,7 +55,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>style</name>
 			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
+			<rtexprvalue>false</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
@@ -310,7 +310,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>name</name>
 			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
+			<rtexprvalue>false</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 	</tag>
