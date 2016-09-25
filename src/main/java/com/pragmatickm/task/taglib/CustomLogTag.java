@@ -22,8 +22,10 @@
  */
 package com.pragmatickm.task.taglib;
 
+import static com.aoindustries.taglib.AttributeUtils.resolveValue;
 import com.pragmatickm.task.model.Task;
 import com.semanticcms.core.model.Node;
+import com.semanticcms.core.servlet.CaptureLevel;
 import com.semanticcms.core.servlet.CurrentNode;
 import java.io.IOException;
 import javax.servlet.ServletRequest;
@@ -33,8 +35,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 public class CustomLogTag extends SimpleTagSupport {
 
-	private String name;
-    public void setName(String name) {
+	private Object name;
+    public void setName(Object name) {
 		this.name = name;
     }
 
@@ -42,10 +44,18 @@ public class CustomLogTag extends SimpleTagSupport {
     public void doTag() throws JspTagException, IOException {
 		PageContext pageContext = (PageContext)getJspContext();
 		ServletRequest request = pageContext.getRequest();
+
 		// Find the required task
 		Node currentNode = CurrentNode.getCurrentNode(request);
 		if(!(currentNode instanceof Task)) throw new JspTagException("<task:customLog> tag must be nested inside a <task:task> tag.");
 		Task currentTask = (Task)currentNode;
-		currentTask.addCustomLog(name);
+
+		assert
+			CaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
+			: "This is always contained by a task tag, so this is only invoked at captureLevel >= META";
+
+		currentTask.addCustomLog(
+			resolveValue(name, String.class, pageContext.getELContext())
+		);
 	}
 }

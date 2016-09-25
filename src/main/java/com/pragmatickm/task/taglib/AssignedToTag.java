@@ -22,12 +22,16 @@
  */
 package com.pragmatickm.task.taglib;
 
+import static com.aoindustries.taglib.AttributeUtils.resolveValue;
+import static com.aoindustries.util.StringUtility.nullIfEmpty;
 import com.aoindustries.util.schedule.DayDuration;
 import com.pragmatickm.task.model.Task;
 import com.pragmatickm.task.model.User;
 import com.semanticcms.core.model.Node;
+import com.semanticcms.core.servlet.CaptureLevel;
 import com.semanticcms.core.servlet.CurrentNode;
 import java.io.IOException;
+import javax.el.ELContext;
 import javax.servlet.ServletRequest;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.PageContext;
@@ -35,26 +39,41 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 public class AssignedToTag extends SimpleTagSupport {
 
-	private User who;
-    public void setWho(String who) {
- 		User user = User.valueOf(who);
-		if(!user.isPerson()) throw new IllegalArgumentException("Not a person: " + user);
-		this.who = user;
+	private Object who;
+    public void setWho(Object who) {
+		this.who = who;
     }
 
-	private DayDuration after = DayDuration.ZERO_DAYS;
-	public void setAfter(String after) {
-		this.after = DayDuration.valueOf(after);
+	private Object after;
+	public void setAfter(Object after) {
+		this.after = after;
 	}
 
 	@Override
     public void doTag() throws JspTagException, IOException {
 		PageContext pageContext = (PageContext)getJspContext();
 		ServletRequest request = pageContext.getRequest();
+
 		// Find the required task
 		Node currentNode = CurrentNode.getCurrentNode(request);
 		if(!(currentNode instanceof Task)) throw new JspTagException("<task:assignedTo> tag must be nested inside a <task:task> tag.");
 		Task currentTask = (Task)currentNode;
-		currentTask.addAssignedTo(who, after);
+
+		assert
+			CaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
+			: "This is always contained by a task tag, so this is only invoked at captureLevel >= META";
+
+		// Evaluate expressions
+		ELContext elContext = pageContext.getELContext();
+ 		User whoObj = User.valueOf(resolveValue(who, String.class, elContext));
+		String afterStr = nullIfEmpty(resolveValue(after, String.class, elContext));
+
+		if(!whoObj.isPerson()) throw new IllegalArgumentException("Not a person: " + whoObj);
+		DayDuration afterObj = afterStr==null ? DayDuration.ZERO_DAYS : DayDuration.valueOf(afterStr);
+
+		currentTask.addAssignedTo(
+			whoObj,
+			afterObj
+		);
 	}
 }

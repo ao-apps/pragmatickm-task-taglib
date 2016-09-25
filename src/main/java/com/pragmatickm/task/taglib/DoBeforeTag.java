@@ -22,6 +22,8 @@
  */
 package com.pragmatickm.task.taglib;
 
+import static com.aoindustries.taglib.AttributeUtils.resolveValue;
+import static com.aoindustries.util.StringUtility.nullIfEmpty;
 import com.pragmatickm.task.model.Task;
 import com.pragmatickm.task.model.TaskException;
 import com.pragmatickm.task.model.TaskLookup;
@@ -34,6 +36,7 @@ import com.semanticcms.core.servlet.CapturePage;
 import com.semanticcms.core.servlet.CurrentNode;
 import com.semanticcms.core.servlet.PageRefResolver;
 import java.io.IOException;
+import javax.el.ELContext;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -44,57 +47,67 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 public class DoBeforeTag extends SimpleTagSupport {
 
-	private String book;
-	public void setBook(String book) {
+	private Object book;
+	public void setBook(Object book) {
 		this.book = book;
 	}
 
-	private String page;
-	public void setPage(String page) {
+	private Object page;
+	public void setPage(Object page) {
 		this.page = page;
 	}
 
-	private String task;
-	public void setTask(String task) throws JspTagException {
-		if(task != null && task.isEmpty()) task = null;
-		if(task != null && !Element.isValidId(task)) throw new JspTagException("Invalid task id: " + task);
+	private Object task;
+	public void setTask(Object task) throws JspTagException {
 		this.task = task;
 	}
 
 	@Override
     public void doTag() throws JspTagException, IOException {
-		if(page==null && task==null) throw new JspTagException("Neither page nor task has been provided.");
-
 		PageContext pageContext = (PageContext)getJspContext();
 		final ServletContext servletContext = pageContext.getServletContext();
 		final HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
 		final HttpServletResponse response = (HttpServletResponse)pageContext.getResponse();
+
 		// Find the required task
 		Node currentNode = CurrentNode.getCurrentNode(request);
 		if(!(currentNode instanceof Task)) throw new JspTagException("<task:doBefore> tag must be nested inside a <task:task> tag.");
 		Task currentTask = (Task)currentNode;
+
+		assert
+			CaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
+			: "This is always contained by a task tag, so this is only invoked at captureLevel >= META";
+
+		// Evaluate expressions
+		ELContext elContext = pageContext.getELContext();
+		String bookStr = nullIfEmpty(resolveValue(book, String.class, elContext));
+		String pageStr = nullIfEmpty(resolveValue(page, String.class, elContext));
+		String taskStr = resolveValue(task, String.class, elContext);
+
+		if(!Element.isValidId(taskStr)) throw new JspTagException("Invalid task id: " + taskStr);
+
 		// Resolve the book-relative page path
 		final PageRef pageRef;
 		try {
-			if(page==null) {
+			if(pageStr==null) {
 				// Use this page when none specified
-				if(this.book != null) throw new JspTagException("page must be provided when book is provided.");
+				if(bookStr != null) throw new JspTagException("page must be provided when book is provided.");
 				pageRef = PageRefResolver.getCurrentPageRef(servletContext, request);
 			} else {
 				// Resolve context-relative page path from page-relative
-				pageRef = PageRefResolver.getPageRef(servletContext, request, this.book, this.page);
+				pageRef = PageRefResolver.getPageRef(servletContext, request, bookStr, pageStr);
 			}
 		} catch(ServletException e) {
 			throw new JspTagException(e);
 		}
-		final String taskId = task;
 		currentTask.addDoBefore(
-			new TaskLookup(pageRef, taskId) {
+			new TaskLookup(pageRef, taskStr) {
 				private Task task;
 				@Override
 				public Task getTask() throws TaskException {
 					if(task == null) {
 						try {
+							String taskId = getTaskId();
 							// Capture page when short-cut doesn't work
 							Page capturedAfterPage = CapturePage.capturePage(
 								servletContext,

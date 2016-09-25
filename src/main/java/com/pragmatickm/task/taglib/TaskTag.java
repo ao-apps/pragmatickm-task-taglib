@@ -28,7 +28,10 @@ import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.io.buffer.BufferWriter;
 import com.aoindustries.io.buffer.SegmentedWriter;
 import com.aoindustries.servlet.filter.TempFileContext;
+import static com.aoindustries.taglib.AttributeUtils.resolveValue;
+import com.aoindustries.taglib.StyleAttribute;
 import com.aoindustries.util.CalendarUtils;
+import com.aoindustries.util.StringUtility;
 import com.aoindustries.util.schedule.DayDuration;
 import com.aoindustries.util.schedule.Recurring;
 import com.pragmatickm.task.model.Priority;
@@ -45,6 +48,7 @@ import com.semanticcms.core.taglib.ElementTag;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Locale;
+import javax.el.ELContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -52,79 +56,96 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.PageContext;
 
-public class TaskTag extends ElementTag<Task> {
+public class TaskTag extends ElementTag<Task> implements StyleAttribute {
 
-	public TaskTag() {
-		super(new Task());
-	}
-
-	private String style;
-	public void setStyle(String style) {
-		if(style!=null && style.isEmpty()) style = null;
+	private Object style;
+	@Override
+	public void setStyle(Object style) {
 		this.style = style;
 	}
 
-	public void setLabel(String label) {
-		element.setLabel(label);
+	private Object label;
+	public void setLabel(Object label) {
+		this.label = label;
     }
 
-    public void setOn(String on) {
-		if(on != null) {
-			on = on.trim();
-			if(on.isEmpty()) on = null;
-		}
-		element.setOn(CalendarUtils.parseDate(on));
+	private Object on;
+    public void setOn(Object on) {
+		this.on = on;
     }
 
-	public void setRecurring(String recurring) throws IllegalArgumentException {
-		if(recurring != null) {
-			recurring = recurring.trim();
-			if(recurring.isEmpty()) recurring = null;
-		}
-		element.setRecurring(recurring==null ? null : Recurring.parse(recurring));
+	private Object recurring;
+	public void setRecurring(Object recurring) throws IllegalArgumentException {
+		this.recurring = recurring;
     }
 
-	public void setRelative(boolean relative) throws IllegalArgumentException {
-		element.setRelative(relative);
+	private Object relative;
+	public void setRelative(Object relative) throws IllegalArgumentException {
+		this.relative = relative;
     }
 
-	public void setAssignedTo(String assignedTo) {
+	private Object assignedTo;
+	public void setAssignedTo(Object assignedTo) {
+		this.assignedTo = assignedTo;
+    }
+
+	private Object pay;
+	public void setPay(Object pay) {
+		this.pay = pay;
+	}
+
+	private Object cost;
+	public void setCost(Object cost) {
+		this.cost = cost;
+	}
+
+	private Object priority;
+	public void setPriority(Object priority) {
+		this.priority = priority;
+	}
+
+	@Override
+	protected Task createElement() {
+		return new Task();
+	}
+
+	@Override
+	protected void evaluateAttributes(Task task, ELContext elContext) throws JspTagException, IOException {
+		super.evaluateAttributes(task, elContext);
+		task.setLabel(resolveValue(label, String.class, elContext));
+		task.setOn(CalendarUtils.parseDate(StringUtility.nullIfEmpty(resolveValue(on, String.class, elContext))));
+		task.setRecurring(Recurring.parse(StringUtility.nullIfEmpty(resolveValue(recurring, String.class, elContext))));
+		Boolean relativeObj = resolveValue(relative, Boolean.class, elContext);
+		if(relativeObj != null) task.setRelative(relativeObj);
+		String assignedToStr = StringUtility.nullIfEmpty(resolveValue(assignedTo, String.class, elContext));
 		User user =
-			(assignedTo==null || assignedTo.isEmpty())
+			(assignedToStr==null)
 			? User.Unassigned
-			: User.valueOf(assignedTo);
-		if(user.isPerson()) element.addAssignedTo(user, DayDuration.ZERO_DAYS);
-    }
-
-	public void setPay(String pay) {
-		element.setPay(pay);
-	}
-
-	public void setCost(String cost) {
-		element.setCost(cost==null || cost.isEmpty() ? null : cost);
-	}
-
-	public void setPriority(String priority) {
-		element.addPriority(
-			(priority==null || priority.isEmpty())
+			: User.valueOf(assignedToStr);
+		if(user.isPerson()) task.addAssignedTo(user, DayDuration.ZERO_DAYS);
+		task.setPay(resolveValue(pay, String.class, elContext));
+		task.setCost(resolveValue(cost, String.class, elContext));
+		String priorityStr = StringUtility.nullIfEmpty(resolveValue(priority, String.class, elContext));
+		task.addPriority(
+			(priorityStr==null)
 			? Priority.DEFAULT_PRIORITY
-			: Priority.valueOf(priority.toUpperCase(Locale.ROOT)),
+			: Priority.valueOf(priorityStr.toUpperCase(Locale.ROOT)),
 			DayDuration.ZERO_DAYS
 		);
 	}
 
 	void addDoBefore(TaskLookup taskLookup) {
-		element.addDoBefore(taskLookup);
+		getElement().addDoBefore(taskLookup);
 	}
 
 	void addCustomLog(String name) {
-		element.addCustomLog(name);
+		getElement().addCustomLog(name);
 	}
 
 	private BufferResult beforeBody;
 
 	@Override
-	protected void doBody(CaptureLevel captureLevel) throws JspException, IOException {
+	protected void doBody(Task task, CaptureLevel captureLevel) throws JspException, IOException {
 		try {
 			final PageContext pageContext = (PageContext)getJspContext();
 			final HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
@@ -134,14 +155,14 @@ public class TaskTag extends ElementTag<Task> {
 			if(currentPage == null) throw new ServletException("<task:task> tag must be nested inside a <core:page> tag.");
 
 			// Label defaults to page short title
-			if(element.getLabel() == null) {
-				element.setLabel(currentPage.getShortTitle());
+			if(task.getLabel() == null) {
+				task.setLabel(currentPage.getShortTitle());
 			}
 
 			// Locate the persistence file
-			element.setXmlFile(TaskImpl.getTaskLogXmlFile(currentPage.getPageRef(), element.getId()));
+			task.setXmlFile(TaskImpl.getTaskLogXmlFile(currentPage.getPageRef(), task.getId()));
 
-			super.doBody(captureLevel);
+			super.doBody(task, captureLevel);
 
 			// Determine what goes before the body
 			BufferWriter capturedOut;
@@ -164,11 +185,12 @@ public class TaskTag extends ElementTag<Task> {
 			try {
 				TaskImpl.writeBeforeBody(
 					pageContext.getServletContext(),
+					pageContext.getELContext(),
 					request,
 					response,
 					captureLevel,
 					capturedOut,
-					element,
+					task,
 					style
 				);
 			} finally {
@@ -188,7 +210,8 @@ public class TaskTag extends ElementTag<Task> {
 
 	@Override
 	public void writeTo(Writer out, ElementContext context) throws IOException {
-		if(beforeBody != null) beforeBody.writeTo(out);
-		TaskImpl.writeAfterBody(element, out, context);
+		assert beforeBody != null : "writeTo is only called on captureLevel=BODY, so this should have been set in doBody";
+		beforeBody.writeTo(out);
+		TaskImpl.writeAfterBody(getElement(), out, context);
 	}
 }

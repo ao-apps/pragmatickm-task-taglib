@@ -22,13 +22,17 @@
  */
 package com.pragmatickm.task.taglib;
 
+import static com.aoindustries.taglib.AttributeUtils.resolveValue;
+import static com.aoindustries.util.StringUtility.nullIfEmpty;
 import com.aoindustries.util.schedule.DayDuration;
 import com.pragmatickm.task.model.Priority;
 import com.pragmatickm.task.model.Task;
 import com.semanticcms.core.model.Node;
+import com.semanticcms.core.servlet.CaptureLevel;
 import com.semanticcms.core.servlet.CurrentNode;
 import java.io.IOException;
 import java.util.Locale;
+import javax.el.ELContext;
 import javax.servlet.ServletRequest;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.PageContext;
@@ -36,24 +40,41 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 public class PriorityTag extends SimpleTagSupport {
 
-	private Priority priority;
-    public void setPriority(String priority) {
-		this.priority = Priority.valueOf(priority.toUpperCase(Locale.ROOT));
+	private Object priority;
+    public void setPriority(Object priority) {
+		this.priority = priority;
     }
 
-	private DayDuration after = DayDuration.ZERO_DAYS;
-	public void setAfter(String after) {
-		this.after = DayDuration.valueOf(after);
+	private Object after;
+	public void setAfter(Object after) {
+		this.after = after;
 	}
 
 	@Override
     public void doTag() throws JspTagException, IOException {
 		PageContext pageContext = (PageContext)getJspContext();
 		ServletRequest request = pageContext.getRequest();
+
 		// Find the required task
 		Node currentNode = CurrentNode.getCurrentNode(request);
 		if(!(currentNode instanceof Task)) throw new JspTagException("<task:priority> tag must be nested inside a <task:task> tag.");
 		Task currentTask = (Task)currentNode;
-		currentTask.addPriority(priority, after);
+
+		assert
+			CaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
+			: "This is always contained by a task tag, so this is only invoked at captureLevel >= META";
+
+		// Evaluate expressions
+		ELContext elContext = pageContext.getELContext();
+		String priorityStr = resolveValue(priority, String.class, elContext);
+		String afterStr = nullIfEmpty(resolveValue(after, String.class, elContext));
+
+		Priority priorityObj = Priority.valueOf(priorityStr.toUpperCase(Locale.ROOT));
+		DayDuration afterObj = afterStr == null ? DayDuration.ZERO_DAYS : DayDuration.valueOf(afterStr);
+
+		currentTask.addPriority(
+			priorityObj,
+			afterObj
+		);
 	}
 }
