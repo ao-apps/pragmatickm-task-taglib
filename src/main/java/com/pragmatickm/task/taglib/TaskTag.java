@@ -126,12 +126,12 @@ public class TaskTag extends ElementTag<Task> implements StyleAttribute {
 		task.setPay(resolveValue(pay, String.class, elContext));
 		task.setCost(resolveValue(cost, String.class, elContext));
 		String priorityStr = StringUtility.nullIfEmpty(resolveValue(priority, String.class, elContext));
-		task.addPriority(
-			(priorityStr==null)
-			? Priority.DEFAULT_PRIORITY
-			: Priority.valueOf(priorityStr.toUpperCase(Locale.ROOT)),
-			DayDuration.ZERO_DAYS
-		);
+		if(priorityStr != null) {
+			task.addPriority(
+				Priority.valueOf(priorityStr.toUpperCase(Locale.ROOT)),
+				DayDuration.ZERO_DAYS
+			);
+		}
 	}
 
 	void addDoBefore(TaskLookup taskLookup) {
