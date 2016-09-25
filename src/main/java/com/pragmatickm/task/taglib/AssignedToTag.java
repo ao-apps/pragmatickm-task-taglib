@@ -32,6 +32,7 @@ import com.semanticcms.core.servlet.CaptureLevel;
 import com.semanticcms.core.servlet.CurrentNode;
 import java.io.IOException;
 import javax.el.ELContext;
+import javax.el.ValueExpression;
 import javax.servlet.ServletRequest;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.PageContext;
@@ -39,13 +40,13 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 public class AssignedToTag extends SimpleTagSupport {
 
-	private Object who;
-    public void setWho(Object who) {
+	private ValueExpression who;
+    public void setWho(ValueExpression who) {
 		this.who = who;
     }
 
-	private Object after;
-	public void setAfter(Object after) {
+	private ValueExpression after;
+	public void setAfter(ValueExpression after) {
 		this.after = after;
 	}
 

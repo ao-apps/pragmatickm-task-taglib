@@ -29,7 +29,6 @@ import com.aoindustries.io.buffer.BufferWriter;
 import com.aoindustries.io.buffer.SegmentedWriter;
 import com.aoindustries.servlet.filter.TempFileContext;
 import static com.aoindustries.taglib.AttributeUtils.resolveValue;
-import com.aoindustries.taglib.StyleAttribute;
 import com.aoindustries.util.CalendarUtils;
 import com.aoindustries.util.StringUtility;
 import com.aoindustries.util.schedule.DayDuration;
@@ -49,6 +48,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Locale;
 import javax.el.ELContext;
+import javax.el.ValueExpression;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -56,51 +56,50 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.PageContext;
 
-public class TaskTag extends ElementTag<Task> implements StyleAttribute {
+public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 
-	private Object style;
-	@Override
-	public void setStyle(Object style) {
+	private ValueExpression style;
+	public void setStyle(ValueExpression style) {
 		this.style = style;
 	}
 
-	private Object label;
-	public void setLabel(Object label) {
+	private ValueExpression label;
+	public void setLabel(ValueExpression label) {
 		this.label = label;
     }
 
-	private Object on;
-    public void setOn(Object on) {
+	private ValueExpression on;
+    public void setOn(ValueExpression on) {
 		this.on = on;
     }
 
-	private Object recurring;
-	public void setRecurring(Object recurring) throws IllegalArgumentException {
+	private ValueExpression recurring;
+	public void setRecurring(ValueExpression recurring) throws IllegalArgumentException {
 		this.recurring = recurring;
     }
 
-	private Object relative;
-	public void setRelative(Object relative) throws IllegalArgumentException {
+	private ValueExpression relative;
+	public void setRelative(ValueExpression relative) throws IllegalArgumentException {
 		this.relative = relative;
     }
 
-	private Object assignedTo;
-	public void setAssignedTo(Object assignedTo) {
+	private ValueExpression assignedTo;
+	public void setAssignedTo(ValueExpression assignedTo) {
 		this.assignedTo = assignedTo;
     }
 
-	private Object pay;
-	public void setPay(Object pay) {
+	private ValueExpression pay;
+	public void setPay(ValueExpression pay) {
 		this.pay = pay;
 	}
 
-	private Object cost;
-	public void setCost(Object cost) {
+	private ValueExpression cost;
+	public void setCost(ValueExpression cost) {
 		this.cost = cost;
 	}
 
-	private Object priority;
-	public void setPriority(Object priority) {
+	private ValueExpression priority;
+	public void setPriority(ValueExpression priority) {
 		this.priority = priority;
 	}
 

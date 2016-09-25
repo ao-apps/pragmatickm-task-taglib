@@ -37,6 +37,7 @@ import com.semanticcms.core.servlet.CurrentNode;
 import com.semanticcms.core.servlet.PageRefResolver;
 import java.io.IOException;
 import javax.el.ELContext;
+import javax.el.ValueExpression;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -47,18 +48,18 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 public class DoBeforeTag extends SimpleTagSupport {
 
-	private Object book;
-	public void setBook(Object book) {
+	private ValueExpression book;
+	public void setBook(ValueExpression book) {
 		this.book = book;
 	}
 
-	private Object page;
-	public void setPage(Object page) {
+	private ValueExpression page;
+	public void setPage(ValueExpression page) {
 		this.page = page;
 	}
 
-	private Object task;
-	public void setTask(Object task) throws JspTagException {
+	private ValueExpression task;
+	public void setTask(ValueExpression task) throws JspTagException {
 		this.task = task;
 	}
 

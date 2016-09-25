@@ -49,8 +49,6 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>id</name>
 			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
 			<deferred-value>
 				<type>java.lang.String</type>
 			</deferred-value>
@@ -61,8 +59,6 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>style</name>
 			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Object</type>
 			<deferred-value>
 				<type>java.lang.Object</type>
 			</deferred-value>
@@ -74,8 +70,6 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>label</name>
 			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
 			<deferred-value>
 				<type>java.lang.String</type>
 			</deferred-value>
@@ -89,8 +83,6 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>on</name>
 			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
 			<deferred-value>
 				<type>java.lang.String</type>
 			</deferred-value>
@@ -108,8 +100,6 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>recurring</name>
 			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
 			<deferred-value>
 				<type>java.lang.String</type>
 			</deferred-value>
@@ -127,8 +117,6 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>relative</name>
 			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
 			<deferred-value>
 				<type>java.lang.Boolean</type>
 			</deferred-value>
@@ -142,8 +130,6 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>assignedTo</name>
 			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
 			<deferred-value>
 				<type>java.lang.String</type>
 			</deferred-value>
@@ -155,8 +141,6 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>pay</name>
 			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
 			<deferred-value>
 				<type>java.lang.String</type>
 			</deferred-value>
@@ -168,8 +152,6 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>cost</name>
 			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
 			<deferred-value>
 				<type>java.lang.String</type>
 			</deferred-value>
@@ -194,8 +176,6 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>priority</name>
 			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
 			<deferred-value>
 				<type>java.lang.String</type>
 			</deferred-value>
@@ -216,8 +196,6 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>who</name>
 			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
 			<deferred-value>
 				<type>java.lang.String</type>
 			</deferred-value>
@@ -237,8 +215,6 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>after</name>
 			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
 			<deferred-value>
 				<type>java.lang.String</type>
 			</deferred-value>
@@ -270,8 +246,6 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>priority</name>
 			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
 			<deferred-value>
 				<type>java.lang.String</type>
 			</deferred-value>
@@ -291,8 +265,6 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>after</name>
 			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
 			<deferred-value>
 				<type>java.lang.String</type>
 			</deferred-value>
@@ -316,8 +288,6 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>book</name>
 			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
 			<deferred-value>
 				<type>java.lang.String</type>
 			</deferred-value>
@@ -329,8 +299,6 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>page</name>
 			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
 			<deferred-value>
 				<type>java.lang.String</type>
 			</deferred-value>
@@ -342,8 +310,6 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>task</name>
 			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
 			<deferred-value>
 				<type>java.lang.String</type>
 			</deferred-value>
@@ -364,8 +330,6 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			]]></description>
 			<name>name</name>
 			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
 			<deferred-value>
 				<type>java.lang.String</type>
 			</deferred-value>

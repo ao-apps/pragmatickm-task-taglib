@@ -28,6 +28,7 @@ import com.semanticcms.core.model.Node;
 import com.semanticcms.core.servlet.CaptureLevel;
 import com.semanticcms.core.servlet.CurrentNode;
 import java.io.IOException;
+import javax.el.ValueExpression;
 import javax.servlet.ServletRequest;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.PageContext;
@@ -35,8 +36,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 public class CustomLogTag extends SimpleTagSupport {
 
-	private Object name;
-    public void setName(Object name) {
+	private ValueExpression name;
+    public void setName(ValueExpression name) {
 		this.name = name;
     }
 

@@ -33,6 +33,7 @@ import com.semanticcms.core.servlet.CurrentNode;
 import java.io.IOException;
 import java.util.Locale;
 import javax.el.ELContext;
+import javax.el.ValueExpression;
 import javax.servlet.ServletRequest;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.PageContext;
@@ -40,13 +41,13 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 public class PriorityTag extends SimpleTagSupport {
 
-	private Object priority;
-    public void setPriority(Object priority) {
+	private ValueExpression priority;
+    public void setPriority(ValueExpression priority) {
 		this.priority = priority;
     }
 
-	private Object after;
-	public void setAfter(Object after) {
+	private ValueExpression after;
+	public void setAfter(ValueExpression after) {
 		this.after = after;
 	}
 
