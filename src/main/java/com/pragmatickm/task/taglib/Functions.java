@@ -26,7 +26,6 @@ import static com.aoindustries.servlet.filter.FunctionContext.getRequest;
 import static com.aoindustries.servlet.filter.FunctionContext.getResponse;
 import static com.aoindustries.servlet.filter.FunctionContext.getServletContext;
 import com.pragmatickm.task.model.Task;
-import com.pragmatickm.task.model.TaskException;
 import com.pragmatickm.task.model.TaskLog;
 import com.pragmatickm.task.model.User;
 import com.pragmatickm.task.servlet.TaskUtil;
@@ -54,7 +53,7 @@ final public class Functions {
 	/**
 	 * @see  TaskUtil#getDoAfters(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, com.pragmatickm.task.model.Task)
 	 */
-	public static List<Task> getDoAfters(Task task) throws ServletException, IOException, TaskException {
+	public static List<Task> getDoAfters(Task task) throws ServletException, IOException {
 		return TaskUtil.getDoAfters(
 			getServletContext(),
 			getRequest(),
@@ -70,7 +69,7 @@ final public class Functions {
 		);
 	}
 
-	public static List<Task> prioritizeTasks(List<Task> tasks, boolean dateFirst) throws ServletException, IOException, TaskException {
+	public static List<Task> prioritizeTasks(List<Task> tasks, boolean dateFirst) throws ServletException, IOException {
 		return TaskUtil.prioritizeTasks(
 			getServletContext(),
 			getRequest(),
@@ -80,7 +79,7 @@ final public class Functions {
 		);
 	}
 
-	public static List<Task> getAllTasks(Page rootPage, User user) throws TaskException, IOException, ServletException {
+	public static List<Task> getAllTasks(Page rootPage, User user) throws IOException, ServletException {
 		return TaskUtil.getAllTasks(
 			getServletContext(),
 			getRequest(),
@@ -90,7 +89,7 @@ final public class Functions {
 		);
 	}
 
-	public static boolean hasAssignedTask(Page page, User user, boolean recursive) throws TaskException, ServletException, IOException {
+	public static boolean hasAssignedTask(Page page, User user, boolean recursive) throws ServletException, IOException {
 		return TaskUtil.hasAssignedTask(
 			getServletContext(),
 			getRequest(),
@@ -101,7 +100,7 @@ final public class Functions {
 		);
 	}
 
-	public static List<Task> getReadyTasks(Page rootPage, User user) throws TaskException, IOException, ServletException {
+	public static List<Task> getReadyTasks(Page rootPage, User user) throws IOException, ServletException {
 		return TaskUtil.getReadyTasks(
 			getServletContext(),
 			getRequest(),
@@ -111,7 +110,7 @@ final public class Functions {
 		);
 	}
 
-	public static List<Task> getBlockedTasks(Page rootPage, User user) throws TaskException, IOException, ServletException {
+	public static List<Task> getBlockedTasks(Page rootPage, User user) throws IOException, ServletException {
 		return TaskUtil.getBlockedTasks(
 			getServletContext(),
 			getRequest(),
@@ -121,7 +120,7 @@ final public class Functions {
 		);
 	}
 
-	public static List<Task> getFutureTasks(Page rootPage, User user) throws TaskException, IOException, ServletException {
+	public static List<Task> getFutureTasks(Page rootPage, User user) throws IOException, ServletException {
 		return TaskUtil.getFutureTasks(
 			getServletContext(),
 			getRequest(),
