@@ -374,6 +374,17 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
+			Finds all tasks that must be done after each of the provided tasks.
+			Returns the map of doAfters, in the same iteration order as the provided
+			tasks.  If no doAfters for a given task, will contain an empty list.
+		]]></description>
+		<name>getMultipleDoAfters</name>
+		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
+		<function-signature>java.util.Map getMultipleDoAfters(java.util.Collection)</function-signature>
+		<example>${task:getMultipleDoAfters(tasks)}</example>
+	</function>
+	<function>
+		<description><![CDATA[
 			<p>
 				Gets the user for the current request.
 			</p>

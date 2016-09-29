@@ -103,10 +103,11 @@ public class DoBeforeTag extends SimpleTagSupport {
 		}
 		currentTask.addDoBefore(
 			new TaskLookup(pageRef, taskStr) {
-				private Task task;
+				private volatile Task task;
 				@Override
 				public Task getTask() throws TaskException {
-					if(task == null) {
+					Task t = task;
+					if(t == null) {
 						try {
 							String taskId = getTaskId();
 							// Capture page when short-cut doesn't work
@@ -120,14 +121,15 @@ public class DoBeforeTag extends SimpleTagSupport {
 							Element element = capturedAfterPage.getElementsById().get(taskId);
 							if(!(element instanceof Task)) throw new TaskException("Task not found: " + pageRef + '#' + taskId);
 							if(capturedAfterPage.getGeneratedIds().contains(taskId)) throw new TaskException("Not allowed to reference task by generated id, set an explicit id on the task: " + element);
-							task = (Task)element;
+							t = (Task)element;
 						} catch(ServletException e) {
 							throw new TaskException(e);
 						} catch(IOException e) {
 							throw new TaskException(e);
 						}
+						task = t;
 					}
-					return task;
+					return t;
 				}
 			}
 		);

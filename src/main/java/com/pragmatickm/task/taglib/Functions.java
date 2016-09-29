@@ -31,7 +31,9 @@ import com.pragmatickm.task.model.User;
 import com.pragmatickm.task.servlet.TaskUtil;
 import com.semanticcms.core.model.Page;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 
 final public class Functions {
@@ -59,6 +61,18 @@ final public class Functions {
 			getRequest(),
 			getResponse(),
 			task
+		);
+	}
+
+	/**
+	 * @see  TaskUtil#getMultipleDoAfters(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.util.Collection)
+	 */
+	public static Map<Task,List<Task>> getMultipleDoAfters(Collection<? extends Task> tasks) throws ServletException, IOException {
+		return TaskUtil.getMultipleDoAfters(
+			getServletContext(),
+			getRequest(),
+			getResponse(),
+			tasks
 		);
 	}
 
