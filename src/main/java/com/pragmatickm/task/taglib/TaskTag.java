@@ -26,9 +26,9 @@ import com.aoindustries.io.TempFileList;
 import com.aoindustries.io.buffer.AutoTempFileWriter;
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.io.buffer.BufferWriter;
-import com.aoindustries.io.buffer.SegmentedWriter;
 import com.aoindustries.servlet.filter.TempFileContext;
 import static com.aoindustries.taglib.AttributeUtils.resolveValue;
+import com.aoindustries.taglib.AutoEncodingBufferedTag;
 import com.aoindustries.util.CalendarUtils;
 import com.aoindustries.util.StringUtility;
 import com.aoindustries.util.schedule.DayDuration;
@@ -168,7 +168,7 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 			if(captureLevel == CaptureLevel.BODY) {
 				// Enable temp files if temp file context active
 				capturedOut = TempFileContext.wrapTempFileList(
-					new SegmentedWriter(),
+					AutoEncodingBufferedTag.newBufferWriter(),
 					request,
 					// Java 1.8: AutoTempFileWriter::new
 					new TempFileContext.Wrapper<BufferWriter>() {
