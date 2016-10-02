@@ -103,14 +103,13 @@ final public class Functions {
 		);
 	}
 
-	public static boolean hasAssignedTask(Page page, User user, boolean recursive) throws ServletException, IOException {
+	public static boolean hasAssignedTask(Page page, User user) throws ServletException, IOException {
 		return TaskUtil.hasAssignedTask(
 			getServletContext(),
 			getRequest(),
 			getResponse(),
 			page,
-			user,
-			recursive
+			user
 		);
 	}
 
