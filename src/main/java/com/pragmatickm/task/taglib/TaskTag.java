@@ -36,7 +36,6 @@ import com.aoindustries.util.schedule.Recurring;
 import com.pragmatickm.task.model.Priority;
 import com.pragmatickm.task.model.Task;
 import com.pragmatickm.task.model.TaskException;
-import com.pragmatickm.task.model.TaskLookup;
 import com.pragmatickm.task.model.User;
 import com.pragmatickm.task.servlet.impl.TaskImpl;
 import com.semanticcms.core.model.ElementContext;
@@ -133,13 +132,14 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 		}
 	}
 
-	void addDoBefore(TaskLookup taskLookup) {
-		getElement().addDoBefore(taskLookup);
+	/*
+	void addDoBefore(ElementRef doBefore) {
+		getElement().addDoBefore(doBefore);
 	}
 
 	void addCustomLog(String name) {
 		getElement().addCustomLog(name);
-	}
+	}*/
 
 	private BufferResult beforeBody;
 

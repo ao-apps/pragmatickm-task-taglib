@@ -26,8 +26,10 @@ import static com.aoindustries.servlet.filter.FunctionContext.getRequest;
 import static com.aoindustries.servlet.filter.FunctionContext.getResponse;
 import static com.aoindustries.servlet.filter.FunctionContext.getServletContext;
 import com.pragmatickm.task.model.Task;
+import com.pragmatickm.task.model.TaskException;
 import com.pragmatickm.task.model.TaskLog;
 import com.pragmatickm.task.model.User;
+import com.pragmatickm.task.servlet.StatusResult;
 import com.pragmatickm.task.servlet.TaskUtil;
 import com.semanticcms.core.model.Page;
 import java.io.IOException;
@@ -50,6 +52,30 @@ final public class Functions {
 
 	public static TaskLog getTaskLog(String page, String taskId) throws ServletException, IOException {
 		return getTaskLogInBook(null, page, taskId);
+	}
+
+	/**
+	 * @see  TaskUtil#getStatus(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, com.pragmatickm.task.model.Task)
+	 */
+	public static StatusResult getStatus(Task task) throws TaskException, ServletException, IOException {
+		return TaskUtil.getStatus(
+			getServletContext(),
+			getRequest(),
+			getResponse(),
+			task
+		);
+	}
+
+	/**
+	 * @see  TaskUtil#getMultipleStatuses(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.util.Collection)
+	 */
+	public static Map<Task,StatusResult> getMultipleStatuses(Collection<? extends Task> tasks) throws TaskException, ServletException, IOException {
+		return TaskUtil.getMultipleStatuses(
+			getServletContext(),
+			getRequest(),
+			getResponse(),
+			tasks
+		);
 	}
 
 	/**
@@ -83,7 +109,7 @@ final public class Functions {
 		);
 	}
 
-	public static List<Task> prioritizeTasks(List<Task> tasks, boolean dateFirst) throws ServletException, IOException {
+	public static List<Task> prioritizeTasks(Collection<? extends Task> tasks, boolean dateFirst) throws TaskException, ServletException, IOException {
 		return TaskUtil.prioritizeTasks(
 			getServletContext(),
 			getRequest(),

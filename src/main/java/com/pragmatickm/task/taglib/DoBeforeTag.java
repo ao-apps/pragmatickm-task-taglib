@@ -25,14 +25,11 @@ package com.pragmatickm.task.taglib;
 import static com.aoindustries.taglib.AttributeUtils.resolveValue;
 import static com.aoindustries.util.StringUtility.nullIfEmpty;
 import com.pragmatickm.task.model.Task;
-import com.pragmatickm.task.model.TaskException;
-import com.pragmatickm.task.model.TaskLookup;
 import com.semanticcms.core.model.Element;
+import com.semanticcms.core.model.ElementRef;
 import com.semanticcms.core.model.Node;
-import com.semanticcms.core.model.Page;
 import com.semanticcms.core.model.PageRef;
 import com.semanticcms.core.servlet.CaptureLevel;
-import com.semanticcms.core.servlet.CapturePage;
 import com.semanticcms.core.servlet.CurrentNode;
 import com.semanticcms.core.servlet.PageRefResolver;
 import java.io.IOException;
@@ -101,37 +98,6 @@ public class DoBeforeTag extends SimpleTagSupport {
 		} catch(ServletException e) {
 			throw new JspTagException(e);
 		}
-		currentTask.addDoBefore(
-			new TaskLookup(pageRef, taskStr) {
-				private volatile Task task;
-				@Override
-				public Task getTask() throws TaskException {
-					Task t = task;
-					if(t == null) {
-						try {
-							String taskId = getTaskId();
-							// Capture page when short-cut doesn't work
-							Page capturedAfterPage = CapturePage.capturePage(
-								servletContext,
-								request,
-								response,
-								pageRef,
-								CaptureLevel.META
-							);
-							Element element = capturedAfterPage.getElementsById().get(taskId);
-							if(!(element instanceof Task)) throw new TaskException("Task not found: " + pageRef + '#' + taskId);
-							if(capturedAfterPage.getGeneratedIds().contains(taskId)) throw new TaskException("Not allowed to reference task by generated id, set an explicit id on the task: " + element);
-							t = (Task)element;
-						} catch(ServletException e) {
-							throw new TaskException(e);
-						} catch(IOException e) {
-							throw new TaskException(e);
-						}
-						task = t;
-					}
-					return t;
-				}
-			}
-		);
+		currentTask.addDoBefore(new ElementRef(pageRef, taskStr));
 	}
 }
