@@ -365,6 +365,26 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
+			Gets the status for the given task.
+		]]></description>
+		<name>getStatus</name>
+		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
+		<function-signature>com.pragmatickm.task.servlet.StatusResult getStatus(com.pragmatickm.task.model.Task)</function-signature>
+		<example>${task:getStatus(task)}</example>
+	</function>
+	<function>
+		<description><![CDATA[
+			Gets the status for each of the provided tasks.
+			Returns the map of statuses, in the same iteration order as the provided
+			tasks.
+		]]></description>
+		<name>getMultipleStatuses</name>
+		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
+		<function-signature>java.util.Map getMultipleStatuses(java.util.Collection)</function-signature>
+		<example>${task:getMultipleStatuses(tasks)}</example>
+	</function>
+	<function>
+		<description><![CDATA[
 			Finds all tasks that must be done after this task.
 		]]></description>
 		<name>getDoAfters</name>
@@ -430,7 +450,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		]]></description>
 		<name>prioritizeTasks</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
-		<function-signature>java.util.List prioritizeTasks(java.util.List,boolean)</function-signature>
+		<function-signature>java.util.List prioritizeTasks(java.util.Collection,boolean)</function-signature>
 		<example>${task:prioritizeTasks(tasks, dateFirst)}</example>
 	</function>
 	<function>
