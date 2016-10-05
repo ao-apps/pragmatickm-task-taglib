@@ -30,7 +30,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 	<groupId>com.pragmatickm</groupId>
 	<artifactId>pragmatickm-task-taglib</artifactId>
-	<version>1.3-SNAPSHOT</version>
+	<version>1.3.0</version>
 	<packaging>jar</packaging>
 
 	<name>PragmaticKM Task Taglib</name>
@@ -46,7 +46,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 		<!--
 		<url>http://github.com/aoindustries/pragmatickm-task-taglib</url>
 		-->
-		<tag>HEAD</tag>
+		<tag>pragmatickm-task-taglib-1.3.0</tag>
 	</scm>
 
 	<repositories>
