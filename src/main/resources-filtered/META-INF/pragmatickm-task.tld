@@ -98,7 +98,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 				</p>
 				<p>
 					Supported values are as documented in com.aoindustries.util.schedule.Recurring.parse method:
-					<a href="https://www.aoindustries.com/docs/aocode-public/com/aoindustries/util/schedule/Recurring.html#parse%28java.lang.String%29">Recurring JavaDocs</a>
+					<a href="https://aoindustries.com/docs/aocode-public/com/aoindustries/util/schedule/Recurring.html#parse%28java.lang.String%29">Recurring JavaDocs</a>
 				</p>
 			]]></description>
 			<name>recurring</name>
