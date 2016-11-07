@@ -25,7 +25,9 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
 	version="2.1">
-	<description>@{project.description}</description>
+	<description><![CDATA[
+		<p>@{project.description}</p>
+	]]></description>
 	<display-name>@{project.name}</display-name>
 	<tlib-version>
 		<!-- Release: @{project.version} -->
@@ -35,20 +37,24 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	<uri>@{project.url}</uri>
 	<tag>
 		<description><![CDATA[
-			A task is any one-time or recurring task that may be assigned to a
-			person, have an activity log associated with it, and have scheduling.
-			Must be nested inside a &lt;p:page&gt; tag.
+			<p>
+				A task is any one-time or recurring task that may be assigned to a
+				person, have an activity log associated with it, and have scheduling.
+				Must be nested inside a &lt;p:page&gt; tag.
+			</p>
 		]]></description>
 		<name>task</name>
 		<tag-class>com.pragmatickm.task.taglib.TaskTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description><![CDATA[
-				A page-unique ID for the task.
-				This will also be used as an anchor when generating links to the task.
-				This ID is also used to generate the filename for the persistence XML file.
-				If not provided, is generated from the label.
-				Ids generated from labels will be unique, but may change as page structure changes.
+				<p>
+					A page-unique ID for the task.
+					This will also be used as an anchor when generating links to the task.
+					This ID is also used to generate the filename for the persistence XML file.
+					If not provided, is generated from the label.
+					Ids generated from labels will be unique, but may change as page structure changes.
+				</p>
 			]]></description>
 			<name>id</name>
 			<required>false</required>
@@ -58,7 +64,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				Optional CSS style attribute.
+				<p>Optional CSS style attribute.</p>
 			]]></description>
 			<name>style</name>
 			<required>false</required>
@@ -68,8 +74,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				A brief label for the task.
-				Defaults to the page short title.
+				<p>
+					A brief label for the task.
+					Defaults to the page short title.
+				</p>
 			]]></description>
 			<name>label</name>
 			<required>false</required>
@@ -79,10 +87,12 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				The date the task is to be accomplished.
-				If a recurring task, this is the first date it occurs.
-				Required for recurring tasks.
-				Format is "YYYY-MM-DD".
+				<p>
+					The date the task is to be accomplished.
+					If a recurring task, this is the first date it occurs.
+					Required for recurring tasks.
+					Format is "YYYY-MM-DD".
+				</p>
 			]]></description>
 			<name>on</name>
 			<required>false</required>
@@ -126,10 +136,12 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				The name of the primary person the task is assigned to.
-				Must be the name of a <code>User</code>.
-				Defaults to "Unassigned".
-				To provide multiple assignments, use nested &lt;task:assignedTo who="..." after="..." /&gt; tags.
+				<p>
+					The name of the primary person the task is assigned to.
+					Must be the name of a <code>User</code>.
+					Defaults to "Unassigned".
+					To provide multiple assignments, use nested &lt;task:assignedTo who="..." after="..." /&gt; tags.
+				</p>
 			]]></description>
 			<name>assignedTo</name>
 			<required>false</required>
@@ -139,8 +151,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				The pay associated with this task.
-				This is free-form, could be anything, such as "$1000" or "$120/hr".
+				<p>
+					The pay associated with this task.
+					This is free-form, could be anything, such as "$1000" or "$120/hr".
+				</p>
 			]]></description>
 			<name>pay</name>
 			<required>false</required>
@@ -150,8 +164,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				The cost associated with this task.
-				This is free-form, could be anything, such as "$1000" or "$60/month".
+				<p>
+					The cost associated with this task.
+					This is free-form, could be anything, such as "$1000" or "$60/month".
+				</p>
 			]]></description>
 			<name>cost</name>
 			<required>false</required>
@@ -186,16 +202,20 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</tag>
 	<tag>
 		<description><![CDATA[
-			A task may be assigned to multiple people.
-			Must be nested inside a &lt;task:task&gt; tag.
+			<p>
+				A task may be assigned to multiple people.
+				Must be nested inside a &lt;task:task&gt; tag.
+			</p>
 		]]></description>
 		<name>assignedTo</name>
 		<tag-class>com.pragmatickm.task.taglib.AssignedToTag</tag-class>
 		<body-content>empty</body-content>
 		<attribute>
 			<description><![CDATA[
-				The name of the person the task is assigned to.
-				Must be the name of a <code>User</code>.
+				<p>
+					The name of the person the task is assigned to.
+					Must be the name of a <code>User</code>.
+				</p>
 			]]></description>
 			<name>who</name>
 			<required>true</required>
@@ -205,16 +225,20 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				The number of days late before the task is assigned to this person.
-				At least one person must be assigned the "0 days" task.
-				Accepts format of:
+				<p>
+					The number of days late before the task is assigned to this person.
+					At least one person must be assigned the "0 days" task.
+					Accepts format of:
+				</p>
 				<ol>
 					<li># day(s)</li>
 					<li># week(s)</li>
 					<li># month(s)</li>
 					<li># years(s)</li>
 				</ol>
-				Defaults to "0 days".
+				<p>
+					Defaults to "0 days".
+				</p>
 			]]></description>
 			<name>after</name>
 			<required>false</required>
@@ -225,8 +249,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</tag>
 	<tag>
 		<description><![CDATA[
-			A task may have multiple priorities.
-			Must be nested inside a &lt;task:task&gt; tag.
+			<p>
+				A task may have multiple priorities.
+				Must be nested inside a &lt;task:task&gt; tag.
+			</p>
 		]]></description>
 		<name>priority</name>
 		<tag-class>com.pragmatickm.task.taglib.PriorityTag</tag-class>
@@ -255,16 +281,20 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				The number of days late before the task is assigned this priority.
-				One and only one priority may be assigned the "0 days" task.
-				Accepts format of:
+				<p>
+					The number of days late before the task is assigned this priority.
+					One and only one priority may be assigned the "0 days" task.
+					Accepts format of:
+				</p>
 				<ol>
 					<li># day(s)</li>
 					<li># week(s)</li>
 					<li># month(s)</li>
 					<li># years(s)</li>
 				</ol>
-				Defaults to "0 days".
+				<p>
+					Defaults to "0 days".
+				</p>
 			]]></description>
 			<name>after</name>
 			<required>false</required>
@@ -275,19 +305,23 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</tag>
 	<tag>
 		<description><![CDATA[
-			When two tasks must be performed on the same day, they will be ordered
-			based on the "doBefore" settings.  By providing these value, this task will
-			be scheduled after the other tasks.
-			At least one of page or task must be provided.
-			Must be nested inside a &lt;task:task&gt; tag.
+			<p>
+				When two tasks must be performed on the same day, they will be ordered
+				based on the "doBefore" settings.  By providing these value, this task will
+				be scheduled after the other tasks.
+				At least one of page or task must be provided.
+				Must be nested inside a &lt;task:task&gt; tag.
+			</p>
 		]]></description>
 		<name>doBefore</name>
 		<tag-class>com.pragmatickm.task.taglib.DoBeforeTag</tag-class>
 		<body-content>empty</body-content>
 		<attribute>
 			<description><![CDATA[
-				The book containing the page.
-				Defaults to the book of the current JSP file.
+				<p>
+					The book containing the page.
+					Defaults to the book of the current JSP file.
+				</p>
 			]]></description>
 			<name>book</name>
 			<required>false</required>
@@ -297,8 +331,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				The page-relative path to the page.
-				If not provided, assumes the current page.
+				<p>
+					The page-relative path to the page.
+					If not provided, assumes the current page.
+				</p>
 			]]></description>
 			<name>page</name>
 			<required>false</required>
@@ -308,8 +344,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				The page-unique id of the task.
-				Not allowed to reference task by generated id, set an explicit id on the task.
+				<p>
+					The page-unique id of the task.
+					Not allowed to reference task by generated id, set an explicit id on the task.
+				</p>
 			]]></description>
 			<name>task</name>
 			<required>true</required>
@@ -320,16 +358,20 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</tag>
 	<tag>
 		<description><![CDATA[
-			A task may have any number of additional custom logging fields.
-			Must be nested inside a &lt;task:task&gt; tag.
+			<p>
+				A task may have any number of additional custom logging fields.
+				Must be nested inside a &lt;task:task&gt; tag.
+			</p>
 		]]></description>
 		<name>customLog</name>
 		<tag-class>com.pragmatickm.task.taglib.CustomLogTag</tag-class>
 		<body-content>empty</body-content>
 		<attribute>
 			<description><![CDATA[
-				The name of the custom log entry.
-				Must be unique per task.
+				<p>
+					The name of the custom log entry.
+					Must be unique per task.
+				</p>
 			]]></description>
 			<name>name</name>
 			<required>true</required>
@@ -340,7 +382,9 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</tag>
 	<function>
 		<description><![CDATA[
-			Gets the task log given a book, page and task.
+			<p>
+				Gets the task log given a book, page and task.
+			</p>
 		]]></description>
 		<name>getTaskLogInBook</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
@@ -349,7 +393,9 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			Gets the task log given a page and task.
+			<p>
+				Gets the task log given a page and task.
+			</p>
 		]]></description>
 		<name>getTaskLog</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
@@ -358,8 +404,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			Gets the most recent task log entry with the given status(es) or <code>null</code> for none.
-			The statuses is a comma-separated list of statuses to match.
+			<p>
+				Gets the most recent task log entry with the given status(es) or <code>null</code> for none.
+				The statuses is a comma-separated list of statuses to match.
+			</p>
 		]]></description>
 		<name>getMostRecentEntry</name>
 		<function-class>com.pragmatickm.task.servlet.TaskUtil</function-class>
@@ -368,7 +416,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			Gets the status for the given task.
+			<p>Gets the status for the given task.</p>
 		]]></description>
 		<name>getStatus</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
@@ -377,9 +425,11 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			Gets the status for each of the provided tasks.
-			Returns the map of statuses, in the same iteration order as the provided
-			tasks.
+			<p>
+				Gets the status for each of the provided tasks.
+				Returns the map of statuses, in the same iteration order as the provided
+				tasks.
+			</p>
 		]]></description>
 		<name>getMultipleStatuses</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
@@ -388,7 +438,9 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			Finds all tasks that must be done after this task.
+			<p>
+				Finds all tasks that must be done after this task.
+			</p>
 		]]></description>
 		<name>getDoAfters</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
@@ -397,9 +449,11 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			Finds all tasks that must be done after each of the provided tasks.
-			Returns the map of doAfters, in the same iteration order as the provided
-			tasks.  If no doAfters for a given task, will contain an empty list.
+			<p>
+				Finds all tasks that must be done after each of the provided tasks.
+				Returns the map of doAfters, in the same iteration order as the provided
+				tasks.  If no doAfters for a given task, will contain an empty list.
+			</p>
 		]]></description>
 		<name>getMultipleDoAfters</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
@@ -427,7 +481,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			Gets all users.
+			<p>Gets all users.</p>
 		]]></description>
 		<name>getAllUsers</name>
 		<function-class>com.pragmatickm.task.servlet.TaskUtil</function-class>
@@ -458,8 +512,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			Gets all tasks for a page and all sub-pages.
-			Filters for user or all when user is null.
+			<p>
+				Gets all tasks for a page and all sub-pages.
+				Filters for user or all when user is null.
+			</p>
 		]]></description>
 		<name>getAllTasks</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
@@ -468,9 +524,11 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			Checks if the given page or any of its child pages has at least
-			one task assigned to the given user.
-			Filters for user or all when user is null.
+			<p>
+				Checks if the given page or any of its child pages has at least
+				one task assigned to the given user.
+				Filters for user or all when user is null.
+			</p>
 		]]></description>
 		<name>hasAssignedTask</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
@@ -479,9 +537,11 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			Gets all tasks for a page and all sub-pages that are ready to be done at the current
-			moment in time.
-			Filters for user or all when user is null.
+			<p>
+				Gets all tasks for a page and all sub-pages that are ready to be done at the current
+				moment in time.
+				Filters for user or all when user is null.
+			</p>
 		]]></description>
 		<name>getReadyTasks</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
@@ -490,9 +550,11 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			Gets all tasks for a page and all sub-pages that are should done at the current
-			moment in time but are waiting for another task.
-			Filters for user or all when user is null.
+			<p>
+				Gets all tasks for a page and all sub-pages that are should done at the current
+				moment in time but are waiting for another task.
+				Filters for user or all when user is null.
+			</p>
 		]]></description>
 		<name>getBlockedTasks</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
@@ -501,9 +563,11 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			Gets all tasks for a page and all sub-pages that will be done at a future
-			moment in time.
-			Filters for user or all when user is null.
+			<p>
+				Gets all tasks for a page and all sub-pages that will be done at a future
+				moment in time.
+				Filters for user or all when user is null.
+			</p>
 		]]></description>
 		<name>getFutureTasks</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
@@ -512,7 +576,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			Formats a date.
+			<p>Formats a date.</p>
 		]]></description>
 		<name>formatDate</name>
 		<function-class>com.aoindustries.util.CalendarUtils</function-class>
@@ -521,7 +585,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			Parses a date.
+			<p>Parses a date.</p>
 		]]></description>
 		<name>parseDate</name>
 		<function-class>com.aoindustries.util.CalendarUtils</function-class>
@@ -530,7 +594,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			Gets today's date.
+			<p>Gets today's date.</p>
 		]]></description>
 		<name>getToday</name>
 		<function-class>com.aoindustries.util.CalendarUtils</function-class>
