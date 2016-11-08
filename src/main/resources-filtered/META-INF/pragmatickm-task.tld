@@ -389,7 +389,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>getTaskLogInBook</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
 		<function-signature>com.pragmatickm.task.model.TaskLog getTaskLogInBook(java.lang.String,java.lang.String,java.lang.String)</function-signature>
-		<example><![CDATA[<pre>${task:getTaskLogInBook(book, page, taskId)}</pre>]]></example>
+		<example><![CDATA[<code>${task:getTaskLogInBook(book, page, taskId)}</code>]]></example>
 	</function>
 	<function>
 		<description><![CDATA[
@@ -400,7 +400,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>getTaskLog</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
 		<function-signature>com.pragmatickm.task.model.TaskLog getTaskLog(java.lang.String,java.lang.String)</function-signature>
-		<example><![CDATA[<pre>${task:getTaskLog(page, taskId)}</pre>]]></example>
+		<example><![CDATA[<code>${task:getTaskLog(page, taskId)}</code>]]></example>
 	</function>
 	<function>
 		<description><![CDATA[
@@ -412,7 +412,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>getMostRecentEntry</name>
 		<function-class>com.pragmatickm.task.servlet.TaskUtil</function-class>
 		<function-signature>com.pragmatickm.task.model.TaskLog.Entry getMostRecentEntry(com.pragmatickm.task.model.TaskLog,java.lang.String)</function-signature>
-		<example><![CDATA[<pre>${task:getMostRecentEntry(taskLog, statuses)}</pre>]]></example>
+		<example><![CDATA[<code>${task:getMostRecentEntry(taskLog, statuses)}</code>]]></example>
 	</function>
 	<function>
 		<description><![CDATA[
@@ -421,7 +421,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>getStatus</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
 		<function-signature>com.pragmatickm.task.servlet.StatusResult getStatus(com.pragmatickm.task.model.Task)</function-signature>
-		<example><![CDATA[<pre>${task:getStatus(task)}</pre>]]></example>
+		<example><![CDATA[<code>${task:getStatus(task)}</code>]]></example>
 	</function>
 	<function>
 		<description><![CDATA[
@@ -434,7 +434,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>getMultipleStatuses</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
 		<function-signature>java.util.Map getMultipleStatuses(java.util.Collection)</function-signature>
-		<example><![CDATA[<pre>${task:getMultipleStatuses(tasks)}</pre>]]></example>
+		<example><![CDATA[<code>${task:getMultipleStatuses(tasks)}</code>]]></example>
 	</function>
 	<function>
 		<description><![CDATA[
@@ -445,7 +445,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>getDoAfters</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
 		<function-signature>java.util.List getDoAfters(com.pragmatickm.task.model.Task)</function-signature>
-		<example><![CDATA[<pre>${task:getDoAfters(task)}</pre>]]></example>
+		<example><![CDATA[<code>${task:getDoAfters(task)}</code>]]></example>
 	</function>
 	<function>
 		<description><![CDATA[
@@ -458,7 +458,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>getMultipleDoAfters</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
 		<function-signature>java.util.Map getMultipleDoAfters(java.util.Collection)</function-signature>
-		<example><![CDATA[<pre>${task:getMultipleDoAfters(tasks)}</pre>]]></example>
+		<example><![CDATA[<code>${task:getMultipleDoAfters(tasks)}</code>]]></example>
 	</function>
 	<function>
 		<description><![CDATA[
@@ -477,7 +477,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>getUser</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
 		<function-signature>com.pragmatickm.task.model.User getUser()</function-signature>
-		<example><![CDATA[<pre>${task:getUser()}</pre>]]></example>
+		<example><![CDATA[<code>${task:getUser()}</code>]]></example>
 	</function>
 	<function>
 		<description><![CDATA[
@@ -486,7 +486,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>getAllUsers</name>
 		<function-class>com.pragmatickm.task.servlet.TaskUtil</function-class>
 		<function-signature>java.util.Set getAllUsers()</function-signature>
-		<example><![CDATA[<pre>${task:getAllUsers()}</pre>]]></example>
+		<example><![CDATA[<code>${task:getAllUsers()}</code>]]></example>
 	</function>
 	<function>
 		<description><![CDATA[
@@ -508,7 +508,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>prioritizeTasks</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
 		<function-signature>java.util.List prioritizeTasks(java.util.Collection,boolean)</function-signature>
-		<example><![CDATA[<pre>${task:prioritizeTasks(tasks, dateFirst)}</pre>]]></example>
+		<example><![CDATA[<code>${task:prioritizeTasks(tasks, dateFirst)}</code>]]></example>
 	</function>
 	<function>
 		<description><![CDATA[
@@ -520,7 +520,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>getAllTasks</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
 		<function-signature>java.util.List getAllTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
-		<example><![CDATA[<pre>${task:getAllTasks(rootPage, user)}</pre>]]></example>
+		<example><![CDATA[<code>${task:getAllTasks(rootPage, user)}</code>]]></example>
 	</function>
 	<function>
 		<description><![CDATA[
@@ -533,7 +533,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>hasAssignedTask</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
 		<function-signature>boolean hasAssignedTask(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
-		<example><![CDATA[<pre>${p:hasAssignedTask(page, user)}</pre>]]></example>
+		<example><![CDATA[<code>${p:hasAssignedTask(page, user)}</code>]]></example>
 	</function>
 	<function>
 		<description><![CDATA[
@@ -546,7 +546,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>getReadyTasks</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
 		<function-signature>java.util.List getReadyTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
-		<example><![CDATA[<pre>${task:getReadyTasks(rootPage, user)}</pre>]]></example>
+		<example><![CDATA[<code>${task:getReadyTasks(rootPage, user)}</code>]]></example>
 	</function>
 	<function>
 		<description><![CDATA[
@@ -559,7 +559,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>getBlockedTasks</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
 		<function-signature>java.util.List getBlockedTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
-		<example><![CDATA[<pre>${task:getBlockedTasks(rootPage, user)}</pre>]]></example>
+		<example><![CDATA[<code>${task:getBlockedTasks(rootPage, user)}</code>]]></example>
 	</function>
 	<function>
 		<description><![CDATA[
@@ -572,7 +572,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>getFutureTasks</name>
 		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
 		<function-signature>java.util.List getFutureTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
-		<example><![CDATA[<pre>${task:getFutureTasks(rootPage, user)}</pre>]]></example>
+		<example><![CDATA[<code>${task:getFutureTasks(rootPage, user)}</code>]]></example>
 	</function>
 	<function>
 		<description><![CDATA[
@@ -581,7 +581,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>formatDate</name>
 		<function-class>com.aoindustries.util.CalendarUtils</function-class>
 		<function-signature>java.lang.String formatDate(java.util.Calendar)</function-signature>
-		<example><![CDATA[<pre>${task:formatDate(calendar)}</pre>]]></example>
+		<example><![CDATA[<code>${task:formatDate(calendar)}</code>]]></example>
 	</function>
 	<function>
 		<description><![CDATA[
@@ -590,7 +590,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>parseDate</name>
 		<function-class>com.aoindustries.util.CalendarUtils</function-class>
 		<function-signature>java.util.Calendar parseDate(java.lang.String)</function-signature>
-		<example><![CDATA[<pre>${task:parseDate("yyyy-mm-dd")}</pre>]]></example>
+		<example><![CDATA[<code>${task:parseDate("yyyy-mm-dd")}</code>]]></example>
 	</function>
 	<function>
 		<description><![CDATA[
@@ -599,6 +599,6 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<name>getToday</name>
 		<function-class>com.aoindustries.util.CalendarUtils</function-class>
 		<function-signature>java.util.Calendar getToday()</function-signature>
-		<example><![CDATA[<pre>${task:getToday()}</pre>]]></example>
+		<example><![CDATA[<code>${task:getToday()}</code>]]></example>
 	</function>
 </taglib>
