@@ -34,13 +34,12 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 	<packaging>jar</packaging>
 
 	<properties>
-		<bookPath>/task/taglib</bookPath>
 		<shortTitle>Taglib</shortTitle>
 		<description.html><![CDATA[Tasks nested within <a target="_top" href="https://semanticcms.com/">SemanticCMS</a> pages and elements in a JSP environment.]]></description.html>
 	</properties>
 
 	<name>PragmaticKM Task Taglib</name>
-	<url>https://pragmatickm.com${bookPath}/</url><!-- Can't inherit due to multi-module -->
+	<url>https://pragmatickm.com/task/taglib/</url>
 	<description>Tasks nested within SemanticCMS pages and elements in a JSP environment.</description>
 	<inceptionYear>2013</inceptionYear>
 
