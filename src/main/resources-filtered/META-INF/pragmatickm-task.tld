@@ -124,8 +124,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 					or relative to the last time they were flagged as Completed, Missed, or Nothing To Do.
 				</p>
 				<ul>
-					<li>false (the default) - recurring tasks are based on fixed time intervals</li>
-					<li>true - recurring tasks are relative to previous time the task was Completed, Missed, or Nothing To Do.
+					<li><code>false</code> (the default) - recurring tasks are based on fixed time intervals</li>
+					<li><code>true</code> - recurring tasks are relative to previous time the task was Completed, Missed, or Nothing To Do.
 				</ul>
 			]]></description>
 			<name>relative</name>
@@ -471,7 +471,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			</p>
 			<p>
 				The cookie is not actually set when exporting,
-				as set by the "X-com-semanticcms-core-exporting: true" header.
+				as set by the <code>X-com-semanticcms-core-exporting: true</code> header.
 			</p>
 		]]></description>
 		<name>getUser</name>
@@ -501,7 +501,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 				before a high priority task will be treated as high priority.
 			</p>
 			<p>
-				If dateFirst is true, will sort by date then priority.  Otherwise
+				If dateFirst is <code>true</code>, will sort by date then priority.  Otherwise
 				sorts by priority then date.
 			</p>
 		]]></description>
@@ -514,7 +514,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<description><![CDATA[
 			<p>
 				Gets all tasks for a page and all sub-pages.
-				Filters for user or all when user is null.
+				Filters for user or all when user is <code>null</code>.
 			</p>
 		]]></description>
 		<name>getAllTasks</name>
@@ -527,7 +527,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			<p>
 				Checks if the given page or any of its child pages has at least
 				one task assigned to the given user.
-				Filters for user or all when user is null.
+				Filters for user or all when user is <code>null</code>.
 			</p>
 		]]></description>
 		<name>hasAssignedTask</name>
@@ -540,7 +540,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			<p>
 				Gets all tasks for a page and all sub-pages that are ready to be done at the current
 				moment in time.
-				Filters for user or all when user is null.
+				Filters for user or all when user is <code>null</code>.
 			</p>
 		]]></description>
 		<name>getReadyTasks</name>
@@ -553,7 +553,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			<p>
 				Gets all tasks for a page and all sub-pages that are should done at the current
 				moment in time but are waiting for another task.
-				Filters for user or all when user is null.
+				Filters for user or all when user is <code>null</code>.
 			</p>
 		]]></description>
 		<name>getBlockedTasks</name>
@@ -566,7 +566,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 			<p>
 				Gets all tasks for a page and all sub-pages that will be done at a future
 				moment in time.
-				Filters for user or all when user is null.
+				Filters for user or all when user is <code>null</code>.
 			</p>
 		]]></description>
 		<name>getFutureTasks</name>
