@@ -37,7 +37,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2017-07-25T20:56:44-0500"
-		dateModified="2017-07-27T00:24:57-0500"
+		dateModified="2017-07-27T16:30:18-0500"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.pragmatickm:pragmatickm-task-taglib:pom.version}" />
@@ -52,7 +52,16 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 				groupId="@{documented.groupId}"
 				artifactId="@{documented.artifactId}"
 				scmUrl="@{documented.scm.url}"
-			/>
+			>
+				<ul>
+					<li><core:link page="pragmatickm-task.tld/" /> improvements:
+						<ol>
+							<li>Fixed invalid HTML within descriptions.</li>
+							<li>Added links to javadocs from dependencies.</li>
+						</ol>
+					</li>
+				</ul>
+			</changelog:release>
 		</c:if>
 
 		<changelog:release

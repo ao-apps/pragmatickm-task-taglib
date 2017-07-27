@@ -125,7 +125,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 				</p>
 				<ul>
 					<li><code>false</code> (the default) - recurring tasks are based on fixed time intervals</li>
-					<li><code>true</code> - recurring tasks are relative to previous time the task was Completed, Missed, or Nothing To Do.
+					<li><code>true</code> - recurring tasks are relative to previous time the task was Completed, Missed, or Nothing To Do.</li>
 				</ul>
 			]]></description>
 			<name>relative</name>

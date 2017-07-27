@@ -24,11 +24,23 @@ package com.pragmatickm.task.taglib.book;
 
 import com.semanticcms.tagreference.TagReferenceInitializer;
 import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * @author  AO Industries, Inc.
  */
 public class PragmaticKmTaskTldInitializer extends TagReferenceInitializer {
+
+	private static final Map<String,String> additionalApiLinks = new LinkedHashMap<String,String>();
+	static {
+		// Self
+		additionalApiLinks.put("com.pragmatickm.task.taglib.", Maven.properties.getProperty("documented.url") + "apidocs/");
+		// Dependencies
+		additionalApiLinks.put("com.pragmatickm.task.model.", "https://pragmatickm.com/task/model/apidocs/");
+		additionalApiLinks.put("com.pragmatickm.task.servlet.", "https://pragmatickm.com/task/servlet/apidocs/");
+		additionalApiLinks.put("com.semanticcms.core.model.", "https://semanticcms.com/core/model/apidocs/");
+	}
 
 	public PragmaticKmTaskTldInitializer() {
 		super(
@@ -38,7 +50,7 @@ public class PragmaticKmTaskTldInitializer extends TagReferenceInitializer {
 			"/pragmatickm-task.tld",
 			Maven.properties.getProperty("javac.link.javaApi.jdk16"),
 			Maven.properties.getProperty("javac.link.javaeeApi.6"),
-			Collections.singletonMap("com.pragmatickm.task.taglib.", Maven.properties.getProperty("documented.url") + "apidocs/")
+			additionalApiLinks
 		);
 	}
 }
