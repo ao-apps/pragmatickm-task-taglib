@@ -37,10 +37,12 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	<uri>@{project.url}</uri>
 	<tag>
 		<description><![CDATA[
-			<p>
+			<p class="semanticcms-tag-reference-summary">
 				A task is any one-time or recurring task that may be assigned to a
 				person, have an activity log associated with it, and have scheduling.
-				Must be nested inside a &lt;p:page&gt; tag.
+			</p>
+			<p>
+				Must be nested inside a <a href="https://semanticcms.com/core/taglib/semanticcms-core.tld/tag-page">&lt;core:page&gt;</a> tag.
 			</p>
 		]]></description>
 		<name>task</name>
@@ -48,8 +50,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description><![CDATA[
-				<p>
+				<p class="semanticcms-tag-reference-summary">
 					A page-unique ID for the task.
+				</p>
+				<p>
 					This will also be used as an anchor when generating links to the task.
 					This ID is also used to generate the filename for the persistence XML file.
 					If not provided, is generated from the label.
@@ -74,8 +78,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				<p>
+				<p class="semanticcms-tag-reference-summary">
 					A brief label for the task.
+				</p>
+				<p>
 					Defaults to the page short title.
 				</p>
 			]]></description>
@@ -87,8 +93,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				<p>
+				<p class="semanticcms-tag-reference-summary">
 					The date the task is to be accomplished.
+				</p>
+				<p>
 					If a recurring task, this is the first date it occurs.
 					Required for recurring tasks.
 					Format is "YYYY-MM-DD".
@@ -102,8 +110,11 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
+				<p class="semanticcms-tag-reference-summary">
+					Tasks may be recurring.
+				</p>
 				<p>
-					Tasks may be recurring.  In this case, they must be flagged as
+					When recurring, tasks must be flagged as
 					Completed/Nothing To Do/Missed for each of the scheduled dates.
 				</p>
 				<p>
@@ -119,7 +130,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				<p>
+				<p class="semanticcms-tag-reference-summary">
 					Recurring tasks can be recurring in a fixed time interval (the default)
 					or relative to the last time they were flagged as Completed, Missed, or Nothing To Do.
 				</p>
@@ -136,11 +147,13 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				<p>
+				<p class="semanticcms-tag-reference-summary">
 					The name of the primary person the task is assigned to.
+				</p>
+				<p>
 					Must be the name of a <code>User</code>.
 					Defaults to "Unassigned".
-					To provide multiple assignments, use nested &lt;task:assignedTo who="..." after="..." /&gt; tags.
+					To provide multiple assignments, use nested <a href="@{project.url}pragmatickm-task.tld/tag-assignedTo">&lt;task:assignedTo&gt;</a> tags.
 				</p>
 			]]></description>
 			<name>assignedTo</name>
@@ -151,8 +164,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				<p>
+				<p class="semanticcms-tag-reference-summary">
 					The pay associated with this task.
+				</p>
+				<p>
 					This is free-form, could be anything, such as "$1000" or "$120/hr".
 				</p>
 			]]></description>
@@ -164,8 +179,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				<p>
+				<p class="semanticcms-tag-reference-summary">
 					The cost associated with this task.
+				</p>
+				<p>
 					This is free-form, could be anything, such as "$1000" or "$60/month".
 				</p>
 			]]></description>
@@ -177,10 +194,12 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				<p>
+				<p class="semanticcms-tag-reference-summary">
 					The priority of the task.
+				</p>
+				<p>
 					Defaults to "medium".
-					To provide multiple priorities use nested &lt;task:priority priority="..." after="..." /&gt; tags.
+					To provide multiple priorities use nested <a href="@{project.url}pragmatickm-task.tld/tag-priority">&lt;task:priority&gt;</a> tags.
 				</p>
 				<p>
 					Supported values are:
@@ -203,9 +222,11 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</tag>
 	<tag>
 		<description><![CDATA[
-			<p>
+			<p class="semanticcms-tag-reference-summary">
 				A task may be assigned to multiple people.
-				Must be nested inside a &lt;task:task&gt; tag.
+			</p>
+			<p>
+				Must be nested inside a <a href="@{project.url}pragmatickm-task.tld/tag-task">&lt;task:task&gt;</a> tag.
 			</p>
 		]]></description>
 		<name>assignedTo</name>
@@ -213,8 +234,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<body-content>empty</body-content>
 		<attribute>
 			<description><![CDATA[
-				<p>
+				<p class="semanticcms-tag-reference-summary">
 					The name of the person the task is assigned to.
+				</p>
+				<p>
 					Must be the name of a <code>User</code>.
 				</p>
 			]]></description>
@@ -226,8 +249,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				<p>
+				<p class="semanticcms-tag-reference-summary">
 					The number of days late before the task is assigned to this person.
+				</p>
+				<p>
 					At least one person must be assigned the "0 days" task.
 					Accepts format of:
 				</p>
@@ -250,9 +275,11 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</tag>
 	<tag>
 		<description><![CDATA[
-			<p>
+			<p class="semanticcms-tag-reference-summary">
 				A task may have multiple priorities.
-				Must be nested inside a &lt;task:task&gt; tag.
+			</p>
+			<p>
+				Must be nested inside a <a href="@{project.url}pragmatickm-task.tld/tag-task">&lt;task:task&gt;</a> tag.
 			</p>
 		]]></description>
 		<name>priority</name>
@@ -260,19 +287,19 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<body-content>empty</body-content>
 		<attribute>
 			<description><![CDATA[
-				<p>
+				<p class="semanticcms-tag-reference-summary">
 					The priority of the task.
 				</p>
 				<p>
 					Supported values are:
-					<ol>
-						<li>"future" - Task may possibly be done in the future, but should not be worked on yet.</li>
-						<li>"low" - Not much urgency, do in free time</li>
-						<li>"medium" - Default/normal priority</li>
-						<li>"high" - Generally means one step away from a serious problem</li>
-						<li>"critical" - There is a serious problem that interferes with current operations</li>
-					</ol>
 				</p>
+				<ol>
+					<li>"future" - Task may possibly be done in the future, but should not be worked on yet.</li>
+					<li>"low" - Not much urgency, do in free time</li>
+					<li>"medium" - Default/normal priority</li>
+					<li>"high" - Generally means one step away from a serious problem</li>
+					<li>"critical" - There is a serious problem that interferes with current operations</li>
+				</ol>
 			]]></description>
 			<name>priority</name>
 			<required>true</required>
@@ -282,8 +309,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				<p>
+				<p class="semanticcms-tag-reference-summary">
 					The number of days late before the task is assigned this priority.
+				</p>
+				<p>
 					One and only one priority may be assigned the "0 days" task.
 					Accepts format of:
 				</p>
@@ -306,12 +335,15 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</tag>
 	<tag>
 		<description><![CDATA[
+			<p class="semanticcms-tag-reference-summary">
+				Indicates another task must be done before this task.
+			</p>
 			<p>
 				When two tasks must be performed on the same day, they will be ordered
 				based on the "doBefore" settings.  By providing these value, this task will
 				be scheduled after the other tasks.
 				At least one of page or task must be provided.
-				Must be nested inside a &lt;task:task&gt; tag.
+				Must be nested inside a <a href="@{project.url}pragmatickm-task.tld/tag-task">&lt;task:task&gt;</a> tag.
 			</p>
 		]]></description>
 		<name>doBefore</name>
@@ -319,8 +351,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<body-content>empty</body-content>
 		<attribute>
 			<description><![CDATA[
-				<p>
+				<p class="semanticcms-tag-reference-summary">
 					The book containing the page.
+				</p>
+				<p>
 					Defaults to the book of the current JSP file.
 				</p>
 			]]></description>
@@ -332,8 +366,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				<p>
+				<p class="semanticcms-tag-reference-summary">
 					The page-relative path to the page.
+				</p>
+				<p>
 					If not provided, assumes the current page.
 				</p>
 			]]></description>
@@ -345,8 +381,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 		<attribute>
 			<description><![CDATA[
-				<p>
+				<p class="semanticcms-tag-reference-summary">
 					The page-unique id of the task.
+				</p>
+				<p>
 					Not allowed to reference task by generated id, set an explicit id on the task.
 				</p>
 			]]></description>
@@ -359,9 +397,11 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</tag>
 	<tag>
 		<description><![CDATA[
-			<p>
+			<p class="semanticcms-tag-reference-summary">
 				A task may have any number of additional custom logging fields.
-				Must be nested inside a &lt;task:task&gt; tag.
+			</p>
+			<p>
+				Must be nested inside a <a href="@{project.url}pragmatickm-task.tld/tag-task">&lt;task:task&gt;</a> tag.
 			</p>
 		]]></description>
 		<name>customLog</name>
@@ -369,8 +409,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<body-content>empty</body-content>
 		<attribute>
 			<description><![CDATA[
-				<p>
+				<p class="semanticcms-tag-reference-summary">
 					The name of the custom log entry.
+				</p>
+				<p>
 					Must be unique per task.
 				</p>
 			]]></description>
@@ -405,8 +447,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			<p>
+			<p class="semanticcms-tag-reference-summary">
 				Gets the most recent task log entry with the given status(es) or <code>null</code> for none.
+			</p>
+			<p>
 				The statuses is a comma-separated list of statuses to match.
 			</p>
 		]]></description>
@@ -426,8 +470,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			<p>
+			<p class="semanticcms-tag-reference-summary">
 				Gets the status for each of the provided tasks.
+			</p>
+			<p>
 				Returns the map of statuses, in the same iteration order as the provided
 				tasks.
 			</p>
@@ -450,8 +496,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			<p>
+			<p class="semanticcms-tag-reference-summary">
 				Finds all tasks that must be done after each of the provided tasks.
+			</p>
+			<p>
 				Returns the map of doAfters, in the same iteration order as the provided
 				tasks.  If no doAfters for a given task, will contain an empty list.
 			</p>
@@ -463,7 +511,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			<p>
+			<p class="semanticcms-tag-reference-summary">
 				Gets the user for the current request.
 			</p>
 			<p>
@@ -491,8 +539,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			<p>
+			<p class="semanticcms-tag-reference-summary">
 				Prioritizes tasks by schedule and priority.
+			</p>
+			<p>
 				Scheduled tasks are before unscheduled within a single priority.
 			</p>
 			<p>
@@ -513,8 +563,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			<p>
+			<p class="semanticcms-tag-reference-summary">
 				Gets all tasks for a page and all sub-pages.
+			</p>
+			<p>
 				Filters for user or all when user is <code>null</code>.
 			</p>
 		]]></description>
@@ -525,9 +577,11 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			<p>
+			<p class="semanticcms-tag-reference-summary">
 				Checks if the given page or any of its child pages has at least
 				one task assigned to the given user.
+			</p>
+			<p>
 				Filters for user or all when user is <code>null</code>.
 			</p>
 		]]></description>
@@ -538,9 +592,11 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			<p>
+			<p class="semanticcms-tag-reference-summary">
 				Gets all tasks for a page and all sub-pages that are ready to be done at the current
 				moment in time.
+			</p>
+			<p>
 				Filters for user or all when user is <code>null</code>.
 			</p>
 		]]></description>
@@ -551,9 +607,11 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			<p>
+			<p class="semanticcms-tag-reference-summary">
 				Gets all tasks for a page and all sub-pages that are should done at the current
 				moment in time but are waiting for another task.
+			</p>
+			<p>
 				Filters for user or all when user is <code>null</code>.
 			</p>
 		]]></description>
@@ -564,9 +622,11 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<description><![CDATA[
-			<p>
+			<p class="semanticcms-tag-reference-summary">
 				Gets all tasks for a page and all sub-pages that will be done at a future
 				moment in time.
+			</p>
+			<p>
 				Filters for user or all when user is <code>null</code>.
 			</p>
 		]]></description>

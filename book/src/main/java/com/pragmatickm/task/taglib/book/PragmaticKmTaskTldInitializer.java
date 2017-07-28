@@ -23,7 +23,6 @@
 package com.pragmatickm.task.taglib.book;
 
 import com.semanticcms.tagreference.TagReferenceInitializer;
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
