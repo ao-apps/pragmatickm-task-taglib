@@ -352,10 +352,28 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<attribute>
 			<description><![CDATA[
 				<p class="semanticcms-tag-reference-summary">
+					The domain of the book containing the page.
+				</p>
+				<p>
+					Defaults to the domain of book of the current JSP file.
+				</p>
+			]]></description>
+			<name>domain</name>
+			<required>false</required>
+			<deferred-value>
+				<type>java.lang.String</type>
+			</deferred-value>
+		</attribute>
+		<attribute>
+			<description><![CDATA[
+				<p class="semanticcms-tag-reference-summary">
 					The book containing the page.
 				</p>
 				<p>
 					Defaults to the book of the current JSP file.
+				</p>
+				<p>
+					Must be provided when domain is provided.
 				</p>
 			]]></description>
 			<name>book</name>
@@ -371,6 +389,9 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 				</p>
 				<p>
 					If not provided, assumes the current page.
+				</p>
+				<p>
+					Must be provided when book is provided.
 				</p>
 			]]></description>
 			<name>page</name>

@@ -37,7 +37,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2017-07-25T20:56:44-0500"
-		dateModified="2017-07-27T20:46:54-0500"
+		dateModified="2017-07-31T14:16:54-0500"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.pragmatickm:pragmatickm-task-taglib:pom.version}" />
@@ -61,6 +61,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 							<li>Improved formatting and linking.</li>
 						</ol>
 					</li>
+					<li>Added <ao:a href="https://semanticcms.com/">SemanticCMS</ao:a> domain support.</li>
 				</ul>
 			</changelog:release>
 		</c:if>

@@ -1,6 +1,6 @@
 /*
  * pragmatickm-task-taglib - Tasks nested within SemanticCMS pages and elements in a JSP environment.
- * Copyright (C) 2013, 2014, 2015, 2016  AO Industries, Inc.
+ * Copyright (C) 2013, 2014, 2015, 2016, 2017  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -45,6 +45,11 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 public class DoBeforeTag extends SimpleTagSupport {
 
+	private ValueExpression domain;
+	public void setDomain(ValueExpression domain) {
+		this.domain = domain;
+	}
+
 	private ValueExpression book;
 	public void setBook(ValueExpression book) {
 		this.book = book;
@@ -78,6 +83,7 @@ public class DoBeforeTag extends SimpleTagSupport {
 
 		// Evaluate expressions
 		ELContext elContext = pageContext.getELContext();
+		String domainStr = nullIfEmpty(resolveValue(domain, String.class, elContext));
 		String bookStr = nullIfEmpty(resolveValue(book, String.class, elContext));
 		String pageStr = nullIfEmpty(resolveValue(page, String.class, elContext));
 		String taskStr = resolveValue(task, String.class, elContext);
@@ -87,13 +93,26 @@ public class DoBeforeTag extends SimpleTagSupport {
 		// Resolve the book-relative page path
 		final PageRef pageRef;
 		try {
+			if(domainStr != null && bookStr == null) {
+				throw new JspTagException("book must be provided when domain is provided.");
+			}
 			if(pageStr==null) {
 				// Use this page when none specified
 				if(bookStr != null) throw new JspTagException("page must be provided when book is provided.");
 				pageRef = PageRefResolver.getCurrentPageRef(servletContext, request);
 			} else {
+				// Default to current domain
+				if(domainStr == null) {
+					domainStr = PageRefResolver.getCurrentPageRef(servletContext, request).getBookRef().getDomain();
+				}
 				// Resolve context-relative page path from page-relative
-				pageRef = PageRefResolver.getPageRef(servletContext, request, bookStr, pageStr);
+				pageRef = PageRefResolver.getPageRef(
+					servletContext,
+					request,
+					domainStr,
+					bookStr,
+					pageStr
+				);
 			}
 		} catch(ServletException e) {
 			throw new JspTagException(e);

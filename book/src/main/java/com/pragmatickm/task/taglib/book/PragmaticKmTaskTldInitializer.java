@@ -46,6 +46,7 @@ public class PragmaticKmTaskTldInitializer extends TagReferenceInitializer {
 		super(
 			"Task Taglib Reference",
 			"Taglib Reference",
+			"pragmatickm.com",
 			"/task/taglib",
 			"/pragmatickm-task.tld",
 			Maven.properties.getProperty("javac.link.javaApi.jdk16"),
