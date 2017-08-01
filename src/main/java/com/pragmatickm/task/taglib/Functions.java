@@ -1,6 +1,6 @@
 /*
  * pragmatickm-task-taglib - Tasks nested within SemanticCMS pages and elements in a JSP environment.
- * Copyright (C) 2013, 2014, 2015, 2016  AO Industries, Inc.
+ * Copyright (C) 2013, 2014, 2015, 2016, 2017  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -40,10 +40,22 @@ import javax.servlet.ServletException;
 
 final public class Functions {
 
-	public static TaskLog getTaskLogInBook(String book, String page, String taskId) throws ServletException, IOException {
-		return TaskUtil.getTaskLogInBook(
+	public static TaskLog getTaskLogInDomain(String domain, String book, String page, String taskId) throws ServletException, IOException {
+		return TaskUtil.getTaskLogInDomain(
 			getServletContext(),
 			getRequest(),
+			domain,
+			book,
+			page,
+			taskId
+		);
+	}
+
+	public static TaskLog getTaskLogInBook(String book, String page, String taskId) throws ServletException, IOException {
+		return TaskUtil.getTaskLogInDomain(
+			getServletContext(),
+			getRequest(),
+			null,
 			book,
 			page,
 			taskId

@@ -447,7 +447,18 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	<function>
 		<description><![CDATA[
 			<p>
-				Gets the task log given a book, page and task.
+				Gets the task log given a domain, book, page and task.
+			</p>
+		]]></description>
+		<name>getTaskLogInDomain</name>
+		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
+		<function-signature>com.pragmatickm.task.model.TaskLog getTaskLogInDomain(java.lang.String,java.lang.String,java.lang.String,java.lang.String)</function-signature>
+		<example><![CDATA[<code>${task:getTaskLogInDomain(domain, book, page, taskId)}</code>]]></example>
+	</function>
+	<function>
+		<description><![CDATA[
+			<p>
+				Gets the task log given a book, page and task in the same domain as the current page.
 			</p>
 		]]></description>
 		<name>getTaskLogInBook</name>
@@ -458,7 +469,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	<function>
 		<description><![CDATA[
 			<p>
-				Gets the task log given a page and task.
+				Gets the task log given a page and task in the same book as the current page.
 			</p>
 		]]></description>
 		<name>getTaskLog</name>
