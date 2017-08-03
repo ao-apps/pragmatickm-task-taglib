@@ -1,6 +1,6 @@
 /*
  * pragmatickm-task-taglib - Tasks nested within SemanticCMS pages and elements in a JSP environment.
- * Copyright (C) 2013, 2014, 2015, 2016  AO Industries, Inc.
+ * Copyright (C) 2013, 2014, 2015, 2016, 2017  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -38,10 +38,13 @@ import com.pragmatickm.task.model.Task;
 import com.pragmatickm.task.model.TaskException;
 import com.pragmatickm.task.model.User;
 import com.pragmatickm.task.servlet.impl.TaskImpl;
+import com.semanticcms.core.model.BookRef;
 import com.semanticcms.core.model.ElementContext;
 import com.semanticcms.core.model.Page;
+import com.semanticcms.core.repository.Book;
 import com.semanticcms.core.servlet.CaptureLevel;
 import com.semanticcms.core.servlet.CurrentPage;
+import com.semanticcms.core.servlet.SemanticCMS;
 import com.semanticcms.core.taglib.ElementTag;
 import java.io.IOException;
 import java.io.Writer;
@@ -103,8 +106,16 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 	}
 
 	@Override
-	protected Task createElement() {
-		return new Task();
+	protected Task createElement() throws JspException {
+		final PageContext pageContext = (PageContext)getJspContext();
+		Page currentPage = CurrentPage.getCurrentPage(pageContext.getRequest());
+		if(currentPage == null) throw new JspException("<task:task> tag must be nested inside a <core:page> tag.");
+		BookRef bookRef = currentPage.getPageRef().getBookRef();
+		Book book = SemanticCMS.getInstance(pageContext.getServletContext()).getBook(bookRef);
+		if(!book.isAccessible()) {
+			throw new IllegalArgumentException("Book is not accessible: " + bookRef);
+		}
+		return new Task(book.getResourceStore());
 	}
 
 	@Override
