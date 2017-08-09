@@ -22,11 +22,8 @@
  */
 package com.pragmatickm.task.taglib;
 
-import com.aoindustries.io.TempFileList;
-import com.aoindustries.io.buffer.AutoTempFileWriter;
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.io.buffer.BufferWriter;
-import com.aoindustries.servlet.filter.TempFileContext;
 import static com.aoindustries.taglib.AttributeUtils.resolveValue;
 import com.aoindustries.taglib.AutoEncodingBufferedTag;
 import com.aoindustries.util.CalendarUtils;
@@ -177,18 +174,7 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 			// Determine what goes before the body
 			BufferWriter capturedOut;
 			if(captureLevel == CaptureLevel.BODY) {
-				// Enable temp files if temp file context active
-				capturedOut = TempFileContext.wrapTempFileList(
-					AutoEncodingBufferedTag.newBufferWriter(),
-					request,
-					// Java 1.8: AutoTempFileWriter::new
-					new TempFileContext.Wrapper<BufferWriter>() {
-						@Override
-						public BufferWriter call(BufferWriter original, TempFileList tempFileList) {
-							return new AutoTempFileWriter(original, tempFileList);
-						}
-					}
-				);
+				capturedOut = AutoEncodingBufferedTag.newBufferWriter(request);
 			} else {
 				capturedOut = null;
 			}
