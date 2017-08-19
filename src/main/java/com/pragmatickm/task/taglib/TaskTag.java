@@ -38,7 +38,7 @@ import com.pragmatickm.task.servlet.impl.TaskImpl;
 import com.semanticcms.core.model.BookRef;
 import com.semanticcms.core.model.ElementContext;
 import com.semanticcms.core.model.Page;
-import com.semanticcms.core.repository.Book;
+import com.semanticcms.core.pages.Book;
 import com.semanticcms.core.servlet.CaptureLevel;
 import com.semanticcms.core.servlet.CurrentPage;
 import com.semanticcms.core.servlet.SemanticCMS;
