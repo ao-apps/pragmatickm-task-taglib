@@ -22,10 +22,13 @@
  */
 package com.pragmatickm.task.taglib;
 
+import com.aoindustries.net.DomainName;
 import com.aoindustries.net.Path;
 import static com.aoindustries.servlet.filter.FunctionContext.getRequest;
 import static com.aoindustries.servlet.filter.FunctionContext.getResponse;
 import static com.aoindustries.servlet.filter.FunctionContext.getServletContext;
+import com.aoindustries.util.StringUtility;
+import com.aoindustries.validation.ValidationException;
 import com.pragmatickm.task.model.Task;
 import com.pragmatickm.task.model.TaskException;
 import com.pragmatickm.task.model.TaskLog;
@@ -41,30 +44,34 @@ import javax.servlet.ServletException;
 
 final public class Functions {
 
-	public static TaskLog getTaskLogInDomain(String domain, Path book, String page, String taskId) throws ServletException, IOException {
+	public static TaskLog getTaskLogInDomain(String domain, String book, String page, String taskId) throws ServletException, IOException, ValidationException {
 		return TaskUtil.getTaskLogInDomain(
 			getServletContext(),
 			getRequest(),
-			domain,
-			book,
+			DomainName.valueOf(StringUtility.nullIfEmpty(domain)),
+			Path.valueOf(StringUtility.nullIfEmpty(book)),
 			page,
 			taskId
 		);
 	}
 
-	public static TaskLog getTaskLogInBook(Path book, String page, String taskId) throws ServletException, IOException {
+	public static TaskLog getTaskLogInBook(String book, String page, String taskId) throws ServletException, IOException, ValidationException {
 		return TaskUtil.getTaskLogInDomain(
 			getServletContext(),
 			getRequest(),
 			null,
-			book,
+			Path.valueOf(StringUtility.nullIfEmpty(book)),
 			page,
 			taskId
 		);
 	}
 
 	public static TaskLog getTaskLog(String page, String taskId) throws ServletException, IOException {
-		return getTaskLogInBook(null, page, taskId);
+		try {
+			return getTaskLogInBook(null, page, taskId);
+		} catch(ValidationException e) {
+			throw new ServletException(e);
+		}
 	}
 
 	/**

@@ -22,6 +22,7 @@
  */
 package com.pragmatickm.task.taglib;
 
+import com.aoindustries.net.DomainName;
 import com.aoindustries.net.Path;
 import static com.aoindustries.taglib.AttributeUtils.resolveValue;
 import static com.aoindustries.util.StringUtility.nullIfEmpty;
@@ -87,7 +88,11 @@ public class DoBeforeTag extends SimpleTagSupport {
 
 			// Evaluate expressions
 			ELContext elContext = pageContext.getELContext();
-			String domainStr = nullIfEmpty(resolveValue(domain, String.class, elContext));
+			DomainName domainObj = DomainName.valueOf(
+				nullIfEmpty(
+					resolveValue(domain, String.class, elContext)
+				)
+			);
 			Path bookPath = Path.valueOf(
 				nullIfEmpty(
 					resolveValue(book, String.class, elContext)
@@ -101,7 +106,7 @@ public class DoBeforeTag extends SimpleTagSupport {
 			// Resolve the book-relative page path
 			final PageRef pageRef;
 			{
-				if(domainStr != null && bookPath == null) {
+				if(domainObj != null && bookPath == null) {
 					throw new JspTagException("book must be provided when domain is provided.");
 				}
 				if(pageStr==null) {
@@ -110,14 +115,14 @@ public class DoBeforeTag extends SimpleTagSupport {
 					pageRef = PageRefResolver.getCurrentPageRef(servletContext, request);
 				} else {
 					// Default to current domain
-					if(domainStr == null) {
-						domainStr = PageRefResolver.getCurrentPageRef(servletContext, request).getBookRef().getDomain();
+					if(domainObj == null) {
+						domainObj = PageRefResolver.getCurrentPageRef(servletContext, request).getBookRef().getDomain();
 					}
 					// Resolve context-relative page path from page-relative
 					pageRef = PageRefResolver.getPageRef(
 						servletContext,
 						request,
-						domainStr,
+						domainObj,
 						bookPath,
 						pageStr
 					);
