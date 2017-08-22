@@ -22,6 +22,10 @@
  */
 package com.pragmatickm.task.taglib.book;
 
+import com.aoindustries.net.Path;
+import com.aoindustries.validation.ValidationException;
+import com.semanticcms.core.model.BookRef;
+import com.semanticcms.core.model.ResourceRef;
 import com.semanticcms.tagreference.TagReferenceInitializer;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -42,13 +46,17 @@ public class PragmaticKmTaskTldInitializer extends TagReferenceInitializer {
 		additionalApiLinks.put("com.semanticcms.core.model.", "https://semanticcms.com/core/model/apidocs/");
 	}
 
-	public PragmaticKmTaskTldInitializer() {
+	public PragmaticKmTaskTldInitializer() throws ValidationException {
 		super(
 			"Task Taglib Reference",
 			"Taglib Reference",
-			"pragmatickm.com",
-			"/task/taglib",
-			"/pragmatickm-task.tld",
+			new ResourceRef(
+				new BookRef(
+					"pragmatickm.com",
+					Path.valueOf("/task/taglib")
+				),
+				Path.valueOf("/pragmatickm-task.tld")
+			),
 			Maven.properties.getProperty("javac.link.javaApi.jdk16"),
 			Maven.properties.getProperty("javac.link.javaeeApi.6"),
 			additionalApiLinks
