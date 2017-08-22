@@ -1,6 +1,6 @@
 /*
  * pragmatickm-task-taglib - Tasks nested within SemanticCMS pages and elements in a JSP environment.
- * Copyright (C) 2015, 2016  AO Industries, Inc.
+ * Copyright (C) 2015, 2016, 2017  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -28,7 +28,8 @@ import com.aoindustries.util.schedule.DayDuration;
 import com.pragmatickm.task.model.Task;
 import com.pragmatickm.task.model.User;
 import com.semanticcms.core.model.Node;
-import com.semanticcms.core.servlet.CaptureLevel;
+import com.semanticcms.core.pages.CaptureLevel;
+import com.semanticcms.core.servlet.CurrentCaptureLevel;
 import com.semanticcms.core.servlet.CurrentNode;
 import java.io.IOException;
 import javax.el.ELContext;
@@ -61,7 +62,7 @@ public class AssignedToTag extends SimpleTagSupport {
 		Task currentTask = (Task)currentNode;
 
 		assert
-			CaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
+			CurrentCaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
 			: "This is always contained by a task tag, so this is only invoked at captureLevel >= META";
 
 		// Evaluate expressions

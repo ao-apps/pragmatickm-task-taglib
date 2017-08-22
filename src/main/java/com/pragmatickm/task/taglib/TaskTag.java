@@ -38,8 +38,8 @@ import com.pragmatickm.task.servlet.impl.TaskImpl;
 import com.semanticcms.core.model.BookRef;
 import com.semanticcms.core.model.ElementContext;
 import com.semanticcms.core.model.Page;
-import com.semanticcms.core.pages.Book;
-import com.semanticcms.core.servlet.CaptureLevel;
+import com.semanticcms.core.pages.CaptureLevel;
+import com.semanticcms.core.servlet.Book;
 import com.semanticcms.core.servlet.CurrentPage;
 import com.semanticcms.core.servlet.SemanticCMS;
 import com.semanticcms.core.taglib.ElementTag;
@@ -112,7 +112,7 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 		if(!book.isAccessible()) {
 			throw new IllegalArgumentException("Book is not accessible: " + bookRef);
 		}
-		return new Task(book.getResourceStore());
+		return new Task(book.getResources());
 	}
 
 	@Override

@@ -22,6 +22,7 @@
  */
 package com.pragmatickm.task.taglib;
 
+import com.aoindustries.net.Path;
 import static com.aoindustries.servlet.filter.FunctionContext.getRequest;
 import static com.aoindustries.servlet.filter.FunctionContext.getResponse;
 import static com.aoindustries.servlet.filter.FunctionContext.getServletContext;
@@ -40,7 +41,7 @@ import javax.servlet.ServletException;
 
 final public class Functions {
 
-	public static TaskLog getTaskLogInDomain(String domain, String book, String page, String taskId) throws ServletException, IOException {
+	public static TaskLog getTaskLogInDomain(String domain, Path book, String page, String taskId) throws ServletException, IOException {
 		return TaskUtil.getTaskLogInDomain(
 			getServletContext(),
 			getRequest(),
@@ -51,7 +52,7 @@ final public class Functions {
 		);
 	}
 
-	public static TaskLog getTaskLogInBook(String book, String page, String taskId) throws ServletException, IOException {
+	public static TaskLog getTaskLogInBook(Path book, String page, String taskId) throws ServletException, IOException {
 		return TaskUtil.getTaskLogInDomain(
 			getServletContext(),
 			getRequest(),

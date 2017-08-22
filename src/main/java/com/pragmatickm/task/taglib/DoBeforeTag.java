@@ -22,14 +22,17 @@
  */
 package com.pragmatickm.task.taglib;
 
+import com.aoindustries.net.Path;
 import static com.aoindustries.taglib.AttributeUtils.resolveValue;
 import static com.aoindustries.util.StringUtility.nullIfEmpty;
+import com.aoindustries.validation.ValidationException;
 import com.pragmatickm.task.model.Task;
 import com.semanticcms.core.model.Element;
 import com.semanticcms.core.model.ElementRef;
 import com.semanticcms.core.model.Node;
 import com.semanticcms.core.model.PageRef;
-import com.semanticcms.core.servlet.CaptureLevel;
+import com.semanticcms.core.pages.CaptureLevel;
+import com.semanticcms.core.servlet.CurrentCaptureLevel;
 import com.semanticcms.core.servlet.CurrentNode;
 import com.semanticcms.core.servlet.PageRefResolver;
 import java.io.IOException;
@@ -67,56 +70,64 @@ public class DoBeforeTag extends SimpleTagSupport {
 
 	@Override
     public void doTag() throws JspTagException, IOException {
-		PageContext pageContext = (PageContext)getJspContext();
-		final ServletContext servletContext = pageContext.getServletContext();
-		final HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
-		final HttpServletResponse response = (HttpServletResponse)pageContext.getResponse();
-
-		// Find the required task
-		Node currentNode = CurrentNode.getCurrentNode(request);
-		if(!(currentNode instanceof Task)) throw new JspTagException("<task:doBefore> tag must be nested inside a <task:task> tag.");
-		Task currentTask = (Task)currentNode;
-
-		assert
-			CaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
-			: "This is always contained by a task tag, so this is only invoked at captureLevel >= META";
-
-		// Evaluate expressions
-		ELContext elContext = pageContext.getELContext();
-		String domainStr = nullIfEmpty(resolveValue(domain, String.class, elContext));
-		String bookStr = nullIfEmpty(resolveValue(book, String.class, elContext));
-		String pageStr = nullIfEmpty(resolveValue(page, String.class, elContext));
-		String taskStr = resolveValue(task, String.class, elContext);
-
-		if(!Element.isValidId(taskStr)) throw new JspTagException("Invalid task id: " + taskStr);
-
-		// Resolve the book-relative page path
-		final PageRef pageRef;
 		try {
-			if(domainStr != null && bookStr == null) {
-				throw new JspTagException("book must be provided when domain is provided.");
-			}
-			if(pageStr==null) {
-				// Use this page when none specified
-				if(bookStr != null) throw new JspTagException("page must be provided when book is provided.");
-				pageRef = PageRefResolver.getCurrentPageRef(servletContext, request);
-			} else {
-				// Default to current domain
-				if(domainStr == null) {
-					domainStr = PageRefResolver.getCurrentPageRef(servletContext, request).getBookRef().getDomain();
+			PageContext pageContext = (PageContext)getJspContext();
+			final ServletContext servletContext = pageContext.getServletContext();
+			final HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
+			final HttpServletResponse response = (HttpServletResponse)pageContext.getResponse();
+
+			// Find the required task
+			Node currentNode = CurrentNode.getCurrentNode(request);
+			if(!(currentNode instanceof Task)) throw new JspTagException("<task:doBefore> tag must be nested inside a <task:task> tag.");
+			Task currentTask = (Task)currentNode;
+
+			assert
+				CurrentCaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
+				: "This is always contained by a task tag, so this is only invoked at captureLevel >= META";
+
+			// Evaluate expressions
+			ELContext elContext = pageContext.getELContext();
+			String domainStr = nullIfEmpty(resolveValue(domain, String.class, elContext));
+			Path bookPath = Path.valueOf(
+				nullIfEmpty(
+					resolveValue(book, String.class, elContext)
+				)
+			);
+			String pageStr = nullIfEmpty(resolveValue(page, String.class, elContext));
+			String taskStr = resolveValue(task, String.class, elContext);
+
+			if(!Element.isValidId(taskStr)) throw new JspTagException("Invalid task id: " + taskStr);
+
+			// Resolve the book-relative page path
+			final PageRef pageRef;
+			{
+				if(domainStr != null && bookPath == null) {
+					throw new JspTagException("book must be provided when domain is provided.");
 				}
-				// Resolve context-relative page path from page-relative
-				pageRef = PageRefResolver.getPageRef(
-					servletContext,
-					request,
-					domainStr,
-					bookStr,
-					pageStr
-				);
+				if(pageStr==null) {
+					// Use this page when none specified
+					if(bookPath != null) throw new JspTagException("page must be provided when book is provided.");
+					pageRef = PageRefResolver.getCurrentPageRef(servletContext, request);
+				} else {
+					// Default to current domain
+					if(domainStr == null) {
+						domainStr = PageRefResolver.getCurrentPageRef(servletContext, request).getBookRef().getDomain();
+					}
+					// Resolve context-relative page path from page-relative
+					pageRef = PageRefResolver.getPageRef(
+						servletContext,
+						request,
+						domainStr,
+						bookPath,
+						pageStr
+					);
+				}
 			}
+			currentTask.addDoBefore(new ElementRef(pageRef, taskStr));
 		} catch(ServletException e) {
 			throw new JspTagException(e);
+		} catch(ValidationException e) {
+			throw new JspTagException(e);
 		}
-		currentTask.addDoBefore(new ElementRef(pageRef, taskStr));
 	}
 }
