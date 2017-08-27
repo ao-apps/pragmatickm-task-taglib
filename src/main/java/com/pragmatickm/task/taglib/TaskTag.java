@@ -34,14 +34,14 @@ import com.pragmatickm.task.model.Priority;
 import com.pragmatickm.task.model.Task;
 import com.pragmatickm.task.model.TaskException;
 import com.pragmatickm.task.model.User;
-import com.pragmatickm.task.servlet.impl.TaskImpl;
+import com.pragmatickm.task.renderer.html.TaskHtmlRenderer;
+import com.semanticcms.core.controller.Book;
+import com.semanticcms.core.controller.SemanticCMS;
 import com.semanticcms.core.model.BookRef;
 import com.semanticcms.core.model.ElementContext;
 import com.semanticcms.core.model.Page;
 import com.semanticcms.core.pages.CaptureLevel;
 import com.semanticcms.core.pages.local.CurrentPage;
-import com.semanticcms.core.servlet.Book;
-import com.semanticcms.core.servlet.SemanticCMS;
 import com.semanticcms.core.taglib.ElementTag;
 import java.io.IOException;
 import java.io.Writer;
@@ -167,7 +167,7 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 			}
 
 			// Locate the persistence file
-			task.setXmlFile(TaskImpl.getTaskLogXmlFile(currentPage.getPageRef(), task.getId()));
+			task.setXmlFile(TaskHtmlRenderer.getTaskLogXmlFile(currentPage.getPageRef(), task.getId()));
 
 			super.doBody(task, captureLevel);
 
@@ -179,7 +179,7 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 				capturedOut = null;
 			}
 			try {
-				TaskImpl.writeBeforeBody(
+				TaskHtmlRenderer.writeBeforeBody(
 					pageContext.getServletContext(),
 					pageContext.getELContext(),
 					request,
@@ -208,6 +208,6 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 	public void writeTo(Writer out, ElementContext context) throws IOException {
 		assert beforeBody != null : "writeTo is only called on captureLevel=BODY, so this should have been set in doBody";
 		beforeBody.writeTo(out);
-		TaskImpl.writeAfterBody(getElement(), out, context);
+		TaskHtmlRenderer.writeAfterBody(getElement(), out, context);
 	}
 }
