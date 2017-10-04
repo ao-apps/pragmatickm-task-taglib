@@ -480,7 +480,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	<function>
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
-				Gets the most recent task log entry with the given status(es) or <code>null</code> for none.
+				Gets the most recent task log entry with the given comma-separated status(es) or <code>null</code> for none.
 			</p>
 			<p>
 				The statuses is a comma-separated list of statuses to match.
