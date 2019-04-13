@@ -1,6 +1,6 @@
 /*
  * pragmatickm-task-taglib - Tasks nested within SemanticCMS pages and elements in a JSP environment.
- * Copyright (C) 2017  AO Industries, Inc.
+ * Copyright (C) 2017, 2019  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -39,12 +39,12 @@ public class PragmaticKmTaskTldInitializer extends TagReferenceInitializer {
 	private static final Map<String,String> additionalApiLinks = new LinkedHashMap<String,String>();
 	static {
 		// Self
-		additionalApiLinks.put("com.pragmatickm.task.taglib.", Maven.properties.getProperty("documented.url") + "apidocs/");
+		additionalApiLinks.put("com.pragmatickm.task.taglib.", Maven.properties.getProperty("documented.url") + "apidocs");
 		// Dependencies
-		additionalApiLinks.put("com.aoindustries.util.", "https://aoindustries.com/ao-lang/apidocs/");
-		additionalApiLinks.put("com.pragmatickm.task.model.", "https://pragmatickm.com/task/model/apidocs/");
-		additionalApiLinks.put("com.pragmatickm.task.servlet.", "https://pragmatickm.com/task/servlet/apidocs/");
-		additionalApiLinks.put("com.semanticcms.core.model.", "https://semanticcms.com/core/model/apidocs/");
+		additionalApiLinks.put("com.aoindustries.util.", "https://aoindustries.com/ao-lang/apidocs");
+		additionalApiLinks.put("com.pragmatickm.task.model.", "https://pragmatickm.com/task/model/apidocs");
+		additionalApiLinks.put("com.pragmatickm.task.servlet.", "https://pragmatickm.com/task/servlet/apidocs");
+		additionalApiLinks.put("com.semanticcms.core.model.", "https://semanticcms.com/core/model/apidocs");
 	}
 
 	public PragmaticKmTaskTldInitializer() throws ValidationException {
