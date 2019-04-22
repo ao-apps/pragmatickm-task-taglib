@@ -37,7 +37,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2017-07-25T20:56:44-0500"
-		dateModified="2017-07-27T20:46:54-0500"
+		dateModified="2019-04-22T01:07:09-0500"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.pragmatickm:pragmatickm-task-taglib:pom.version}" />
@@ -54,6 +54,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 				scmUrl="@{documented.scm.url}"
 			>
 				<ul>
+					<li>Minimum Java version changed from 1.6 to 1.7.</li>
+					<li>Updated dependencies.</li>
 					<li><core:link page="pragmatickm-task.tld/" /> improvements:
 						<ol>
 							<li>Fixed invalid HTML within descriptions.</li>
