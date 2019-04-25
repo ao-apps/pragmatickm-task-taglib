@@ -33,7 +33,7 @@ import java.util.Map;
 
 public class PragmaticKmTaskTldInitializer extends TagReferenceInitializer {
 
-	private static final Map<String,String> additionalApiLinks = new LinkedHashMap<String,String>();
+	private static final Map<String,String> additionalApiLinks = new LinkedHashMap<>();
 	static {
 		// Self
 		additionalApiLinks.put("com.pragmatickm.task.taglib.", Maven.properties.getProperty("documented.url") + "apidocs/");
