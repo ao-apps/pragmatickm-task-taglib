@@ -25,6 +25,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
 	version="2.1">
+	<!-- datePublished="2016-08-15T13:15:22-0500" -->
+	<!-- dateModified="2016-11-10T22:35:10-0600" -->
 	<description><![CDATA[
 		<p>@{description.html}</p>
 	]]></description>
@@ -36,6 +38,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	<short-name>task</short-name>
 	<uri>@{project.url}</uri>
 	<tag>
+		<!-- datePublished="2016-08-15T13:15:22-0500" -->
+		<!-- dateModified="2017-07-27T20:59:02-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				A task is any one-time or recurring task that may be assigned to a
@@ -221,6 +225,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
 	<tag>
+		<!-- datePublished="2016-08-15T13:15:22-0500" -->
+		<!-- dateModified="2017-07-27T20:59:02-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				A task may be assigned to multiple people.
@@ -274,6 +280,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 	</tag>
 	<tag>
+		<!-- datePublished="2016-08-15T13:15:22-0500" -->
+		<!-- dateModified="2017-07-27T20:59:02-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				A task may have multiple priorities.
@@ -334,6 +342,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 	</tag>
 	<tag>
+		<!-- datePublished="2016-08-15T13:15:22-0500" -->
+		<!-- dateModified="2017-07-27T20:59:02-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Indicates another task must be done before this task.
@@ -396,6 +406,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 	</tag>
 	<tag>
+		<!-- datePublished="2016-08-15T13:15:22-0500" -->
+		<!-- dateModified="2017-07-27T20:59:02-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				A task may have any number of additional custom logging fields.
@@ -424,6 +436,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		</attribute>
 	</tag>
 	<function>
+		<!-- datePublished="2016-08-15T13:15:22-0500" -->
+		<!-- dateModified="2016-11-08T02:37:01-0600" -->
 		<description><![CDATA[
 			<p>
 				Gets the task log given a book, page and task.
@@ -435,6 +449,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<example><![CDATA[<code>${task:getTaskLogInBook(book, page, taskId)}</code>]]></example>
 	</function>
 	<function>
+		<!-- datePublished="2016-08-15T13:15:22-0500" -->
+		<!-- dateModified="2016-11-08T02:37:01-0600" -->
 		<description><![CDATA[
 			<p>
 				Gets the task log given a page and task.
@@ -446,9 +462,11 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<example><![CDATA[<code>${task:getTaskLog(page, taskId)}</code>]]></example>
 	</function>
 	<function>
+		<!-- datePublished="2016-08-15T13:15:22-0500" -->
+		<!-- dateModified="2017-07-27T20:59:02-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
-				Gets the most recent task log entry with the given status(es) or <code>null</code> for none.
+				Gets the most recent task log entry with the given comma-separated status(es) or <code>null</code> for none.
 			</p>
 			<p>
 				The statuses is a comma-separated list of statuses to match.
@@ -460,6 +478,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<example><![CDATA[<code>${task:getMostRecentEntry(taskLog, statuses)}</code>]]></example>
 	</function>
 	<function>
+		<!-- datePublished="2016-10-03T18:04:56-0500" -->
+		<!-- dateModified="2016-11-08T02:37:01-0600" -->
 		<description><![CDATA[
 			<p>Gets the status for the given task.</p>
 		]]></description>
@@ -469,6 +489,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<example><![CDATA[<code>${task:getStatus(task)}</code>]]></example>
 	</function>
 	<function>
+		<!-- datePublished="2016-10-03T18:04:56-0500" -->
+		<!-- dateModified="2017-07-27T20:59:02-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Gets the status for each of the provided tasks.
@@ -484,6 +506,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<example><![CDATA[<code>${task:getMultipleStatuses(tasks)}</code>]]></example>
 	</function>
 	<function>
+		<!-- datePublished="2016-08-15T13:15:22-0500" -->
+		<!-- dateModified="2016-11-08T02:37:01-0600" -->
 		<description><![CDATA[
 			<p>
 				Finds all tasks that must be done after this task.
@@ -495,6 +519,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<example><![CDATA[<code>${task:getDoAfters(task)}</code>]]></example>
 	</function>
 	<function>
+		<!-- datePublished="2016-09-29T00:49:13-0500" -->
+		<!-- dateModified="2017-07-27T20:59:02-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Finds all tasks that must be done after each of the provided tasks.
@@ -510,6 +536,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<example><![CDATA[<code>${task:getMultipleDoAfters(tasks)}</code>]]></example>
 	</function>
 	<function>
+		<!-- datePublished="2016-08-15T13:15:22-0500" -->
+		<!-- dateModified="2017-07-27T20:59:02-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Gets the user for the current request.
@@ -529,6 +557,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<example><![CDATA[<code>${task:getUser()}</code>]]></example>
 	</function>
 	<function>
+		<!-- datePublished="2016-08-15T13:15:22-0500" -->
+		<!-- dateModified="2016-11-08T02:37:01-0600" -->
 		<description><![CDATA[
 			<p>Gets all users.</p>
 		]]></description>
@@ -538,6 +568,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<example><![CDATA[<code>${task:getAllUsers()}</code>]]></example>
 	</function>
 	<function>
+		<!-- datePublished="2016-08-15T13:15:22-0500" -->
+		<!-- dateModified="2017-07-27T20:59:02-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Prioritizes tasks by schedule and priority.
@@ -562,6 +594,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<example><![CDATA[<code>${task:prioritizeTasks(tasks, dateFirst)}</code>]]></example>
 	</function>
 	<function>
+		<!-- datePublished="2016-08-15T13:15:22-0500" -->
+		<!-- dateModified="2017-07-27T20:59:02-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Gets all tasks for a page and all sub-pages.
@@ -576,6 +610,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<example><![CDATA[<code>${task:getAllTasks(rootPage, user)}</code>]]></example>
 	</function>
 	<function>
+		<!-- datePublished="2016-08-15T13:15:22-0500" -->
+		<!-- dateModified="2017-07-27T20:59:02-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Checks if the given page or any of its child pages has at least
@@ -591,6 +627,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<example><![CDATA[<code>${p:hasAssignedTask(page, user)}</code>]]></example>
 	</function>
 	<function>
+		<!-- datePublished="2016-08-15T13:15:22-0500" -->
+		<!-- dateModified="2017-07-27T20:59:02-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Gets all tasks for a page and all sub-pages that are ready to be done at the current
@@ -606,6 +644,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<example><![CDATA[<code>${task:getReadyTasks(rootPage, user)}</code>]]></example>
 	</function>
 	<function>
+		<!-- datePublished="2016-08-15T13:15:22-0500" -->
+		<!-- dateModified="2017-07-27T20:59:02-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Gets all tasks for a page and all sub-pages that are should done at the current
@@ -621,6 +661,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<example><![CDATA[<code>${task:getBlockedTasks(rootPage, user)}</code>]]></example>
 	</function>
 	<function>
+		<!-- datePublished="2016-08-15T13:15:22-0500" -->
+		<!-- dateModified="2017-07-27T20:59:02-0500" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				Gets all tasks for a page and all sub-pages that will be done at a future
@@ -636,6 +678,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<example><![CDATA[<code>${task:getFutureTasks(rootPage, user)}</code>]]></example>
 	</function>
 	<function>
+		<!-- datePublished="2016-08-15T22:40:08-0500" -->
+		<!-- dateModified="2016-11-08T02:37:01-0600" -->
 		<description><![CDATA[
 			<p>Formats a date.</p>
 		]]></description>
@@ -645,6 +689,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<example><![CDATA[<code>${task:formatDate(calendar)}</code>]]></example>
 	</function>
 	<function>
+		<!-- datePublished="2016-08-15T22:40:08-0500" -->
+		<!-- dateModified="2016-11-08T02:37:01-0600" -->
 		<description><![CDATA[
 			<p>Parses a date.</p>
 		]]></description>
@@ -654,6 +700,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 		<example><![CDATA[<code>${task:parseDate("yyyy-mm-dd")}</code>]]></example>
 	</function>
 	<function>
+		<!-- datePublished="2016-08-15T22:40:08-0500" -->
+		<!-- dateModified="2016-11-08T02:37:01-0600" -->
 		<description><![CDATA[
 			<p>Gets today's date.</p>
 		]]></description>
