@@ -27,9 +27,9 @@ import com.aoindustries.net.Path;
 import static com.aoindustries.taglib.AttributeUtils.resolveValue;
 import static com.aoindustries.util.StringUtility.nullIfEmpty;
 import com.aoindustries.validation.ValidationException;
+import com.aoindustries.xml.XmlUtils;
 import com.pragmatickm.task.model.Task;
 import com.semanticcms.core.controller.PageRefResolver;
-import com.semanticcms.core.model.Element;
 import com.semanticcms.core.model.ElementRef;
 import com.semanticcms.core.model.Node;
 import com.semanticcms.core.model.PageRef;
@@ -101,7 +101,7 @@ public class DoBeforeTag extends SimpleTagSupport {
 			String pageStr = nullIfEmpty(resolveValue(page, String.class, elContext));
 			String taskStr = resolveValue(task, String.class, elContext);
 
-			if(!Element.isValidId(taskStr)) throw new JspTagException("Invalid task id: " + taskStr);
+			if(!XmlUtils.isValidId(taskStr)) throw new JspTagException("Invalid task id: " + taskStr);
 
 			// Resolve the book-relative page path
 			final PageRef pageRef;
