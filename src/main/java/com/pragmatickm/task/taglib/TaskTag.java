@@ -1,6 +1,6 @@
 /*
  * pragmatickm-task-taglib - Tasks nested within SemanticCMS pages and elements in a JSP environment.
- * Copyright (C) 2013, 2014, 2015, 2016, 2017, 2019  AO Industries, Inc.
+ * Copyright (C) 2013, 2014, 2015, 2016, 2017, 2019, 2020  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -22,6 +22,7 @@
  */
 package com.pragmatickm.task.taglib;
 
+import com.aoindustries.html.servlet.HtmlEE;
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.io.buffer.BufferWriter;
 import static com.aoindustries.taglib.AttributeUtils.resolveValue;
@@ -48,6 +49,7 @@ import java.io.Writer;
 import java.util.Locale;
 import javax.el.ELContext;
 import javax.el.ValueExpression;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -179,13 +181,14 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 				capturedOut = null;
 			}
 			try {
+				ServletContext servletContext = pageContext.getServletContext();
 				TaskHtmlRenderer.writeBeforeBody(
-					pageContext.getServletContext(),
+					servletContext,
 					pageContext.getELContext(),
 					request,
 					response,
 					captureLevel,
-					capturedOut,
+					(capturedOut == null) ? null : HtmlEE.get(servletContext, request, capturedOut),
 					task,
 					style
 				);
@@ -206,6 +209,11 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 	public void writeTo(Writer out, ElementContext context) throws IOException {
 		assert beforeBody != null : "writeTo is only called on captureLevel=BODY, so this should have been set in doBody";
 		beforeBody.writeTo(out);
-		TaskHtmlRenderer.writeAfterBody(getElement(), out, context);
+		PageContext pageContext = (PageContext)getJspContext();
+		TaskHtmlRenderer.writeAfterBody(
+			getElement(),
+			HtmlEE.get(pageContext.getServletContext(), (HttpServletRequest)pageContext.getRequest(), out),
+			context
+		);
 	}
 }
