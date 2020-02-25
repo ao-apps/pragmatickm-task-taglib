@@ -22,6 +22,11 @@
  */
 package com.pragmatickm.task.taglib;
 
+import com.aoindustries.encoding.Doctype;
+import com.aoindustries.encoding.Serialization;
+import com.aoindustries.encoding.servlet.DoctypeEE;
+import com.aoindustries.encoding.servlet.SerializationEE;
+import com.aoindustries.html.Html;
 import com.aoindustries.html.servlet.HtmlEE;
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.io.buffer.BufferWriter;
@@ -141,13 +146,16 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 	}*/
 
 	private BufferResult beforeBody;
+	private Serialization serialization;
+	private Doctype doctype;
 
 	@Override
 	protected void doBody(Task task, CaptureLevel captureLevel) throws JspException, IOException {
 		try {
-			final PageContext pageContext = (PageContext)getJspContext();
-			final HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
-			final HttpServletResponse response = (HttpServletResponse)pageContext.getResponse();
+			PageContext pageContext = (PageContext)getJspContext();
+			ServletContext servletContext = pageContext.getServletContext();
+			HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
+			HttpServletResponse response = (HttpServletResponse)pageContext.getResponse();
 
 			final Page currentPage = CurrentPage.getCurrentPage(request);
 			if(currentPage == null) throw new ServletException("<task:task> tag must be nested inside a <core:page> tag.");
@@ -170,7 +178,6 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 				capturedOut = null;
 			}
 			try {
-				ServletContext servletContext = pageContext.getServletContext();
 				TaskImpl.writeBeforeBody(
 					servletContext,
 					pageContext.getELContext(),
@@ -186,6 +193,8 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 			}
 			if(capturedOut != null) {
 				beforeBody = capturedOut.getResult();
+				serialization = SerializationEE.get(servletContext, request);
+				doctype = DoctypeEE.get(servletContext, request);
 			} else {
 				beforeBody = null;
 			}
@@ -198,10 +207,9 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 	public void writeTo(Writer out, ElementContext context) throws IOException {
 		assert beforeBody != null : "writeTo is only called on captureLevel=BODY, so this should have been set in doBody";
 		beforeBody.writeTo(out);
-		PageContext pageContext = (PageContext)getJspContext();
 		TaskImpl.writeAfterBody(
 			getElement(),
-			HtmlEE.get(pageContext.getServletContext(), (HttpServletRequest)pageContext.getRequest(), out),
+			new Html(serialization, doctype, out),
 			context
 		);
 	}
