@@ -49,9 +49,9 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 			<changelog:release
 				projectName="@{documented.name}"
 				version="#{version}"
-				groupId="@{documented.groupId}"
+				groupId="@{project.groupId}"
 				artifactId="@{documented.artifactId}"
-				scmUrl="@{documented.scm.url}"
+				scmUrl="@{project.scm.url}"
 			>
 				<ul>
 					<li>Added <ao:a href="https://semanticcms.com/core/model/">SemanticCMS Core Model</ao:a> domain support:
@@ -68,9 +68,9 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 			projectName="@{documented.name}"
 			version="1.5.0"
 			datePublished="2019-10-12T08:43:05-0500"
-			groupId="@{documented.groupId}"
+			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
-			scmUrl="@{documented.scm.url}"
+			scmUrl="@{project.scm.url}"
 		>
 			<ul>
 				<li>Rebuild for breaking change in <code>CalendarUtils</code>.</li>
@@ -81,9 +81,9 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 			projectName="@{documented.name}"
 			version="1.4.1"
 			datePublished="2019-06-24T01:34:51-0500"
-			groupId="@{documented.groupId}"
+			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
-			scmUrl="@{documented.scm.url}"
+			scmUrl="@{project.scm.url}"
 		>
 			<ul>
 				<li>Using managed dependencies:
@@ -99,9 +99,9 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 			projectName="@{documented.name}"
 			version="1.4.0"
 			datePublished="2019-04-22T15:57:44-0500"
-			groupId="@{documented.groupId}"
+			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
-			scmUrl="@{documented.scm.url}"
+			scmUrl="@{project.scm.url}"
 		>
 			<ul>
 				<li>Minimum Java version changed from 1.6 to 1.7.</li>
@@ -120,9 +120,9 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 			projectName="@{documented.name}"
 			version="1.3.4"
 			datePublished="2017-07-27T00:24:57-0500"
-			groupId="@{documented.groupId}"
+			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
-			scmUrl="@{documented.scm.url}"
+			scmUrl="@{project.scm.url}"
 		>
 			<ul>
 				<li>License changed to LGPL v3.</li>
@@ -134,10 +134,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 			projectName="@{documented.name}"
 			version="1.3.3"
 			datePublished="2017-07-20T18:56:42-0500"
-			groupId="@{documented.groupId}"
+			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
 			repository="https://aorepo.org/maven2/"
-			scmUrl="@{documented.scm.url}"
+			scmUrl="@{project.scm.url}"
 		>
 			<ul>
 				<li>New release for bug fixes in underlying <ao:a href="https://aoindustries.com/ao-encoding/">AO Encoding</ao:a> library.</li>
@@ -149,10 +149,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 			projectName="@{documented.name}"
 			version="1.3.2"
 			datePublished="2016-11-16T22:05:06-0600"
-			groupId="@{documented.groupId}"
+			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
 			repository="https://aorepo.org/maven2/"
-			scmUrl="@{documented.scm.url}"
+			scmUrl="@{project.scm.url}"
 		>
 			<ul>
 				<li>New <ao:a href="https://aoindustries.com/ao-oss-parent/">AO OSS Parent</ao:a> POM to simplify <code>pom.xml</code> files.</li>
@@ -172,10 +172,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 			projectName="@{documented.name}"
 			version="1.3.1"
 			datePublished="2016-10-20T20:15:37-0500"
-			groupId="@{documented.groupId}"
+			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
 			repository="https://aorepo.org/maven2/"
-			scmUrl="@{documented.scm.url}"
+			scmUrl="@{project.scm.url}"
 		>
 			<ul>
 				<li>Improved Javadoc formatting.</li>
@@ -187,10 +187,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 			projectName="@{documented.name}"
 			version="1.3.0"
 			datePublished="2016-10-05T00:13:38-0500"
-			groupId="@{documented.groupId}"
+			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
 			repository="https://aorepo.org/maven2/"
-			scmUrl="@{documented.scm.url}"
+			scmUrl="@{project.scm.url}"
 		>
 			<ul>
 				<li>Improved Javadoc formatting.</li>
@@ -213,10 +213,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 			projectName="@{documented.name}"
 			version="1.2"
 			datePublished="2016-09-11T17:50:22-0500"
-			groupId="@{documented.groupId}"
+			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
 			repository="https://aorepo.org/maven2/"
-			scmUrl="@{documented.scm.url}"
+			scmUrl="@{project.scm.url}"
 		>
 			<ul>
 				<li>Use dependencyManagement instead of dependency for junit.</li>
@@ -228,10 +228,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 			projectName="@{documented.name}"
 			version="1.1"
 			datePublished="2016-09-03T11:43:41-0500"
-			groupId="@{documented.groupId}"
+			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
 			repository="https://aorepo.org/maven2/"
-			scmUrl="@{documented.scm.url}"
+			scmUrl="@{project.scm.url}"
 		>
 			<ul>
 				<li>Using extensions.xml to avoid chicken/egg problem using ssh for private repositories.</li>
@@ -243,10 +243,10 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 			projectName="@{documented.name}"
 			version="1.0"
 			datePublished="2016-08-30T19:23:59-0500"
-			groupId="@{documented.groupId}"
+			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
 			repository="https://aorepo.org/maven2/"
-			scmUrl="@{documented.scm.url}"
+			scmUrl="@{project.scm.url}"
 		>
 			<ul>
 				<li>Pulled tasks out of docs-taglib.</li>
