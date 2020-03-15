@@ -1,6 +1,6 @@
 /*
  * pragmatickm-task-taglib - Tasks nested within SemanticCMS pages and elements in a JSP environment.
- * Copyright (C) 2013, 2014, 2015, 2016, 2017  AO Industries, Inc.
+ * Copyright (C) 2013, 2014, 2015, 2016, 2017, 2020  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -27,7 +27,7 @@ import com.aoindustries.net.Path;
 import static com.aoindustries.servlet.filter.FunctionContext.getRequest;
 import static com.aoindustries.servlet.filter.FunctionContext.getResponse;
 import static com.aoindustries.servlet.filter.FunctionContext.getServletContext;
-import com.aoindustries.util.StringUtility;
+import com.aoindustries.lang.Strings;
 import com.aoindustries.validation.ValidationException;
 import com.pragmatickm.task.model.Task;
 import com.pragmatickm.task.model.TaskException;
@@ -48,8 +48,8 @@ final public class Functions {
 		return TaskUtil.getTaskLogInDomain(
 			getServletContext(),
 			getRequest(),
-			DomainName.valueOf(StringUtility.nullIfEmpty(domain)),
-			Path.valueOf(StringUtility.nullIfEmpty(book)),
+			DomainName.valueOf(Strings.nullIfEmpty(domain)),
+			Path.valueOf(Strings.nullIfEmpty(book)),
 			page,
 			taskId
 		);
@@ -60,7 +60,7 @@ final public class Functions {
 			getServletContext(),
 			getRequest(),
 			null,
-			Path.valueOf(StringUtility.nullIfEmpty(book)),
+			Path.valueOf(Strings.nullIfEmpty(book)),
 			page,
 			taskId
 		);

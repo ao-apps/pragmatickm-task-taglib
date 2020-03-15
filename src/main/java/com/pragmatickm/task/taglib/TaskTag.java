@@ -33,7 +33,7 @@ import com.aoindustries.io.buffer.BufferWriter;
 import static com.aoindustries.taglib.AttributeUtils.resolveValue;
 import com.aoindustries.taglib.AutoEncodingBufferedTag;
 import com.aoindustries.util.CalendarUtils;
-import com.aoindustries.util.StringUtility;
+import com.aoindustries.lang.Strings;
 import com.aoindustries.util.schedule.DayDuration;
 import com.aoindustries.util.schedule.Recurring;
 import com.pragmatickm.task.model.Priority;
@@ -126,11 +126,11 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 	protected void evaluateAttributes(Task task, ELContext elContext) throws JspTagException, IOException {
 		super.evaluateAttributes(task, elContext);
 		task.setLabel(resolveValue(label, String.class, elContext));
-		task.setOn(CalendarUtils.parseDate(StringUtility.nullIfEmpty(resolveValue(on, String.class, elContext))));
-		task.setRecurring(Recurring.parse(StringUtility.nullIfEmpty(resolveValue(recurring, String.class, elContext))));
+		task.setOn(CalendarUtils.parseDate(Strings.nullIfEmpty(resolveValue(on, String.class, elContext))));
+		task.setRecurring(Recurring.parse(Strings.nullIfEmpty(resolveValue(recurring, String.class, elContext))));
 		Boolean relativeObj = resolveValue(relative, Boolean.class, elContext);
 		if(relativeObj != null) task.setRelative(relativeObj);
-		String assignedToStr = StringUtility.nullIfEmpty(resolveValue(assignedTo, String.class, elContext));
+		String assignedToStr = Strings.nullIfEmpty(resolveValue(assignedTo, String.class, elContext));
 		User user =
 			(assignedToStr==null)
 			? User.Unassigned
@@ -138,7 +138,7 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 		if(user.isPerson()) task.addAssignedTo(user, DayDuration.ZERO_DAYS);
 		task.setPay(resolveValue(pay, String.class, elContext));
 		task.setCost(resolveValue(cost, String.class, elContext));
-		String priorityStr = StringUtility.nullIfEmpty(resolveValue(priority, String.class, elContext));
+		String priorityStr = Strings.nullIfEmpty(resolveValue(priority, String.class, elContext));
 		if(priorityStr != null) {
 			task.addPriority(
 				Priority.valueOf(priorityStr.toUpperCase(Locale.ROOT)),
