@@ -31,7 +31,7 @@ Tasks nested within [SemanticCMS](https://github.com/aoindustries/semanticcms) p
 * [Changelog](https://pragmatickm.com/task/taglib/changelog)
 * [Taglib Reference](https://pragmatickm.com/task/taglib/pragmatickm-task.tld/)
 * [API Docs](https://pragmatickm.com/task/taglib/apidocs/)
-* [Maven Central Repository](https://search.maven.org/#search%7Cgav%7C1%7Cg:%22com.pragmatickm%22%20AND%20a:%22pragmatickm-task-taglib%22)
+* [Maven Central Repository](https://search.maven.org/artifact/com.pragmatickm/pragmatickm-task-taglib)
 * [GitHub](https://github.com/aoindustries/pragmatickm-task-taglib)
 
 ## Contact Us
