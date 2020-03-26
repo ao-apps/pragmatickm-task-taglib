@@ -30,10 +30,10 @@ import com.aoindustries.html.Html;
 import com.aoindustries.html.servlet.HtmlEE;
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.io.buffer.BufferWriter;
+import com.aoindustries.lang.Strings;
 import static com.aoindustries.taglib.AttributeUtils.resolveValue;
 import com.aoindustries.taglib.AutoEncodingBufferedTag;
 import com.aoindustries.util.CalendarUtils;
-import com.aoindustries.lang.Strings;
 import com.aoindustries.util.schedule.DayDuration;
 import com.aoindustries.util.schedule.Recurring;
 import com.pragmatickm.task.model.Priority;
@@ -184,7 +184,7 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 					request,
 					response,
 					captureLevel,
-					(capturedOut == null) ? null : HtmlEE.get(servletContext, request, capturedOut),
+					(capturedOut == null) ? null : HtmlEE.get(servletContext, request, response, capturedOut),
 					task,
 					style
 				);
