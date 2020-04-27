@@ -82,11 +82,11 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 								<link>https://aoindustries.com/ao-taglib/apidocs/</link>
 								<link>https://aoindustries.com/aocode-public/apidocs/</link>
 								<link>https://pragmatickm.com/task/model/apidocs/</link>
-								<link>https://pragmatickm.com/task/renderer/html/apidocs/</link>
-								<link>https://semanticcms.com/core/controller/apidocs/</link>
+								<!-- TODO: Once published: <link>https://pragmatickm.com/task/renderer/html/apidocs/</link> -->
+								<!-- TODO: Once published: <link>https://semanticcms.com/core/controller/apidocs/</link> -->
 								<link>https://semanticcms.com/core/model/apidocs/</link>
-								<link>https://semanticcms.com/core/pages/apidocs/</link>
-								<link>https://semanticcms.com/core/pages/local/apidocs/</link>
+								<!-- TODO: Once published: <link>https://semanticcms.com/core/pages/apidocs/</link> -->
+								<!-- TODO: Once published: <link>https://semanticcms.com/core/pages/local/apidocs/</link> -->
 								<link>https://semanticcms.com/core/taglib/apidocs/</link>
 							</links>
 						</configuration>
