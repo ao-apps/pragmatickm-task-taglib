@@ -32,9 +32,10 @@ import java.util.Collections;
 
 public class PragmaticKmTaskTldInitializer extends TagReferenceInitializer {
 
+	@SuppressWarnings("unchecked")
 	public PragmaticKmTaskTldInitializer() throws ValidationException {
 		super(
-			"Task Taglib Reference",
+			Maven.properties.getProperty("project.name") + " Reference",
 			"Taglib Reference",
 			new ResourceRef(
 				new BookRef(
