@@ -27,9 +27,10 @@ import java.util.Collections;
 
 public class PragmaticKmTaskTldInitializer extends TagReferenceInitializer {
 
+	@SuppressWarnings("unchecked")
 	public PragmaticKmTaskTldInitializer() {
 		super(
-			"Task Taglib Reference",
+			Maven.properties.getProperty("project.name") + " Reference",
 			"Taglib Reference",
 			"/task/taglib",
 			"/pragmatickm-task.tld",
