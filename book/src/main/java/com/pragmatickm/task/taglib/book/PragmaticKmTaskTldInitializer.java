@@ -44,6 +44,7 @@ public class PragmaticKmTaskTldInitializer extends TagReferenceInitializer {
 				),
 				Path.valueOf("/pragmatickm-task.tld")
 			),
+			true,
 			Maven.properties.getProperty("documented.javadoc.link.javase"),
 			Maven.properties.getProperty("documented.javadoc.link.javaee"),
 			// Self
