@@ -64,6 +64,106 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 			<build>
 				<plugins>
 					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>unpack.offlinkLinks</id>
+								<phase>generate-sources</phase>
+								<goals><goal>unpack</goal></goals>
+								<configuration>
+									<artifactItems>
+										<!-- Direct -->
+										<artifactItem>
+											<groupId>com.aoindustries</groupId><artifactId>ao-encoding</artifactId>
+											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.aoindustries/ao-encoding</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.aoindustries</groupId><artifactId>ao-encoding-servlet</artifactId>
+											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.aoindustries/ao-encoding-servlet</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.aoindustries</groupId><artifactId>ao-fluent-html</artifactId>
+											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.aoindustries/ao-fluent-html</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.aoindustries</groupId><artifactId>ao-fluent-html-servlet</artifactId>
+											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.aoindustries/ao-fluent-html-servlet</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.aoindustries</groupId><artifactId>ao-io-buffer</artifactId>
+											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.aoindustries/ao-io-buffer</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.aoindustries</groupId><artifactId>ao-lang</artifactId>
+											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.aoindustries/ao-lang</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.aoindustries</groupId><artifactId>ao-net-types</artifactId>
+											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.aoindustries/ao-net-types</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.aoindustries</groupId><artifactId>ao-servlet-filter</artifactId>
+											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.aoindustries/ao-servlet-filter</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.aoindustries</groupId><artifactId>ao-taglib</artifactId>
+											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.aoindustries/ao-taglib</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.aoindustries</groupId><artifactId>aocode-public</artifactId>
+											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.aoindustries/aocode-public</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.pragmatickm</groupId><artifactId>pragmatickm-task-model</artifactId>
+											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.pragmatickm/pragmatickm-task-model</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.pragmatickm</groupId><artifactId>pragmatickm-task-renderer-html</artifactId>
+											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.pragmatickm/pragmatickm-task-renderer-html</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.semanticcms</groupId><artifactId>semanticcms-core-controller</artifactId>
+											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-core-controller</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.semanticcms</groupId><artifactId>semanticcms-core-model</artifactId>
+											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-core-model</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.semanticcms</groupId><artifactId>semanticcms-core-pages</artifactId>
+											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-core-pages</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.semanticcms</groupId><artifactId>semanticcms-core-pages-local</artifactId>
+											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-core-pages-local</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.semanticcms</groupId><artifactId>semanticcms-core-taglib</artifactId>
+											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-core-taglib</outputDirectory>
+										</artifactItem>
+									</artifactItems>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
 						<configuration>
 							<links>
@@ -71,24 +171,95 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 								<!-- Java EE -->
 								<link>${javadoc.link.javaee}</link>
 								<!-- Direct -->
-								<link>https://aoindustries.com/ao-encoding/apidocs/</link>
-								<link>https://aoindustries.com/ao-encoding/servlet/apidocs/</link>
-								<link>https://aoindustries.com/ao-fluent-html/apidocs/</link>
-								<link>https://aoindustries.com/ao-fluent-html/servlet/apidocs/</link>
-								<link>https://aoindustries.com/ao-io-buffer/apidocs/</link>
-								<link>https://aoindustries.com/ao-lang/apidocs/</link>
-								<link>https://aoindustries.com/ao-net-types/apidocs/</link>
-								<link>https://aoindustries.com/ao-servlet-filter/apidocs/</link>
-								<link>https://aoindustries.com/ao-taglib/apidocs/</link>
-								<link>https://aoindustries.com/aocode-public/apidocs/</link>
-								<link>https://pragmatickm.com/task/model/apidocs/</link>
-								<!-- TODO: Once published: <link>https://pragmatickm.com/task/renderer/html/apidocs/</link> -->
-								<!-- TODO: Once published: <link>https://semanticcms.com/core/controller/apidocs/</link> -->
-								<link>https://semanticcms.com/core/model/apidocs/</link>
-								<!-- TODO: Once published: <link>https://semanticcms.com/core/pages/apidocs/</link> -->
-								<!-- TODO: Once published: <link>https://semanticcms.com/core/pages/local/apidocs/</link> -->
-								<link>https://semanticcms.com/core/taglib/apidocs/</link>
+								<!-- offlineLink: <groupId>com.aoindustries</groupId><artifactId>ao-encoding</artifactId> -->
+								<!-- offlineLink: <groupId>com.aoindustries</groupId><artifactId>ao-encoding-servlet</artifactId> -->
+								<!-- offlineLink: <groupId>com.aoindustries</groupId><artifactId>ao-fluent-html</artifactId> -->
+								<!-- offlineLink: <groupId>com.aoindustries</groupId><artifactId>ao-fluent-html-servlet</artifactId> -->
+								<!-- offlineLink: <groupId>com.aoindustries</groupId><artifactId>ao-io-buffer</artifactId> -->
+								<!-- offlineLink: <groupId>com.aoindustries</groupId><artifactId>ao-lang</artifactId> -->
+								<!-- offlineLink: <groupId>com.aoindustries</groupId><artifactId>ao-net-types</artifactId> -->
+								<!-- offlineLink: <groupId>com.aoindustries</groupId><artifactId>ao-servlet-filter</artifactId> -->
+								<!-- offlineLink: <groupId>com.aoindustries</groupId><artifactId>ao-taglib</artifactId> -->
+								<!-- offlineLink: <groupId>com.aoindustries</groupId><artifactId>aocode-public</artifactId> -->
+								<!-- offlineLink: <groupId>com.pragmatickm</groupId><artifactId>pragmatickm-task-model</artifactId> -->
+								<!-- offlineLink: <groupId>com.pragmatickm</groupId><artifactId>pragmatickm-task-renderer-html</artifactId> -->
+								<!-- offlineLink: <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-controller</artifactId> -->
+								<!-- offlineLink: <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-model</artifactId> -->
+								<!-- offlineLink: <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-pages</artifactId> -->
+								<!-- offlineLink: <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-pages-local</artifactId> -->
+								<!-- offlineLink: <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-taglib</artifactId> -->
 							</links>
+							<offlineLinks>
+								<!-- Direct -->
+								<offlineLink>
+									<url>https://aoindustries.com/ao-encoding/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.aoindustries/ao-encoding</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://aoindustries.com/ao-encoding/servlet/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.aoindustries/ao-encoding-servlet</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://aoindustries.com/ao-fluent-html/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.aoindustries/ao-fluent-html</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://aoindustries.com/ao-fluent-html/servlet/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.aoindustries/ao-fluent-html-servlet</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://aoindustries.com/ao-io-buffer/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.aoindustries/ao-io-buffer</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://aoindustries.com/ao-lang/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.aoindustries/ao-lang</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://aoindustries.com/ao-net-types/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.aoindustries/ao-net-types</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://aoindustries.com/ao-servlet-filter/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.aoindustries/ao-servlet-filter</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://aoindustries.com/ao-taglib/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.aoindustries/ao-taglib</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://aoindustries.com/aocode-public/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.aoindustries/aocode-public</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://pragmatickm.com/task/model/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.pragmatickm/pragmatickm-task-model</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://pragmatickm.com/task/renderer/html/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.pragmatickm/pragmatickm-task-renderer-html</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://semanticcms.com/core/controller/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-core-controller</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://semanticcms.com/core/model/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-core-model</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://semanticcms.com/core/pages/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-core-pages</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://semanticcms.com/core/pages/local/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-core-pages-local</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://semanticcms.com/core/taglib/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-core-taglib</location>
+								</offlineLink>
+							</offlineLinks>
 						</configuration>
 					</plugin>
 				</plugins>
