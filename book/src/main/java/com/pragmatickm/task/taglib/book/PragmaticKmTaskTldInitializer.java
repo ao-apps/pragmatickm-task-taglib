@@ -28,11 +28,9 @@ import com.aoindustries.validation.ValidationException;
 import com.semanticcms.core.model.BookRef;
 import com.semanticcms.core.model.ResourceRef;
 import com.semanticcms.tagreference.TagReferenceInitializer;
-import java.util.Collections;
 
 public class PragmaticKmTaskTldInitializer extends TagReferenceInitializer {
 
-	@SuppressWarnings("unchecked")
 	public PragmaticKmTaskTldInitializer() throws ValidationException {
 		super(
 			Maven.properties.getProperty("project.name") + " Reference",
@@ -48,12 +46,12 @@ public class PragmaticKmTaskTldInitializer extends TagReferenceInitializer {
 			Maven.properties.getProperty("documented.javadoc.link.javase"),
 			Maven.properties.getProperty("documented.javadoc.link.javaee"),
 			// Self
-			Collections.singletonMap("com.pragmatickm.task.taglib", Maven.properties.getProperty("project.url") + "apidocs/"),
+			"com.pragmatickm.task.taglib", Maven.properties.getProperty("project.url") + "apidocs/",
 			// Dependencies
-			Collections.singletonMap("com.aoindustries.util", "https://aoindustries.com/ao-lang/apidocs/"),
-			Collections.singletonMap("com.pragmatickm.task.model", "https://pragmatickm.com/task/model/apidocs/"),
-			Collections.singletonMap("com.pragmatickm.task.servlet", "https://pragmatickm.com/task/servlet/apidocs/"),
-			Collections.singletonMap("com.semanticcms.core.model", "https://semanticcms.com/core/model/apidocs/")
+			"com.aoindustries.util", "https://aoindustries.com/ao-lang/apidocs/",
+			"com.pragmatickm.task.model", "https://pragmatickm.com/task/model/apidocs/",
+			"com.pragmatickm.task.servlet", "https://pragmatickm.com/task/servlet/apidocs/",
+			"com.semanticcms.core.model", "https://semanticcms.com/core/model/apidocs/"
 		);
 	}
 }
