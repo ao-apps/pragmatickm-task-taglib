@@ -22,8 +22,8 @@
  */
 package com.pragmatickm.task.taglib;
 
-import static com.aoindustries.taglib.AttributeUtils.resolveValue;
 import static com.aoindustries.lang.Strings.nullIfEmpty;
+import static com.aoindustries.taglib.AttributeUtils.resolveValue;
 import com.aoindustries.util.schedule.DayDuration;
 import com.pragmatickm.task.model.Task;
 import com.pragmatickm.task.model.User;

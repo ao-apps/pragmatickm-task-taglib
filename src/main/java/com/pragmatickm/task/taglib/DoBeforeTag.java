@@ -22,10 +22,10 @@
  */
 package com.pragmatickm.task.taglib;
 
+import static com.aoindustries.lang.Strings.nullIfEmpty;
 import com.aoindustries.net.DomainName;
 import com.aoindustries.net.Path;
 import static com.aoindustries.taglib.AttributeUtils.resolveValue;
-import static com.aoindustries.lang.Strings.nullIfEmpty;
 import com.aoindustries.validation.ValidationException;
 import com.aoindustries.xml.XmlUtils;
 import com.pragmatickm.task.model.Task;
@@ -101,7 +101,7 @@ public class DoBeforeTag extends SimpleTagSupport {
 			String pageStr = nullIfEmpty(resolveValue(page, String.class, elContext));
 			String taskStr = resolveValue(task, String.class, elContext);
 
-			if(!XmlUtils.isValidId(taskStr)) throw new JspTagException("Invalid task id: " + taskStr);
+			if(!XmlUtils.isValidName(taskStr)) throw new JspTagException("Invalid task id: " + taskStr);
 
 			// Resolve the book-relative page path
 			final PageRef pageRef;
