@@ -37,7 +37,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2017-07-25T20:56:44-0500"
-		dateModified="2020-05-29T19:05:35-05:00"
+		dateModified="2020-11-18T22:36:47-06:00"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.pragmatickm:pragmatickm-task-taglib:pom.version}" />
@@ -60,6 +60,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 						</ol>
 					</li>
 					<li>Added generics to TLD types and signatures.</li>
+					<li>Updated dependencies.</li>
 				</ul>
 			</changelog:release>
 		</c:if>
