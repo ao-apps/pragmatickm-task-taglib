@@ -26,13 +26,13 @@ import com.aoindustries.encoding.Doctype;
 import com.aoindustries.encoding.Serialization;
 import com.aoindustries.encoding.servlet.DoctypeEE;
 import com.aoindustries.encoding.servlet.SerializationEE;
+import com.aoindustries.encoding.taglib.EncodingBufferedSimpleTag;
 import com.aoindustries.html.Html;
 import com.aoindustries.html.servlet.HtmlEE;
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.io.buffer.BufferWriter;
 import com.aoindustries.lang.Strings;
 import static com.aoindustries.taglib.AttributeUtils.resolveValue;
-import com.aoindustries.taglib.AutoEncodingBufferedTag;
 import com.aoindustries.util.CalendarUtils;
 import com.aoindustries.util.schedule.DayDuration;
 import com.aoindustries.util.schedule.Recurring;
@@ -173,7 +173,7 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 			// Determine what goes before the body
 			BufferWriter capturedOut;
 			if(captureLevel == CaptureLevel.BODY) {
-				capturedOut = AutoEncodingBufferedTag.newBufferWriter(request);
+				capturedOut = EncodingBufferedSimpleTag.newBufferWriter(request);
 			} else {
 				capturedOut = null;
 			}
