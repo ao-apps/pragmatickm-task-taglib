@@ -26,7 +26,7 @@ import com.aoindustries.encoding.Doctype;
 import com.aoindustries.encoding.Serialization;
 import com.aoindustries.encoding.servlet.DoctypeEE;
 import com.aoindustries.encoding.servlet.SerializationEE;
-import com.aoindustries.encoding.taglib.EncodingBufferedSimpleTag;
+import com.aoindustries.encoding.taglib.EncodingBufferedTag;
 import com.aoindustries.html.Html;
 import com.aoindustries.html.servlet.HtmlEE;
 import com.aoindustries.io.buffer.BufferResult;
@@ -173,7 +173,7 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 			// Determine what goes before the body
 			BufferWriter capturedOut;
 			if(captureLevel == CaptureLevel.BODY) {
-				capturedOut = EncodingBufferedSimpleTag.newBufferWriter(request);
+				capturedOut = EncodingBufferedTag.newBufferWriter(request);
 			} else {
 				capturedOut = null;
 			}
