@@ -49,6 +49,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 public class DoBeforeTag extends SimpleTagSupport {
 
+	public static final String TAG_NAME = "<task:doBefore>";
+
 	private ValueExpression domain;
 	public void setDomain(ValueExpression domain) {
 		this.domain = domain;
@@ -79,7 +81,7 @@ public class DoBeforeTag extends SimpleTagSupport {
 
 			// Find the required task
 			Node currentNode = CurrentNode.getCurrentNode(request);
-			if(!(currentNode instanceof Task)) throw new JspTagException("<task:doBefore> tag must be nested inside a <task:task> tag.");
+			if(!(currentNode instanceof Task)) throw new JspTagException(TAG_NAME + " tag must be nested inside a " + TaskTag.TAG_NAME + " tag.");
 			Task currentTask = (Task)currentNode;
 
 			assert
