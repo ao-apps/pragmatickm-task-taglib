@@ -46,6 +46,7 @@ import com.semanticcms.core.model.Page;
 import com.semanticcms.core.servlet.CaptureLevel;
 import com.semanticcms.core.servlet.CurrentPage;
 import com.semanticcms.core.taglib.ElementTag;
+import com.semanticcms.core.taglib.PageTag;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Locale;
@@ -60,6 +61,8 @@ import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.PageContext;
 
 public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
+
+	public static final String TAG_NAME = "<task:task>";
 
 	private ValueExpression style;
 	public void setStyle(ValueExpression style) {
@@ -158,7 +161,7 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 			HttpServletResponse response = (HttpServletResponse)pageContext.getResponse();
 
 			final Page currentPage = CurrentPage.getCurrentPage(request);
-			if(currentPage == null) throw new ServletException("<task:task> tag must be nested inside a <core:page> tag.");
+			if(currentPage == null) throw new ServletException(TAG_NAME + " tag must be nested inside a " + PageTag.TAG_NAME + " tag.");
 
 			// Label defaults to page short title
 			if(task.getLabel() == null) {

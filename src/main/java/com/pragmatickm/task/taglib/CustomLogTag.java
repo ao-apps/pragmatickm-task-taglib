@@ -1,6 +1,6 @@
 /*
  * pragmatickm-task-taglib - Tasks nested within SemanticCMS pages and elements in a JSP environment.
- * Copyright (C) 2013, 2014, 2016, 2017  AO Industries, Inc.
+ * Copyright (C) 2013, 2014, 2016, 2017, 2020  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -36,6 +36,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 public class CustomLogTag extends SimpleTagSupport {
 
+	public static final String TAG_NAME = "<task:customLog>";
+
 	private ValueExpression name;
     public void setName(ValueExpression name) {
 		this.name = name;
@@ -48,7 +50,7 @@ public class CustomLogTag extends SimpleTagSupport {
 
 		// Find the required task
 		Node currentNode = CurrentNode.getCurrentNode(request);
-		if(!(currentNode instanceof Task)) throw new JspTagException("<task:customLog> tag must be nested inside a <task:task> tag.");
+		if(!(currentNode instanceof Task)) throw new JspTagException(TAG_NAME + " tag must be nested inside a " + TaskTag.TAG_NAME + " tag.");
 		Task currentTask = (Task)currentNode;
 
 		assert

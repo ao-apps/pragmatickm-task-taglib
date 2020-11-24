@@ -41,6 +41,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 public class PriorityTag extends SimpleTagSupport {
 
+	public static final String TAG_NAME = "<task:priority>";
+
 	private ValueExpression priority;
     public void setPriority(ValueExpression priority) {
 		this.priority = priority;
@@ -58,7 +60,7 @@ public class PriorityTag extends SimpleTagSupport {
 
 		// Find the required task
 		Node currentNode = CurrentNode.getCurrentNode(request);
-		if(!(currentNode instanceof Task)) throw new JspTagException("<task:priority> tag must be nested inside a <task:task> tag.");
+		if(!(currentNode instanceof Task)) throw new JspTagException(TAG_NAME + " tag must be nested inside a " + TaskTag.TAG_NAME + " tag.");
 		Task currentTask = (Task)currentNode;
 
 		assert
