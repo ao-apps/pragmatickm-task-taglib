@@ -59,7 +59,7 @@ public class DoBeforeTag extends SimpleTagSupport {
 	}
 
 	private ValueExpression task;
-	public void setTask(ValueExpression task) throws JspTagException {
+	public void setTask(ValueExpression task) {
 		this.task = task;
 	}
 
