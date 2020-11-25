@@ -30,6 +30,7 @@ import com.semanticcms.core.servlet.CurrentNode;
 import java.io.IOException;
 import javax.el.ValueExpression;
 import javax.servlet.ServletRequest;
+import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
@@ -44,7 +45,7 @@ public class CustomLogTag extends SimpleTagSupport {
     }
 
 	@Override
-    public void doTag() throws JspTagException, IOException {
+    public void doTag() throws JspException, IOException {
 		PageContext pageContext = (PageContext)getJspContext();
 		ServletRequest request = pageContext.getRequest();
 
