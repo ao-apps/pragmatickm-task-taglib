@@ -116,7 +116,7 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 	protected Task createElement() throws JspException {
 		final PageContext pageContext = (PageContext)getJspContext();
 		Page currentPage = CurrentPage.getCurrentPage(pageContext.getRequest());
-		if(currentPage == null) throw new JspException(TAG_NAME + " tag must be nested inside a " + PageTag.TAG_NAME + " tag.");
+		if(currentPage == null) throw new JspTagException(TAG_NAME + " tag must be nested inside a " + PageTag.TAG_NAME + " tag.");
 		BookRef bookRef = currentPage.getPageRef().getBookRef();
 		Book book = SemanticCMS.getInstance(pageContext.getServletContext()).getBook(bookRef);
 		if(!book.isAccessible()) {
