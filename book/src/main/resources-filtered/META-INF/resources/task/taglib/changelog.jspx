@@ -37,7 +37,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2017-07-25T20:56:44-0500"
-		dateModified="2020-11-25T07:09:05-06:00"
+		dateModified="2020-11-28T21:04:18-06:00"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.pragmatickm:pragmatickm-task-taglib:pom.version}" />
@@ -52,20 +52,29 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 				groupId="@{project.groupId}"
 				artifactId="@{documented.artifactId}"
 				scmUrl="@{project.scm.url}"
-			>
-				<ul>
-					<li>Added generics to TLD types and signatures.</li>
-					<li>Updated dependencies.</li>
-					<li>
-						Cleaned-up use of <code>JspTagException</code> versus <code>JspException</code>.  Generally,
-						methods declare <code>throws JspException</code> while actually throwing instances of
-						<code>JspTagException</code>.  The exception to this is private implementation methods that
-						both declare and throw <code>JspTagException</code>.
-					</li>
-					<li>Attribute setters now throw <code>IllegalArgumentException</code> instead of <code>JspTagException</code>.</li>
-				</ul>
-			</changelog:release>
+			/>
 		</c:if>
+
+		<changelog:release
+			projectName="@{documented.name}"
+			version="1.7.0"
+			datePublished="2020-11-28T21:04:18-06:00"
+			groupId="@{project.groupId}"
+			artifactId="@{documented.artifactId}"
+			scmUrl="@{project.scm.url}"
+		>
+			<ul>
+				<li>Added generics to TLD types and signatures.</li>
+				<li>Updated dependencies.</li>
+				<li>
+					Cleaned-up use of <code>JspTagException</code> versus <code>JspException</code>.  Generally,
+					methods declare <code>throws JspException</code> while actually throwing instances of
+					<code>JspTagException</code>.  The exception to this is private implementation methods that
+					both declare and throw <code>JspTagException</code>.
+				</li>
+				<li>Attribute setters now throw <code>IllegalArgumentException</code> instead of <code>JspTagException</code>.</li>
+			</ul>
+		</changelog:release>
 
 		<changelog:release
 			projectName="@{documented.name}"
