@@ -1,6 +1,6 @@
 /*
  * pragmatickm-task-taglib - Tasks nested within SemanticCMS pages and elements in a JSP environment.
- * Copyright (C) 2013, 2014, 2015, 2016, 2017, 2019, 2020  AO Industries, Inc.
+ * Copyright (C) 2013, 2014, 2015, 2016, 2017, 2019, 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -27,8 +27,8 @@ import com.aoindustries.encoding.Serialization;
 import com.aoindustries.encoding.servlet.DoctypeEE;
 import com.aoindustries.encoding.servlet.SerializationEE;
 import com.aoindustries.encoding.taglib.EncodingBufferedTag;
-import com.aoindustries.html.Html;
-import com.aoindustries.html.servlet.HtmlEE;
+import com.aoindustries.html.Document;
+import com.aoindustries.html.servlet.DocumentEE;
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.io.buffer.BufferWriter;
 import com.aoindustries.lang.Strings;
@@ -187,7 +187,7 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 					request,
 					response,
 					captureLevel,
-					(capturedOut == null) ? null : HtmlEE.get(servletContext, request, response, capturedOut),
+					(capturedOut == null) ? null : DocumentEE.get(servletContext, request, response, capturedOut),
 					task,
 					style
 				);
@@ -212,7 +212,7 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 		beforeBody.writeTo(out);
 		TaskImpl.writeAfterBody(
 			getElement(),
-			new Html(serialization, doctype, out),
+			new Document(serialization, doctype, out),
 			context
 		);
 	}
