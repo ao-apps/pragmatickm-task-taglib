@@ -187,7 +187,13 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 					request,
 					response,
 					captureLevel,
-					(capturedOut == null) ? null : DocumentEE.get(servletContext, request, response, capturedOut),
+					(capturedOut == null) ? null : DocumentEE.get(
+						servletContext,
+						request,
+						response,
+						capturedOut,
+						false // Do not add extra indentation to JSP
+					),
 					task,
 					style
 				);
@@ -210,10 +216,8 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 	public void writeTo(Writer out, ElementContext context) throws IOException {
 		assert beforeBody != null : "writeTo is only called on captureLevel=BODY, so this should have been set in doBody";
 		beforeBody.writeTo(out);
-		TaskImpl.writeAfterBody(
-			getElement(),
-			new Document(serialization, doctype, out),
-			context
-		);
+		Document document = new Document(serialization, doctype, out);
+		document.setIndent(false); // Do not add extra indentation to JSP
+		TaskImpl.writeAfterBody(getElement(), document, context);
 	}
 }
