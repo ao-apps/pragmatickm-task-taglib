@@ -22,12 +22,10 @@
  */
 package com.pragmatickm.task.taglib;
 
-import com.aoindustries.encoding.Doctype;
-import com.aoindustries.encoding.Serialization;
-import com.aoindustries.encoding.servlet.DoctypeEE;
-import com.aoindustries.encoding.servlet.SerializationEE;
 import com.aoindustries.encoding.taglib.EncodingBufferedTag;
 import com.aoindustries.html.Document;
+import com.aoindustries.html.TABLE_c;
+import com.aoindustries.html.TBODY_c;
 import com.aoindustries.html.servlet.DocumentEE;
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.io.buffer.BufferWriter;
@@ -160,8 +158,9 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 	}*/
 
 	private BufferResult beforeBody;
-	private Serialization serialization;
-	private Doctype doctype;
+	//private Serialization serialization;
+	//private Doctype doctype;
+	private TBODY_c<TABLE_c<Document>> tbody;
 
 	@Override
 	protected void doBody(Task task, CaptureLevel captureLevel) throws JspException, IOException {
@@ -192,7 +191,9 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 				capturedOut = null;
 			}
 			try {
-				TaskHtmlRenderer.writeBeforeBody(servletContext,
+				// TODO: Invoke from writeTo, then won't need to set document.setOut()
+				tbody = TaskHtmlRenderer.writeBeforeBody(
+					servletContext,
 					pageContext.getELContext(),
 					request,
 					response,
@@ -212,10 +213,12 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 			}
 			if(capturedOut != null) {
 				beforeBody = capturedOut.getResult();
-				serialization = SerializationEE.get(servletContext, request);
-				doctype = DoctypeEE.get(servletContext, request);
+				//serialization = SerializationEE.get(servletContext, request);
+				//doctype = DoctypeEE.get(servletContext, request);
+				tbody.getDocument().setOut(null); // Will set again before closing tbody
 			} else {
 				beforeBody = null;
+				assert tbody == null;
 			}
 		} catch(TaskException | ServletException e) {
 			throw new JspTagException(e);
@@ -225,9 +228,12 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 	@Override
 	public void writeTo(Writer out, ElementContext context) throws IOException {
 		assert beforeBody != null : "writeTo is only called on captureLevel=BODY, so this should have been set in doBody";
+		assert tbody != null;
 		beforeBody.writeTo(out);
-		Document document = new Document(serialization, doctype, out);
-		document.setIndent(false); // Do not add extra indentation to JSP
-		TaskHtmlRenderer.writeAfterBody(getElement(), document, context);
+		// Must replace the document's out since it was initially capturing.
+		//Document document = new Document(serialization, doctype, out);
+		//document.setIndent(false); // Do not add extra indentation to JSP
+		tbody.getDocument().setOut(out);
+		TaskHtmlRenderer.writeAfterBody(getElement(), tbody, context);
 	}
 }
