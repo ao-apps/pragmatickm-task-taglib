@@ -192,7 +192,8 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 						request,
 						response,
 						capturedOut,
-						false // Do not add extra indentation to JSP
+						false, // Do not add extra newlines to JSP
+						false  // Do not add extra indentation to JSP
 					),
 					task,
 					style
@@ -221,7 +222,8 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 		beforeBody.writeTo(out);
 		// Must replace the document's out since it was initially capturing.
 		//Document document = new Document(serialization, doctype, out);
-		//document.setIndent(false); // Do not add extra indentation to JSP
+		//document.setAutonli(false); // Do not add extra newlines to JSP
+		//document.setIndent(false);  // Do not add extra indentation to JSP
 		tbody.getDocument().setOut(out);
 		TaskImpl.writeAfterBody(getElement(), tbody, context);
 	}
