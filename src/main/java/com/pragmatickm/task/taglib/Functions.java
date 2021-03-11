@@ -1,6 +1,6 @@
 /*
  * pragmatickm-task-taglib - Tasks nested within SemanticCMS pages and elements in a JSP environment.
- * Copyright (C) 2013, 2014, 2015, 2016, 2017  AO Industries, Inc.
+ * Copyright (C) 2013, 2014, 2015, 2016, 2017, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -69,7 +69,7 @@ final public class Functions {
 	/**
 	 * @see  TaskUtil#getMultipleStatuses(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.util.Collection)
 	 */
-	public static Map<Task,StatusResult> getMultipleStatuses(Collection<? extends Task> tasks) throws TaskException, ServletException, IOException {
+	public static Map<Task, StatusResult> getMultipleStatuses(Collection<? extends Task> tasks) throws TaskException, ServletException, IOException {
 		return TaskUtil.getMultipleStatuses(
 			getServletContext(),
 			getRequest(),
@@ -93,7 +93,7 @@ final public class Functions {
 	/**
 	 * @see  TaskUtil#getMultipleDoAfters(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.util.Collection)
 	 */
-	public static Map<Task,List<Task>> getMultipleDoAfters(Collection<? extends Task> tasks) throws ServletException, IOException {
+	public static Map<Task, List<Task>> getMultipleDoAfters(Collection<? extends Task> tasks) throws ServletException, IOException {
 		return TaskUtil.getMultipleDoAfters(
 			getServletContext(),
 			getRequest(),
