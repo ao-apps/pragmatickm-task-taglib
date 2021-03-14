@@ -23,8 +23,8 @@
 package com.pragmatickm.task.taglib;
 
 import com.aoindustries.encoding.taglib.EncodingBufferedTag;
-import com.aoindustries.html.TABLE_c;
-import com.aoindustries.html.TBODY_c;
+import com.aoindustries.html.any.AnyTABLE_c;
+import com.aoindustries.html.any.AnyTBODY_c;
 import com.aoindustries.html.servlet.DocumentEE;
 import com.aoindustries.io.buffer.BufferResult;
 import com.aoindustries.io.buffer.BufferWriter;
@@ -148,7 +148,7 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 	private BufferResult beforeBody;
 	//private Serialization serialization;
 	//private Doctype doctype;
-	private TBODY_c<DocumentEE, TABLE_c<DocumentEE, DocumentEE>> tbody;
+	private AnyTBODY_c<DocumentEE, ? extends AnyTABLE_c<DocumentEE, ?, ?>, ?> tbody;
 
 	@Override
 	protected void doBody(Task task, CaptureLevel captureLevel) throws JspException, IOException {
