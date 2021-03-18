@@ -159,7 +159,7 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 	private BufferResult beforeBody;
 	//private Serialization serialization;
 	//private Doctype doctype;
-	private AnyTBODY_c<DocumentEE, ? extends AnyTABLE_c<DocumentEE, ?, ?>, ?> tbody;
+	private AnyTBODY_c<?, ? extends AnyTABLE_c<?, ?, ?>, ?> tbody;
 
 	@Override
 	protected void doBody(Task task, CaptureLevel captureLevel) throws JspException, IOException {
