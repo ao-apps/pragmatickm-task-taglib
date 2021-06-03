@@ -1,6 +1,6 @@
 /*
  * pragmatickm-task-taglib - Tasks nested within SemanticCMS pages and elements in a JSP environment.
- * Copyright (C) 2017, 2019, 2020  AO Industries, Inc.
+ * Copyright (C) 2017, 2019, 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -38,7 +38,7 @@ public class PragmaticKmTaskTldInitializer extends TagReferenceInitializer {
 			// Self
 			"com.pragmatickm.task.taglib", Maven.properties.getProperty("project.url") + "apidocs/",
 			// Dependencies
-			"com.aoindustries.util", "https://aoindustries.com/ao-lang/apidocs/",
+			"com.aoindustries.util", "https://oss.aoapps.com/lang/apidocs/",
 			"com.pragmatickm.task.model", "https://pragmatickm.com/task/model/apidocs/",
 			"com.pragmatickm.task.servlet", "https://pragmatickm.com/task/servlet/apidocs/",
 			"com.semanticcms.core.model", "https://semanticcms.com/core/model/apidocs/"
