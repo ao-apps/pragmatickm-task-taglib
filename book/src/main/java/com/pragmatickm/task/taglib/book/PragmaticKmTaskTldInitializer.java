@@ -22,9 +22,9 @@
  */
 package com.pragmatickm.task.taglib.book;
 
-import com.aoindustries.net.DomainName;
-import com.aoindustries.net.Path;
-import com.aoindustries.validation.ValidationException;
+import com.aoapps.lang.validation.ValidationException;
+import com.aoapps.net.DomainName;
+import com.aoapps.net.Path;
 import com.semanticcms.core.model.BookRef;
 import com.semanticcms.core.model.ResourceRef;
 import com.semanticcms.tagreference.TagReferenceInitializer;
@@ -48,7 +48,7 @@ public class PragmaticKmTaskTldInitializer extends TagReferenceInitializer {
 			// Self
 			"com.pragmatickm.task.taglib", Maven.properties.getProperty("project.url") + "apidocs/",
 			// Dependencies
-			"com.aoindustries.util", "https://oss.aoapps.com/lang/apidocs/",
+			"com.aoapps.lang.util", "https://oss.aoapps.com/lang/apidocs/",
 			"com.pragmatickm.task.model", "https://pragmatickm.com/task/model/apidocs/",
 			"com.pragmatickm.task.servlet", "https://pragmatickm.com/task/servlet/apidocs/",
 			"com.semanticcms.core.model", "https://semanticcms.com/core/model/apidocs/"

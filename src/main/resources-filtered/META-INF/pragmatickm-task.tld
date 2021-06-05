@@ -39,7 +39,7 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	<uri>@{project.url}</uri>
 	<tag>
 		<!-- datePublished="2016-08-15T13:15:22-05:00" -->
-		<!-- dateModified="2021-06-01T03:18:06-05:00" -->
+		<!-- dateModified="2021-06-03T22:53:21-05:00" -->
 		<description><![CDATA[
 			<p class="semanticcms-tag-reference-summary">
 				A task is any one-time or recurring task that may be assigned to a
@@ -122,8 +122,8 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 					Completed/Nothing To Do/Missed for each of the scheduled dates.
 				</p>
 				<p>
-					Supported values are as documented in com.aoindustries.util.schedule.Recurring.parse method:
-					<a href="https://oss.aoapps.com/hodgepodge/com/aoindustries/util/schedule/Recurring.html#parse(java.lang.String)">Recurring JavaDocs</a>
+					Supported values are as documented in com.aoapps.hodgepodge.schedule.Recurring.parse method:
+					<a href="https://oss.aoapps.com/hodgepodge/com/aoapps/hodgepodge/schedule/Recurring.html#parse(java.lang.String)">Recurring JavaDocs</a>
 				</p>
 			]]></description>
 			<name>recurring</name>
@@ -722,34 +722,34 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses/>.
 	</function>
 	<function>
 		<!-- datePublished="2016-08-15T22:40:08-05:00" -->
-		<!-- dateModified="2016-11-08T02:37:01-06:00" -->
+		<!-- dateModified="2021-06-03T22:53:21-05:00" -->
 		<description><![CDATA[
 			<p>Formats a date.</p>
 		]]></description>
 		<name>formatDate</name>
-		<function-class>com.aoindustries.util.CalendarUtils</function-class>
+		<function-class>com.aoapps.lang.util.CalendarUtils</function-class>
 		<function-signature>java.lang.String formatDate(java.util.Calendar)</function-signature>
 		<example><![CDATA[<code>${task:formatDate(calendar)}</code>]]></example>
 	</function>
 	<function>
 		<!-- datePublished="2016-08-15T22:40:08-05:00" -->
-		<!-- dateModified="2016-11-08T02:37:01-06:00" -->
+		<!-- dateModified="2021-06-03T22:53:21-05:00" -->
 		<description><![CDATA[
 			<p>Parses a date.</p>
 		]]></description>
 		<name>parseDate</name>
-		<function-class>com.aoindustries.util.CalendarUtils</function-class>
+		<function-class>com.aoapps.lang.util.CalendarUtils</function-class>
 		<function-signature>java.util.Calendar parseDate(java.lang.String)</function-signature>
 		<example><![CDATA[<code>${task:parseDate("yyyy-mm-dd")}</code>]]></example>
 	</function>
 	<function>
 		<!-- datePublished="2016-08-15T22:40:08-05:00" -->
-		<!-- dateModified="2016-11-08T02:37:01-06:00" -->
+		<!-- dateModified="2021-06-03T22:53:21-05:00" -->
 		<description><![CDATA[
 			<p>Gets today's date.</p>
 		]]></description>
 		<name>getToday</name>
-		<function-class>com.aoindustries.util.CalendarUtils</function-class>
+		<function-class>com.aoapps.lang.util.CalendarUtils</function-class>
 		<function-signature>java.util.Calendar getToday()</function-signature>
 		<example><![CDATA[<code>${task:getToday()}</code>]]></example>
 	</function>
