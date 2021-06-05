@@ -22,17 +22,17 @@
  */
 package com.pragmatickm.task.taglib;
 
-import com.aoindustries.encoding.taglib.EncodingBufferedTag;
-import com.aoindustries.html.any.AnyTABLE_c;
-import com.aoindustries.html.any.AnyTBODY_c;
-import com.aoindustries.html.servlet.DocumentEE;
-import com.aoindustries.io.buffer.BufferResult;
-import com.aoindustries.io.buffer.BufferWriter;
-import com.aoindustries.lang.Strings;
-import static com.aoindustries.taglib.AttributeUtils.resolveValue;
-import com.aoindustries.util.CalendarUtils;
-import com.aoindustries.util.schedule.DayDuration;
-import com.aoindustries.util.schedule.Recurring;
+import com.aoapps.encoding.taglib.EncodingBufferedTag;
+import com.aoapps.hodgepodge.schedule.DayDuration;
+import com.aoapps.hodgepodge.schedule.Recurring;
+import com.aoapps.html.any.AnyTABLE_c;
+import com.aoapps.html.any.AnyTBODY_c;
+import com.aoapps.html.servlet.DocumentEE;
+import com.aoapps.io.buffer.BufferResult;
+import com.aoapps.io.buffer.BufferWriter;
+import com.aoapps.lang.Strings;
+import com.aoapps.lang.util.CalendarUtils;
+import static com.aoapps.taglib.AttributeUtils.resolveValue;
 import com.pragmatickm.task.model.Priority;
 import com.pragmatickm.task.model.Task;
 import com.pragmatickm.task.model.TaskException;

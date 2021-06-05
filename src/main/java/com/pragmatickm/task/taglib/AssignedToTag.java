@@ -1,6 +1,6 @@
 /*
  * pragmatickm-task-taglib - Tasks nested within SemanticCMS pages and elements in a JSP environment.
- * Copyright (C) 2015, 2016, 2017, 2020  AO Industries, Inc.
+ * Copyright (C) 2015, 2016, 2017, 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -22,9 +22,9 @@
  */
 package com.pragmatickm.task.taglib;
 
-import static com.aoindustries.lang.Strings.nullIfEmpty;
-import static com.aoindustries.taglib.AttributeUtils.resolveValue;
-import com.aoindustries.util.schedule.DayDuration;
+import com.aoapps.hodgepodge.schedule.DayDuration;
+import static com.aoapps.lang.Strings.nullIfEmpty;
+import static com.aoapps.taglib.AttributeUtils.resolveValue;
 import com.pragmatickm.task.model.Task;
 import com.pragmatickm.task.model.User;
 import com.semanticcms.core.model.Node;

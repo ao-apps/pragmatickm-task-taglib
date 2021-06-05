@@ -38,7 +38,7 @@ public class PragmaticKmTaskTldInitializer extends TagReferenceInitializer {
 			// Self
 			"com.pragmatickm.task.taglib", Maven.properties.getProperty("project.url") + "apidocs/",
 			// Dependencies
-			"com.aoindustries.util", "https://oss.aoapps.com/lang/apidocs/",
+			"com.aoapps.lang.util", "https://oss.aoapps.com/lang/apidocs/",
 			"com.pragmatickm.task.model", "https://pragmatickm.com/task/model/apidocs/",
 			"com.pragmatickm.task.servlet", "https://pragmatickm.com/task/servlet/apidocs/",
 			"com.semanticcms.core.model", "https://semanticcms.com/core/model/apidocs/"
