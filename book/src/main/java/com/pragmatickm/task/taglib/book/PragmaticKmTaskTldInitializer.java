@@ -46,12 +46,12 @@ public class PragmaticKmTaskTldInitializer extends TagReferenceInitializer {
 			Maven.properties.getProperty("documented.javadoc.link.javase"),
 			Maven.properties.getProperty("documented.javadoc.link.javaee"),
 			// Self
-			"com.pragmatickm.task.taglib", Maven.properties.getProperty("project.url") + "apidocs/",
+			"com.pragmatickm.task.taglib", Maven.properties.getProperty("project.url") + "apidocs/com.pragmatickm.task.taglib/",
 			// Dependencies
-			"com.aoapps.lang.util", "https://oss.aoapps.com/lang/apidocs/",
-			"com.pragmatickm.task.model", "https://pragmatickm.com/task/model/apidocs/",
-			"com.pragmatickm.task.servlet", "https://pragmatickm.com/task/servlet/apidocs/",
-			"com.semanticcms.core.model", "https://semanticcms.com/core/model/apidocs/"
+			"com.aoapps.lang.util", "https://oss.aoapps.com/lang/apidocs/com.aoapps.lang/",
+			"com.pragmatickm.task.model", "https://pragmatickm.com/task/model/apidocs/com.pragmatickm.task.model/",
+			"com.pragmatickm.task.servlet", "https://pragmatickm.com/task/servlet/apidocs/com.pragmatickm.task.servlet/",
+			"com.semanticcms.core.model", "https://semanticcms.com/core/model/apidocs/com.semanticcms.core.model/"
 		);
 	}
 }
