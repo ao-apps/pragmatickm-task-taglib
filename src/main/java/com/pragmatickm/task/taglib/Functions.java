@@ -38,7 +38,7 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 
-final public class Functions {
+public final class Functions {
 
 	public static TaskLog getTaskLogInBook(String book, String page, String taskId) throws ServletException, IOException {
 		return TaskUtil.getTaskLogInBook(
