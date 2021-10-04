@@ -42,7 +42,7 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 
-final public class Functions {
+public final class Functions {
 
 	public static TaskLog getTaskLogInDomain(String domain, String book, String page, String taskId) throws ServletException, IOException, ValidationException {
 		return TaskUtil.getTaskLogInDomain(
