@@ -71,20 +71,20 @@ along with pragmatickm-task-taglib.  If not, see <http://www.gnu.org/licenses />
 	</developers>
 
 	<scm>
-		<connection>scm:git:git://github.com/aoindustries/pragmatickm-task-taglib.git</connection>
-		<developerConnection>scm:git:git@github.com:aoindustries/pragmatickm-task-taglib.git</developerConnection>
-		<url>https://github.com/aoindustries/pragmatickm-task-taglib</url>
+		<connection>scm:git:git://github.com/ao-apps/pragmatickm-task-taglib.git</connection>
+		<developerConnection>scm:git:git@github.com:ao-apps/pragmatickm-task-taglib.git</developerConnection>
+		<url>https://github.com/ao-apps/pragmatickm-task-taglib</url>
 		<tag>HEAD</tag>
 	</scm>
 
 	<issueManagement>
 		<system>GitHub Issues</system>
-		<url>https://github.com/aoindustries/pragmatickm-task-taglib/issues</url>
+		<url>https://github.com/ao-apps/pragmatickm-task-taglib/issues</url>
 	</issueManagement>
 
 	<ciManagement>
 		<system>GitHub Actions</system>
-		<url>https://github.com/aoindustries/pragmatickm-task-taglib/actions</url>
+		<url>https://github.com/ao-apps/pragmatickm-task-taglib/actions</url>
 	</ciManagement>
 
 	<repositories>

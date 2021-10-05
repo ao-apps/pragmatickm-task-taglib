@@ -1,4 +1,4 @@
-# [<img src="ao-logo.png" alt="AO Logo" width="35" height="40">](https://github.com/aoindustries) [PragmaticKM](https://github.com/aoindustries/pragmatickm) / [Task](https://github.com/aoindustries/pragmatickm-task) / [Taglib](https://github.com/aoindustries/pragmatickm-task-taglib)
+# [<img src="ao-logo.png" alt="AO Logo" width="35" height="40">](https://github.com/ao-apps) [PragmaticKM](https://github.com/ao-apps/pragmatickm) / [Task](https://github.com/ao-apps/pragmatickm-task) / [Taglib](https://github.com/ao-apps/pragmatickm-task-taglib)
 
 [![project: current stable](https://pragmatickm.com/ao-badges/project-current-stable.svg)](https://aoindustries.com/life-cycle#project-current-stable)
 [![management: production](https://pragmatickm.com/ao-badges/management-production.svg)](https://aoindustries.com/life-cycle#management-production)
@@ -8,7 +8,7 @@
 [![semantic versioning: 2.0.0](https://pragmatickm.com/ao-badges/semver-2.0.0.svg)](http://semver.org/spec/v2.0.0.html)
 [![license: LGPL v3](https://pragmatickm.com/ao-badges/license-lgpl-3.0.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 
-[![Build](https://github.com/aoindustries/pragmatickm-task-taglib/workflows/Build/badge.svg?branch=master)](https://github.com/aoindustries/pragmatickm-task-taglib/actions?query=workflow%3ABuild)
+[![Build](https://github.com/ao-apps/pragmatickm-task-taglib/workflows/Build/badge.svg?branch=master)](https://github.com/ao-apps/pragmatickm-task-taglib/actions?query=workflow%3ABuild)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.pragmatickm/pragmatickm-task-taglib/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.pragmatickm/pragmatickm-task-taglib)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.pragmatickm%3Apragmatickm-task-taglib&metric=alert_status)](https://sonarcloud.io/dashboard?branch=master&id=com.pragmatickm%3Apragmatickm-task-taglib)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.pragmatickm%3Apragmatickm-task-taglib&metric=ncloc)](https://sonarcloud.io/component_measures?branch=master&id=com.pragmatickm%3Apragmatickm-task-taglib&metric=ncloc)  
@@ -17,7 +17,7 @@
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.pragmatickm%3Apragmatickm-task-taglib&metric=sqale_rating)](https://sonarcloud.io/component_measures?branch=master&id=com.pragmatickm%3Apragmatickm-task-taglib&metric=Maintainability)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.pragmatickm%3Apragmatickm-task-taglib&metric=coverage)](https://sonarcloud.io/component_measures?branch=master&id=com.pragmatickm%3Apragmatickm-task-taglib&metric=Coverage)
 
-Tasks nested within [SemanticCMS](https://github.com/aoindustries/semanticcms) pages and elements in a JSP environment.
+Tasks nested within [SemanticCMS](https://github.com/ao-apps/semanticcms) pages and elements in a JSP environment.
 
 ## Project Links
 * [Project Home](https://pragmatickm.com/task/taglib/)
@@ -25,7 +25,7 @@ Tasks nested within [SemanticCMS](https://github.com/aoindustries/semanticcms) p
 * [Taglib Reference](https://pragmatickm.com/task/taglib/pragmatickm-task.tld/)
 * [API Docs](https://pragmatickm.com/task/taglib/apidocs/)
 * [Maven Central Repository](https://search.maven.org/artifact/com.pragmatickm/pragmatickm-task-taglib)
-* [GitHub](https://github.com/aoindustries/pragmatickm-task-taglib)
+* [GitHub](https://github.com/ao-apps/pragmatickm-task-taglib)
 
 ## Contact Us
 For questions or support, please [contact us](https://aoindustries.com/contact):
