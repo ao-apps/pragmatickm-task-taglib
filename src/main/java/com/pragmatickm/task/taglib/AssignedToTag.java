@@ -45,9 +45,9 @@ public class AssignedToTag extends SimpleTagSupport {
 	public static final String TAG_NAME = "<task:assignedTo>";
 
 	private ValueExpression who;
-    public void setWho(ValueExpression who) {
+	public void setWho(ValueExpression who) {
 		this.who = who;
-    }
+	}
 
 	private ValueExpression after;
 	public void setAfter(ValueExpression after) {
@@ -55,7 +55,7 @@ public class AssignedToTag extends SimpleTagSupport {
 	}
 
 	@Override
-    public void doTag() throws JspException, IOException {
+	public void doTag() throws JspException, IOException {
 		PageContext pageContext = (PageContext)getJspContext();
 		ServletRequest request = pageContext.getRequest();
 
@@ -70,7 +70,7 @@ public class AssignedToTag extends SimpleTagSupport {
 
 		// Evaluate expressions
 		ELContext elContext = pageContext.getELContext();
- 		User whoObj = User.valueOf(resolveValue(who, String.class, elContext));
+		User whoObj = User.valueOf(resolveValue(who, String.class, elContext));
 		String afterStr = nullIfEmpty(resolveValue(after, String.class, elContext));
 
 		if(!whoObj.isPerson()) throw new IllegalArgumentException("Not a person: " + whoObj);

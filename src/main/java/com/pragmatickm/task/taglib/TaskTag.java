@@ -72,27 +72,27 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
 	private ValueExpression label;
 	public void setLabel(ValueExpression label) {
 		this.label = label;
-    }
+	}
 
 	private ValueExpression on;
-    public void setOn(ValueExpression on) {
+	public void setOn(ValueExpression on) {
 		this.on = on;
-    }
+	}
 
 	private ValueExpression recurring;
 	public void setRecurring(ValueExpression recurring) throws IllegalArgumentException {
 		this.recurring = recurring;
-    }
+	}
 
 	private ValueExpression relative;
 	public void setRelative(ValueExpression relative) throws IllegalArgumentException {
 		this.relative = relative;
-    }
+	}
 
 	private ValueExpression assignedTo;
 	public void setAssignedTo(ValueExpression assignedTo) {
 		this.assignedTo = assignedTo;
-    }
+	}
 
 	private ValueExpression pay;
 	public void setPay(ValueExpression pay) {
