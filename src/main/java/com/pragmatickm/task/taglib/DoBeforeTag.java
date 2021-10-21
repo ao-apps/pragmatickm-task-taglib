@@ -64,7 +64,7 @@ public class DoBeforeTag extends SimpleTagSupport {
 	}
 
 	@Override
-    public void doTag() throws JspException, IOException {
+	public void doTag() throws JspException, IOException {
 		PageContext pageContext = (PageContext)getJspContext();
 		final ServletContext servletContext = pageContext.getServletContext();
 		final HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();

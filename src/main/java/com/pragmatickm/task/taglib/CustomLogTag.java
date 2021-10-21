@@ -40,12 +40,12 @@ public class CustomLogTag extends SimpleTagSupport {
 	public static final String TAG_NAME = "<task:customLog>";
 
 	private ValueExpression name;
-    public void setName(ValueExpression name) {
+	public void setName(ValueExpression name) {
 		this.name = name;
-    }
+	}
 
 	@Override
-    public void doTag() throws JspException, IOException {
+	public void doTag() throws JspException, IOException {
 		PageContext pageContext = (PageContext)getJspContext();
 		ServletRequest request = pageContext.getRequest();
 

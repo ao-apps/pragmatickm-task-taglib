@@ -45,9 +45,9 @@ public class PriorityTag extends SimpleTagSupport {
 	public static final String TAG_NAME = "<task:priority>";
 
 	private ValueExpression priority;
-    public void setPriority(ValueExpression priority) {
+	public void setPriority(ValueExpression priority) {
 		this.priority = priority;
-    }
+	}
 
 	private ValueExpression after;
 	public void setAfter(ValueExpression after) {
@@ -55,7 +55,7 @@ public class PriorityTag extends SimpleTagSupport {
 	}
 
 	@Override
-    public void doTag() throws JspException, IOException {
+	public void doTag() throws JspException, IOException {
 		PageContext pageContext = (PageContext)getJspContext();
 		ServletRequest request = pageContext.getRequest();
 
