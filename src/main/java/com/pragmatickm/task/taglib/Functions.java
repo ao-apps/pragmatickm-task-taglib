@@ -42,7 +42,10 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 
-public final class Functions {
+public abstract class Functions {
+
+	/** Make no instances. */
+	private Functions() {throw new AssertionError();}
 
 	public static TaskLog getTaskLogInDomain(String domain, String book, String page, String taskId) throws ServletException, IOException, ValidationException {
 		return TaskUtil.getTaskLogInDomain(
@@ -187,11 +190,5 @@ public final class Functions {
 			rootPage,
 			user
 		);
-	}
-
-	/**
-	 * Make no instances.
-	 */
-	private Functions() {
 	}
 }
