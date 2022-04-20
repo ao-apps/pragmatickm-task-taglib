@@ -51,90 +51,96 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 public class DoBeforeTag extends SimpleTagSupport {
 
-	public static final String TAG_NAME = "<task:doBefore>";
+  public static final String TAG_NAME = "<task:doBefore>";
 
-	private ValueExpression domain;
-	public void setDomain(ValueExpression domain) {
-		this.domain = domain;
-	}
+  private ValueExpression domain;
+  public void setDomain(ValueExpression domain) {
+    this.domain = domain;
+  }
 
-	private ValueExpression book;
-	public void setBook(ValueExpression book) {
-		this.book = book;
-	}
+  private ValueExpression book;
+  public void setBook(ValueExpression book) {
+    this.book = book;
+  }
 
-	private ValueExpression page;
-	public void setPage(ValueExpression page) {
-		this.page = page;
-	}
+  private ValueExpression page;
+  public void setPage(ValueExpression page) {
+    this.page = page;
+  }
 
-	private ValueExpression task;
-	public void setTask(ValueExpression task) {
-		this.task = task;
-	}
+  private ValueExpression task;
+  public void setTask(ValueExpression task) {
+    this.task = task;
+  }
 
-	@Override
-	public void doTag() throws JspException, IOException {
-		try {
-			PageContext pageContext = (PageContext)getJspContext();
-			final ServletContext servletContext = pageContext.getServletContext();
-			final HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
-			final HttpServletResponse response = (HttpServletResponse)pageContext.getResponse();
+  @Override
+  public void doTag() throws JspException, IOException {
+    try {
+      PageContext pageContext = (PageContext)getJspContext();
+      final ServletContext servletContext = pageContext.getServletContext();
+      final HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
+      final HttpServletResponse response = (HttpServletResponse)pageContext.getResponse();
 
-			// Find the required task
-			Node currentNode = CurrentNode.getCurrentNode(request);
-			if(!(currentNode instanceof Task)) throw new JspTagException(TAG_NAME + " tag must be nested inside a " + TaskTag.TAG_NAME + " tag.");
-			Task currentTask = (Task)currentNode;
+      // Find the required task
+      Node currentNode = CurrentNode.getCurrentNode(request);
+      if (!(currentNode instanceof Task)) {
+        throw new JspTagException(TAG_NAME + " tag must be nested inside a " + TaskTag.TAG_NAME + " tag.");
+      }
+      Task currentTask = (Task)currentNode;
 
-			assert
-				CurrentCaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
-				: "This is always contained by a task tag, so this is only invoked at captureLevel >= META";
+      assert
+        CurrentCaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
+        : "This is always contained by a task tag, so this is only invoked at captureLevel >= META";
 
-			// Evaluate expressions
-			ELContext elContext = pageContext.getELContext();
-			DomainName domainObj = DomainName.valueOf(
-				nullIfEmpty(
-					resolveValue(domain, String.class, elContext)
-				)
-			);
-			Path bookPath = Path.valueOf(
-				nullIfEmpty(
-					resolveValue(book, String.class, elContext)
-				)
-			);
-			String pageStr = nullIfEmpty(resolveValue(page, String.class, elContext));
-			String taskStr = resolveValue(task, String.class, elContext);
+      // Evaluate expressions
+      ELContext elContext = pageContext.getELContext();
+      DomainName domainObj = DomainName.valueOf(
+        nullIfEmpty(
+          resolveValue(domain, String.class, elContext)
+        )
+      );
+      Path bookPath = Path.valueOf(
+        nullIfEmpty(
+          resolveValue(book, String.class, elContext)
+        )
+      );
+      String pageStr = nullIfEmpty(resolveValue(page, String.class, elContext));
+      String taskStr = resolveValue(task, String.class, elContext);
 
-			if(!XmlUtils.isValidName(taskStr)) throw new JspTagException("Invalid task id: " + taskStr);
+      if (!XmlUtils.isValidName(taskStr)) {
+        throw new JspTagException("Invalid task id: " + taskStr);
+      }
 
-			// Resolve the book-relative page path
-			final PageRef pageRef;
-			{
-				if(domainObj != null && bookPath == null) {
-					throw new JspTagException("book must be provided when domain is provided.");
-				}
-				if(pageStr==null) {
-					// Use this page when none specified
-					if(bookPath != null) throw new JspTagException("page must be provided when book is provided.");
-					pageRef = PageRefResolver.getCurrentPageRef(servletContext, request);
-				} else {
-					// Default to current domain
-					if(domainObj == null) {
-						domainObj = PageRefResolver.getCurrentPageRef(servletContext, request).getBookRef().getDomain();
-					}
-					// Resolve context-relative page path from page-relative
-					pageRef = PageRefResolver.getPageRef(
-						servletContext,
-						request,
-						domainObj,
-						bookPath,
-						pageStr
-					);
-				}
-			}
-			currentTask.addDoBefore(new ElementRef(pageRef, taskStr));
-		} catch(ServletException | ValidationException e) {
-			throw new JspTagException(e);
-		}
-	}
+      // Resolve the book-relative page path
+      final PageRef pageRef;
+      {
+        if (domainObj != null && bookPath == null) {
+          throw new JspTagException("book must be provided when domain is provided.");
+        }
+        if (pageStr == null) {
+          // Use this page when none specified
+          if (bookPath != null) {
+            throw new JspTagException("page must be provided when book is provided.");
+          }
+          pageRef = PageRefResolver.getCurrentPageRef(servletContext, request);
+        } else {
+          // Default to current domain
+          if (domainObj == null) {
+            domainObj = PageRefResolver.getCurrentPageRef(servletContext, request).getBookRef().getDomain();
+          }
+          // Resolve context-relative page path from page-relative
+          pageRef = PageRefResolver.getPageRef(
+            servletContext,
+            request,
+            domainObj,
+            bookPath,
+            pageStr
+          );
+        }
+      }
+      currentTask.addDoBefore(new ElementRef(pageRef, taskStr));
+    } catch (ServletException | ValidationException e) {
+      throw new JspTagException(e);
+    }
+  }
 }

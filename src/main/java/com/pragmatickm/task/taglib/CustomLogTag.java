@@ -39,29 +39,31 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 public class CustomLogTag extends SimpleTagSupport {
 
-	public static final String TAG_NAME = "<task:customLog>";
+  public static final String TAG_NAME = "<task:customLog>";
 
-	private ValueExpression name;
-	public void setName(ValueExpression name) {
-		this.name = name;
-	}
+  private ValueExpression name;
+  public void setName(ValueExpression name) {
+    this.name = name;
+  }
 
-	@Override
-	public void doTag() throws JspException, IOException {
-		PageContext pageContext = (PageContext)getJspContext();
-		ServletRequest request = pageContext.getRequest();
+  @Override
+  public void doTag() throws JspException, IOException {
+    PageContext pageContext = (PageContext)getJspContext();
+    ServletRequest request = pageContext.getRequest();
 
-		// Find the required task
-		Node currentNode = CurrentNode.getCurrentNode(request);
-		if(!(currentNode instanceof Task)) throw new JspTagException(TAG_NAME + " tag must be nested inside a " + TaskTag.TAG_NAME + " tag.");
-		Task currentTask = (Task)currentNode;
+    // Find the required task
+    Node currentNode = CurrentNode.getCurrentNode(request);
+    if (!(currentNode instanceof Task)) {
+      throw new JspTagException(TAG_NAME + " tag must be nested inside a " + TaskTag.TAG_NAME + " tag.");
+    }
+    Task currentTask = (Task)currentNode;
 
-		assert
-			CurrentCaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
-			: "This is always contained by a task tag, so this is only invoked at captureLevel >= META";
+    assert
+      CurrentCaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
+      : "This is always contained by a task tag, so this is only invoked at captureLevel >= META";
 
-		currentTask.addCustomLog(
-			resolveValue(name, String.class, pageContext.getELContext())
-		);
-	}
+    currentTask.addCustomLog(
+      resolveValue(name, String.class, pageContext.getELContext())
+    );
+  }
 }
