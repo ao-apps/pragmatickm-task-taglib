@@ -43,43 +43,45 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 public class PriorityTag extends SimpleTagSupport {
 
-	public static final String TAG_NAME = "<task:priority>";
+  public static final String TAG_NAME = "<task:priority>";
 
-	private ValueExpression priority;
-	public void setPriority(ValueExpression priority) {
-		this.priority = priority;
-	}
+  private ValueExpression priority;
+  public void setPriority(ValueExpression priority) {
+    this.priority = priority;
+  }
 
-	private ValueExpression after;
-	public void setAfter(ValueExpression after) {
-		this.after = after;
-	}
+  private ValueExpression after;
+  public void setAfter(ValueExpression after) {
+    this.after = after;
+  }
 
-	@Override
-	public void doTag() throws JspException, IOException {
-		PageContext pageContext = (PageContext)getJspContext();
-		ServletRequest request = pageContext.getRequest();
+  @Override
+  public void doTag() throws JspException, IOException {
+    PageContext pageContext = (PageContext)getJspContext();
+    ServletRequest request = pageContext.getRequest();
 
-		// Find the required task
-		Node currentNode = CurrentNode.getCurrentNode(request);
-		if(!(currentNode instanceof Task)) throw new JspTagException(TAG_NAME + " tag must be nested inside a " + TaskTag.TAG_NAME + " tag.");
-		Task currentTask = (Task)currentNode;
+    // Find the required task
+    Node currentNode = CurrentNode.getCurrentNode(request);
+    if (!(currentNode instanceof Task)) {
+      throw new JspTagException(TAG_NAME + " tag must be nested inside a " + TaskTag.TAG_NAME + " tag.");
+    }
+    Task currentTask = (Task)currentNode;
 
-		assert
-			CaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
-			: "This is always contained by a task tag, so this is only invoked at captureLevel >= META";
+    assert
+      CaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
+      : "This is always contained by a task tag, so this is only invoked at captureLevel >= META";
 
-		// Evaluate expressions
-		ELContext elContext = pageContext.getELContext();
-		String priorityStr = resolveValue(priority, String.class, elContext);
-		String afterStr = nullIfEmpty(resolveValue(after, String.class, elContext));
+    // Evaluate expressions
+    ELContext elContext = pageContext.getELContext();
+    String priorityStr = resolveValue(priority, String.class, elContext);
+    String afterStr = nullIfEmpty(resolveValue(after, String.class, elContext));
 
-		Priority priorityObj = Priority.valueOf(priorityStr.toUpperCase(Locale.ROOT));
-		DayDuration afterObj = afterStr == null ? DayDuration.ZERO_DAYS : DayDuration.valueOf(afterStr);
+    Priority priorityObj = Priority.valueOf(priorityStr.toUpperCase(Locale.ROOT));
+    DayDuration afterObj = afterStr == null ? DayDuration.ZERO_DAYS : DayDuration.valueOf(afterStr);
 
-		currentTask.addPriority(
-			priorityObj,
-			afterObj
-		);
-	}
+    currentTask.addPriority(
+      priorityObj,
+      afterObj
+    );
+  }
 }

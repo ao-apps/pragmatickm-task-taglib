@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 pragmatickm-task-taglib - Tasks nested within SemanticCMS pages and elements in a JSP environment.
-Copyright (C) 2013, 2014, 2015, 2016, 2017, 2020, 2021  AO Industries, Inc.
-	support@aoindustries.com
-	7262 Bull Pen Cir
-	Mobile, AL 36695
+Copyright (C) 2013, 2014, 2015, 2016, 2017, 2020, 2021, 2022  AO Industries, Inc.
+    support@aoindustries.com
+    7262 Bull Pen Cir
+    Mobile, AL 36695
 
 This file is part of pragmatickm-task-taglib.
 
@@ -22,701 +22,701 @@ You should have received a copy of the GNU Lesser General Public License
 along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <taglib xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
-	version="2.1">
-	<!-- datePublished="2016-08-15T13:15:22-05:00" -->
-	<!-- dateModified="2016-11-10T22:35:10-06:00" -->
-	<description><![CDATA[
-		<p>@{description.html}</p>
-	]]></description>
-	<display-name>@{project.name}</display-name>
-	<tlib-version>
-		<!-- Release: @{project.version} -->
-		@{parsedVersion.majorVersion}.@{parsedVersion.minorVersion}.@{parsedVersion.incrementalVersion}
-	</tlib-version>
-	<short-name>task</short-name>
-	<uri>@{project.url}</uri>
-	<tag>
-		<!-- datePublished="2016-08-15T13:15:22-05:00" -->
-		<!-- dateModified="2021-06-03T22:53:21-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				A task is any one-time or recurring task that may be assigned to a
-				person, have an activity log associated with it, and have scheduling.
-			</p>
-			<p>
-				Must be nested inside a <a href="https://semanticcms.com/core/taglib/semanticcms-core.tld/tag-page">&lt;core:page&gt;</a> tag.
-			</p>
-		]]></description>
-		<name>task</name>
-		<tag-class>com.pragmatickm.task.taglib.TaskTag</tag-class>
-		<body-content>scriptless</body-content>
-		<attribute>
-			<description><![CDATA[
-				<p class="semanticcms-tag-reference-summary">
-					A page-unique ID for the task.
-				</p>
-				<p>
-					This will also be used as an anchor when generating links to the task.
-					This ID is also used to generate the filename for the persistence XML file.
-					If not provided, is generated from the label.
-					Ids generated from labels will be unique, but may change as page structure changes.
-				</p>
-			]]></description>
-			<name>id</name>
-			<required>false</required>
-			<deferred-value>
-				<type>java.lang.String</type>
-			</deferred-value>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p>Optional CSS style attribute.</p>
-			]]></description>
-			<name>style</name>
-			<required>false</required>
-			<deferred-value>
-				<type>java.lang.Object</type>
-			</deferred-value>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p class="semanticcms-tag-reference-summary">
-					A brief label for the task.
-				</p>
-				<p>
-					Defaults to the page short title.
-				</p>
-			]]></description>
-			<name>label</name>
-			<required>false</required>
-			<deferred-value>
-				<type>java.lang.String</type>
-			</deferred-value>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p class="semanticcms-tag-reference-summary">
-					The date the task is to be accomplished.
-				</p>
-				<p>
-					If a recurring task, this is the first date it occurs.
-					Required for recurring tasks.
-					Format is "YYYY-MM-DD".
-				</p>
-			]]></description>
-			<name>on</name>
-			<required>false</required>
-			<deferred-value>
-				<type>java.lang.String</type>
-			</deferred-value>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p class="semanticcms-tag-reference-summary">
-					Tasks may be recurring.
-				</p>
-				<p>
-					When recurring, tasks must be flagged as
-					Completed/Nothing To Do/Missed for each of the scheduled dates.
-				</p>
-				<p>
-					Supported values are as documented in com.aoapps.hodgepodge.schedule.Recurring.parse method:
-					<a href="https://oss.aoapps.com/hodgepodge/com/aoapps/hodgepodge/schedule/Recurring.html#parse(java.lang.String)">Recurring JavaDocs</a>
-				</p>
-			]]></description>
-			<name>recurring</name>
-			<required>false</required>
-			<deferred-value>
-				<type>java.lang.String</type>
-			</deferred-value>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p class="semanticcms-tag-reference-summary">
-					Recurring tasks can be recurring in a fixed time interval (the default)
-					or relative to the last time they were flagged as Completed, Missed, or Nothing To Do.
-				</p>
-				<ul>
-					<li><code>false</code> (the default) - recurring tasks are based on fixed time intervals</li>
-					<li><code>true</code> - recurring tasks are relative to previous time the task was Completed, Missed, or Nothing To Do.</li>
-				</ul>
-			]]></description>
-			<name>relative</name>
-			<required>false</required>
-			<deferred-value>
-				<type>java.lang.Boolean</type>
-			</deferred-value>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p class="semanticcms-tag-reference-summary">
-					The name of the primary person the task is assigned to.
-				</p>
-				<p>
-					Must be the name of a <code>User</code>.
-					Defaults to "Unassigned".
-					To provide multiple assignments, use nested <a href="@{project.url}pragmatickm-task.tld/tag-assignedTo">&lt;task:assignedTo&gt;</a> tags.
-				</p>
-			]]></description>
-			<name>assignedTo</name>
-			<required>false</required>
-			<deferred-value>
-				<type>java.lang.String</type>
-			</deferred-value>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p class="semanticcms-tag-reference-summary">
-					The pay associated with this task.
-				</p>
-				<p>
-					This is free-form, could be anything, such as "$1000" or "$120/hr".
-				</p>
-			]]></description>
-			<name>pay</name>
-			<required>false</required>
-			<deferred-value>
-				<type>java.lang.String</type>
-			</deferred-value>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p class="semanticcms-tag-reference-summary">
-					The cost associated with this task.
-				</p>
-				<p>
-					This is free-form, could be anything, such as "$1000" or "$60/month".
-				</p>
-			]]></description>
-			<name>cost</name>
-			<required>false</required>
-			<deferred-value>
-				<type>java.lang.String</type>
-			</deferred-value>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p class="semanticcms-tag-reference-summary">
-					The priority of the task.
-				</p>
-				<p>
-					Defaults to "medium".
-					To provide multiple priorities use nested <a href="@{project.url}pragmatickm-task.tld/tag-priority">&lt;task:priority&gt;</a> tags.
-				</p>
-				<p>
-					Supported values are:
-					<ol>
-						<li>"future" - Task may possibly be done in the future, but should not be worked on yet.</li>
-						<li>"low" - Not much urgency, do in free time</li>
-						<li>"medium" - Default/normal priority</li>
-						<li>"high" - Generally means one step away from a serious problem</li>
-						<li>"critical" - There is a serious problem that interferes with current operations</li>
-					</ol>
-				</p>
-			]]></description>
-			<name>priority</name>
-			<required>false</required>
-			<deferred-value>
-				<type>java.lang.String</type>
-			</deferred-value>
-		</attribute>
-		<dynamic-attributes>true</dynamic-attributes>
-	</tag>
-	<tag>
-		<!-- datePublished="2016-08-15T13:15:22-05:00" -->
-		<!-- dateModified="2017-07-27T20:59:02-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				A task may be assigned to multiple people.
-			</p>
-			<p>
-				Must be nested inside a <a href="@{project.url}pragmatickm-task.tld/tag-task">&lt;task:task&gt;</a> tag.
-			</p>
-		]]></description>
-		<name>assignedTo</name>
-		<tag-class>com.pragmatickm.task.taglib.AssignedToTag</tag-class>
-		<body-content>empty</body-content>
-		<attribute>
-			<description><![CDATA[
-				<p class="semanticcms-tag-reference-summary">
-					The name of the person the task is assigned to.
-				</p>
-				<p>
-					Must be the name of a <code>User</code>.
-				</p>
-			]]></description>
-			<name>who</name>
-			<required>true</required>
-			<deferred-value>
-				<type>java.lang.String</type>
-			</deferred-value>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p class="semanticcms-tag-reference-summary">
-					The number of days late before the task is assigned to this person.
-				</p>
-				<p>
-					At least one person must be assigned the "0 days" task.
-					Accepts format of:
-				</p>
-				<ol>
-					<li># day(s)</li>
-					<li># week(s)</li>
-					<li># month(s)</li>
-					<li># years(s)</li>
-				</ol>
-				<p>
-					Defaults to "0 days".
-				</p>
-			]]></description>
-			<name>after</name>
-			<required>false</required>
-			<deferred-value>
-				<type>java.lang.String</type>
-			</deferred-value>
-		</attribute>
-	</tag>
-	<tag>
-		<!-- datePublished="2016-08-15T13:15:22-05:00" -->
-		<!-- dateModified="2017-07-27T20:59:02-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				A task may have multiple priorities.
-			</p>
-			<p>
-				Must be nested inside a <a href="@{project.url}pragmatickm-task.tld/tag-task">&lt;task:task&gt;</a> tag.
-			</p>
-		]]></description>
-		<name>priority</name>
-		<tag-class>com.pragmatickm.task.taglib.PriorityTag</tag-class>
-		<body-content>empty</body-content>
-		<attribute>
-			<description><![CDATA[
-				<p class="semanticcms-tag-reference-summary">
-					The priority of the task.
-				</p>
-				<p>
-					Supported values are:
-				</p>
-				<ol>
-					<li>"future" - Task may possibly be done in the future, but should not be worked on yet.</li>
-					<li>"low" - Not much urgency, do in free time</li>
-					<li>"medium" - Default/normal priority</li>
-					<li>"high" - Generally means one step away from a serious problem</li>
-					<li>"critical" - There is a serious problem that interferes with current operations</li>
-				</ol>
-			]]></description>
-			<name>priority</name>
-			<required>true</required>
-			<deferred-value>
-				<type>java.lang.String</type>
-			</deferred-value>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p class="semanticcms-tag-reference-summary">
-					The number of days late before the task is assigned this priority.
-				</p>
-				<p>
-					One and only one priority may be assigned the "0 days" task.
-					Accepts format of:
-				</p>
-				<ol>
-					<li># day(s)</li>
-					<li># week(s)</li>
-					<li># month(s)</li>
-					<li># years(s)</li>
-				</ol>
-				<p>
-					Defaults to "0 days".
-				</p>
-			]]></description>
-			<name>after</name>
-			<required>false</required>
-			<deferred-value>
-				<type>java.lang.String</type>
-			</deferred-value>
-		</attribute>
-	</tag>
-	<tag>
-		<!-- datePublished="2016-08-15T13:15:22-05:00" -->
-		<!-- dateModified="2017-07-27T20:59:02-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Indicates another task must be done before this task.
-			</p>
-			<p>
-				When two tasks must be performed on the same day, they will be ordered
-				based on the "doBefore" settings.  By providing these value, this task will
-				be scheduled after the other tasks.
-				At least one of page or task must be provided.
-				Must be nested inside a <a href="@{project.url}pragmatickm-task.tld/tag-task">&lt;task:task&gt;</a> tag.
-			</p>
-		]]></description>
-		<name>doBefore</name>
-		<tag-class>com.pragmatickm.task.taglib.DoBeforeTag</tag-class>
-		<body-content>empty</body-content>
-		<attribute>
-			<description><![CDATA[
-				<p class="semanticcms-tag-reference-summary">
-					The book containing the page.
-				</p>
-				<p>
-					Defaults to the book of the current JSP file.
-				</p>
-			]]></description>
-			<name>book</name>
-			<required>false</required>
-			<deferred-value>
-				<type>java.lang.String</type>
-			</deferred-value>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p class="semanticcms-tag-reference-summary">
-					The page-relative path to the page.
-				</p>
-				<p>
-					If not provided, assumes the current page.
-				</p>
-			]]></description>
-			<name>page</name>
-			<required>false</required>
-			<deferred-value>
-				<type>java.lang.String</type>
-			</deferred-value>
-		</attribute>
-		<attribute>
-			<description><![CDATA[
-				<p class="semanticcms-tag-reference-summary">
-					The page-unique id of the task.
-				</p>
-				<p>
-					Not allowed to reference task by generated id, set an explicit id on the task.
-				</p>
-			]]></description>
-			<name>task</name>
-			<required>true</required>
-			<deferred-value>
-				<type>java.lang.String</type>
-			</deferred-value>
-		</attribute>
-	</tag>
-	<tag>
-		<!-- datePublished="2016-08-15T13:15:22-05:00" -->
-		<!-- dateModified="2017-07-27T20:59:02-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				A task may have any number of additional custom logging fields.
-			</p>
-			<p>
-				Must be nested inside a <a href="@{project.url}pragmatickm-task.tld/tag-task">&lt;task:task&gt;</a> tag.
-			</p>
-		]]></description>
-		<name>customLog</name>
-		<tag-class>com.pragmatickm.task.taglib.CustomLogTag</tag-class>
-		<body-content>empty</body-content>
-		<attribute>
-			<description><![CDATA[
-				<p class="semanticcms-tag-reference-summary">
-					The name of the custom log entry.
-				</p>
-				<p>
-					Must be unique per task.
-				</p>
-			]]></description>
-			<name>name</name>
-			<required>true</required>
-			<deferred-value>
-				<type>java.lang.String</type>
-			</deferred-value>
-		</attribute>
-	</tag>
-	<function>
-		<!-- datePublished="2016-08-15T13:15:22-05:00" -->
-		<!-- dateModified="2016-11-08T02:37:01-06:00" -->
-		<description><![CDATA[
-			<p>
-				Gets the task log given a book, page and task.
-			</p>
-		]]></description>
-		<name>getTaskLogInBook</name>
-		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
-		<function-signature>com.pragmatickm.task.model.TaskLog getTaskLogInBook(java.lang.String,java.lang.String,java.lang.String)</function-signature>
-		<example><![CDATA[<code>${task:getTaskLogInBook(book, page, taskId)}</code>]]></example>
-	</function>
-	<function>
-		<!-- datePublished="2016-08-15T13:15:22-05:00" -->
-		<!-- dateModified="2016-11-08T02:37:01-06:00" -->
-		<description><![CDATA[
-			<p>
-				Gets the task log given a page and task.
-			</p>
-		]]></description>
-		<name>getTaskLog</name>
-		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
-		<function-signature>com.pragmatickm.task.model.TaskLog getTaskLog(java.lang.String,java.lang.String)</function-signature>
-		<example><![CDATA[<code>${task:getTaskLog(page, taskId)}</code>]]></example>
-	</function>
-	<function>
-		<!-- datePublished="2016-08-15T13:15:22-05:00" -->
-		<!-- dateModified="2020-05-29T19:23:32-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Gets the most recent task log entry with the given comma-separated status(es) or <code>null</code> for none.
-			</p>
-			<p>
-				The statuses is a comma-separated list of statuses to match.
-			</p>
-		]]></description>
-		<name>getMostRecentEntry</name>
-		<function-class>com.pragmatickm.task.servlet.TaskUtil</function-class>
-		<function-signature>com.pragmatickm.task.model.TaskLog$Entry getMostRecentEntry(com.pragmatickm.task.model.TaskLog,java.lang.String)</function-signature>
-		<example><![CDATA[<code>${task:getMostRecentEntry(taskLog, statuses)}</code>]]></example>
-	</function>
-	<function>
-		<!-- datePublished="2016-10-03T18:04:56-05:00" -->
-		<!-- dateModified="2016-11-08T02:37:01-06:00" -->
-		<description><![CDATA[
-			<p>Gets the status for the given task.</p>
-		]]></description>
-		<name>getStatus</name>
-		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
-		<function-signature>com.pragmatickm.task.servlet.StatusResult getStatus(com.pragmatickm.task.model.Task)</function-signature>
-		<example><![CDATA[<code>${task:getStatus(task)}</code>]]></example>
-	</function>
-	<function>
-		<!-- datePublished="2016-10-03T18:04:56-05:00" -->
-		<!-- dateModified="2020-05-29T14:58:40-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Gets the status for each of the provided tasks.
-			</p>
-			<p>
-				Returns the map of statuses, in the same iteration order as the provided
-				tasks.
-			</p>
-		]]></description>
-		<name>getMultipleStatuses</name>
-		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
-		<function-signature>java.util.Map getMultipleStatuses(java.util.Collection)</function-signature>
-		<!-- functionSignature="java.util.Map<com.pragmatickm.task.model.Task,com.pragmatickm.task.servlet.StatusResult> getMultipleStatuses(java.util.Collection<? extends com.pragmatickm.task.model.Task>)" -->
-		<example><![CDATA[<code>${task:getMultipleStatuses(tasks)}</code>]]></example>
-	</function>
-	<function>
-		<!-- datePublished="2016-08-15T13:15:22-05:00" -->
-		<!-- dateModified="2020-05-29T14:59:54-05:00" -->
-		<description><![CDATA[
-			<p>
-				Finds all tasks that must be done after this task.
-			</p>
-		]]></description>
-		<name>getDoAfters</name>
-		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
-		<function-signature>java.util.List getDoAfters(com.pragmatickm.task.model.Task)</function-signature>
-		<!-- functionSignature="java.util.List<com.pragmatickm.task.model.Task> getDoAfters(com.pragmatickm.task.model.Task)" -->
-		<example><![CDATA[<code>${task:getDoAfters(task)}</code>]]></example>
-	</function>
-	<function>
-		<!-- datePublished="2016-09-29T00:49:13-05:00" -->
-		<!-- dateModified="2020-05-29T15:01:49-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Finds all tasks that must be done after each of the provided tasks.
-			</p>
-			<p>
-				Returns the map of doAfters, in the same iteration order as the provided
-				tasks.  If no doAfters for a given task, will contain an empty list.
-			</p>
-		]]></description>
-		<name>getMultipleDoAfters</name>
-		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
-		<function-signature>java.util.Map getMultipleDoAfters(java.util.Collection)</function-signature>
-		<!-- functionSignature="java.util.Map<com.pragmatickm.task.model.Task,java.util.List<com.pragmatickm.task.model.Task>> getMultipleDoAfters(java.util.Collection<? extends com.pragmatickm.task.model.Task>)" -->
-		<example><![CDATA[<code>${task:getMultipleDoAfters(tasks)}</code>]]></example>
-	</function>
-	<function>
-		<!-- datePublished="2016-08-15T13:15:22-05:00" -->
-		<!-- dateModified="2017-07-27T20:59:02-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Gets the user for the current request.
-			</p>
-			<p>
-				Resolves the new user and sets the cookie.
-				A empty username will result in the <code>null</code> user.
-			</p>
-			<p>
-				The cookie is not actually set when exporting,
-				as set by the <code>X-com-semanticcms-core-exporting: true</code> header.
-			</p>
-		]]></description>
-		<name>getUser</name>
-		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
-		<function-signature>com.pragmatickm.task.model.User getUser()</function-signature>
-		<example><![CDATA[<code>${task:getUser()}</code>]]></example>
-	</function>
-	<function>
-		<!-- datePublished="2016-08-15T13:15:22-05:00" -->
-		<!-- dateModified="2020-05-29T19:06:40-05:00" -->
-		<description><![CDATA[
-			<p>Gets all users.</p>
-		]]></description>
-		<name>getAllUsers</name>
-		<function-class>com.pragmatickm.task.servlet.TaskUtil</function-class>
-		<function-signature>java.util.Set getAllUsers()</function-signature>
-		<!-- functionSignature="java.util.Set<com.pragmatickm.task.model.User> getAllUsers()" -->
-		<example><![CDATA[<code>${task:getAllUsers()}</code>]]></example>
-	</function>
-	<function>
-		<!-- datePublished="2016-08-15T13:15:22-05:00" -->
-		<!-- dateModified="2020-05-29T15:06:24-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Prioritizes tasks by schedule and priority.
-			</p>
-			<p>
-				Scheduled tasks are before unscheduled within a single priority.
-			</p>
-			<p>
-				Priority inheritance: Tasks will inherit any higher priority
-				from tasks that either directly or indirectly must be done after
-				the task.  For example, a low priority task that must be done
-				before a high priority task will be treated as high priority.
-			</p>
-			<p>
-				If dateFirst is <code>true</code>, will sort by date then priority.  Otherwise
-				sorts by priority then date.
-			</p>
-		]]></description>
-		<name>prioritizeTasks</name>
-		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
-		<function-signature>java.util.List prioritizeTasks(java.util.Collection,boolean)</function-signature>
-		<!-- functionSignature="java.util.List<com.pragmatickm.task.model.Task> prioritizeTasks(java.util.Collection<? extends com.pragmatickm.task.model.Task>,boolean)" -->
-		<example><![CDATA[<code>${task:prioritizeTasks(tasks, dateFirst)}</code>]]></example>
-	</function>
-	<function>
-		<!-- datePublished="2016-08-15T13:15:22-05:00" -->
-		<!-- dateModified="2020-05-29T15:08:57-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Gets all tasks for a page and all sub-pages.
-			</p>
-			<p>
-				Filters for user or all when user is <code>null</code>.
-			</p>
-		]]></description>
-		<name>getAllTasks</name>
-		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
-		<function-signature>java.util.List getAllTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
-		<!-- function-signature>java.util.List<com.pragmatickm.task.model.Task> getAllTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)" -->
-		<example><![CDATA[<code>${task:getAllTasks(rootPage, user)}</code>]]></example>
-	</function>
-	<function>
-		<!-- datePublished="2016-08-15T13:15:22-05:00" -->
-		<!-- dateModified="2017-07-27T20:59:02-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Checks if the given page or any of its child pages has at least
-				one task assigned to the given user.
-			</p>
-			<p>
-				Filters for user or all when user is <code>null</code>.
-			</p>
-		]]></description>
-		<name>hasAssignedTask</name>
-		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
-		<function-signature>boolean hasAssignedTask(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
-		<example><![CDATA[<code>${p:hasAssignedTask(page, user)}</code>]]></example>
-	</function>
-	<function>
-		<!-- datePublished="2016-08-15T13:15:22-05:00" -->
-		<!-- dateModified="2020-05-29T15:10:02-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Gets all tasks for a page and all sub-pages that are ready to be done at the current
-				moment in time.
-			</p>
-			<p>
-				Filters for user or all when user is <code>null</code>.
-			</p>
-		]]></description>
-		<name>getReadyTasks</name>
-		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
-		<function-signature>java.util.List getReadyTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
-		<!-- functionSignature="java.util.List<com.pragmatickm.task.model.Task> getReadyTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)" -->
-		<example><![CDATA[<code>${task:getReadyTasks(rootPage, user)}</code>]]></example>
-	</function>
-	<function>
-		<!-- datePublished="2016-08-15T13:15:22-05:00" -->
-		<!-- dateModified="2020-05-29T15:11:24-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Gets all tasks for a page and all sub-pages that are should done at the current
-				moment in time but are waiting for another task.
-			</p>
-			<p>
-				Filters for user or all when user is <code>null</code>.
-			</p>
-		]]></description>
-		<name>getBlockedTasks</name>
-		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
-		<function-signature>java.util.List getBlockedTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
-		<!-- functionSignature="java.util.List<com.pragmatickm.task.model.Task> getBlockedTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)" -->
-		<example><![CDATA[<code>${task:getBlockedTasks(rootPage, user)}</code>]]></example>
-	</function>
-	<function>
-		<!-- datePublished="2016-08-15T13:15:22-05:00" -->
-		<!-- dateModified="2020-05-29T15:11:40-05:00" -->
-		<description><![CDATA[
-			<p class="semanticcms-tag-reference-summary">
-				Gets all tasks for a page and all sub-pages that will be done at a future
-				moment in time.
-			</p>
-			<p>
-				Filters for user or all when user is <code>null</code>.
-			</p>
-		]]></description>
-		<name>getFutureTasks</name>
-		<function-class>com.pragmatickm.task.taglib.Functions</function-class>
-		<function-signature>java.util.List getFutureTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
-		<!-- functionSignature="java.util.List<com.pragmatickm.task.model.Task> getFutureTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)" -->
-		<example><![CDATA[<code>${task:getFutureTasks(rootPage, user)}</code>]]></example>
-	</function>
-	<function>
-		<!-- datePublished="2016-08-15T22:40:08-05:00" -->
-		<!-- dateModified="2021-06-03T22:53:21-05:00" -->
-		<description><![CDATA[
-			<p>Formats a date.</p>
-		]]></description>
-		<name>formatDate</name>
-		<function-class>com.aoapps.lang.util.CalendarUtils</function-class>
-		<function-signature>java.lang.String formatDate(java.util.Calendar)</function-signature>
-		<example><![CDATA[<code>${task:formatDate(calendar)}</code>]]></example>
-	</function>
-	<function>
-		<!-- datePublished="2016-08-15T22:40:08-05:00" -->
-		<!-- dateModified="2021-06-03T22:53:21-05:00" -->
-		<description><![CDATA[
-			<p>Parses a date.</p>
-		]]></description>
-		<name>parseDate</name>
-		<function-class>com.aoapps.lang.util.CalendarUtils</function-class>
-		<function-signature>java.util.Calendar parseDate(java.lang.String)</function-signature>
-		<example><![CDATA[<code>${task:parseDate("yyyy-mm-dd")}</code>]]></example>
-	</function>
-	<function>
-		<!-- datePublished="2016-08-15T22:40:08-05:00" -->
-		<!-- dateModified="2021-06-03T22:53:21-05:00" -->
-		<description><![CDATA[
-			<p>Gets today's date.</p>
-		]]></description>
-		<name>getToday</name>
-		<function-class>com.aoapps.lang.util.CalendarUtils</function-class>
-		<function-signature>java.util.Calendar getToday()</function-signature>
-		<example><![CDATA[<code>${task:getToday()}</code>]]></example>
-	</function>
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+  version="2.1">
+  <!-- datePublished="2016-08-15T13:15:22-05:00" -->
+  <!-- dateModified="2016-11-10T22:35:10-06:00" -->
+  <description><![CDATA[
+    <p>@{description.html}</p>
+  ]]></description>
+  <display-name>@{project.name}</display-name>
+  <tlib-version>
+    <!-- Release: @{project.version} -->
+    @{parsedVersion.majorVersion}.@{parsedVersion.minorVersion}.@{parsedVersion.incrementalVersion}
+  </tlib-version>
+  <short-name>task</short-name>
+  <uri>@{project.url}</uri>
+  <tag>
+    <!-- datePublished="2016-08-15T13:15:22-05:00" -->
+    <!-- dateModified="2021-06-03T22:53:21-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        A task is any one-time or recurring task that may be assigned to a
+        person, have an activity log associated with it, and have scheduling.
+      </p>
+      <p>
+        Must be nested inside a <a href="https://semanticcms.com/core/taglib/semanticcms-core.tld/tag-page">&lt;core:page&gt;</a> tag.
+      </p>
+    ]]></description>
+    <name>task</name>
+    <tag-class>com.pragmatickm.task.taglib.TaskTag</tag-class>
+    <body-content>scriptless</body-content>
+    <attribute>
+      <description><![CDATA[
+        <p class="semanticcms-tag-reference-summary">
+          A page-unique ID for the task.
+        </p>
+        <p>
+          This will also be used as an anchor when generating links to the task.
+          This ID is also used to generate the filename for the persistence XML file.
+          If not provided, is generated from the label.
+          Ids generated from labels will be unique, but may change as page structure changes.
+        </p>
+      ]]></description>
+      <name>id</name>
+      <required>false</required>
+      <deferred-value>
+        <type>java.lang.String</type>
+      </deferred-value>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p>Optional CSS style attribute.</p>
+      ]]></description>
+      <name>style</name>
+      <required>false</required>
+      <deferred-value>
+        <type>java.lang.Object</type>
+      </deferred-value>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p class="semanticcms-tag-reference-summary">
+          A brief label for the task.
+        </p>
+        <p>
+          Defaults to the page short title.
+        </p>
+      ]]></description>
+      <name>label</name>
+      <required>false</required>
+      <deferred-value>
+        <type>java.lang.String</type>
+      </deferred-value>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p class="semanticcms-tag-reference-summary">
+          The date the task is to be accomplished.
+        </p>
+        <p>
+          If a recurring task, this is the first date it occurs.
+          Required for recurring tasks.
+          Format is "YYYY-MM-DD".
+        </p>
+      ]]></description>
+      <name>on</name>
+      <required>false</required>
+      <deferred-value>
+        <type>java.lang.String</type>
+      </deferred-value>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p class="semanticcms-tag-reference-summary">
+          Tasks may be recurring.
+        </p>
+        <p>
+          When recurring, tasks must be flagged as
+          Completed/Nothing To Do/Missed for each of the scheduled dates.
+        </p>
+        <p>
+          Supported values are as documented in com.aoapps.hodgepodge.schedule.Recurring.parse method:
+          <a href="https://oss.aoapps.com/hodgepodge/com/aoapps/hodgepodge/schedule/Recurring.html#parse(java.lang.String)">Recurring JavaDocs</a>
+        </p>
+      ]]></description>
+      <name>recurring</name>
+      <required>false</required>
+      <deferred-value>
+        <type>java.lang.String</type>
+      </deferred-value>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p class="semanticcms-tag-reference-summary">
+          Recurring tasks can be recurring in a fixed time interval (the default)
+          or relative to the last time they were flagged as Completed, Missed, or Nothing To Do.
+        </p>
+        <ul>
+          <li><code>false</code> (the default) - recurring tasks are based on fixed time intervals</li>
+          <li><code>true</code> - recurring tasks are relative to previous time the task was Completed, Missed, or Nothing To Do.</li>
+        </ul>
+      ]]></description>
+      <name>relative</name>
+      <required>false</required>
+      <deferred-value>
+        <type>java.lang.Boolean</type>
+      </deferred-value>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p class="semanticcms-tag-reference-summary">
+          The name of the primary person the task is assigned to.
+        </p>
+        <p>
+          Must be the name of a <code>User</code>.
+          Defaults to "Unassigned".
+          To provide multiple assignments, use nested <a href="@{project.url}pragmatickm-task.tld/tag-assignedTo">&lt;task:assignedTo&gt;</a> tags.
+        </p>
+      ]]></description>
+      <name>assignedTo</name>
+      <required>false</required>
+      <deferred-value>
+        <type>java.lang.String</type>
+      </deferred-value>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p class="semanticcms-tag-reference-summary">
+          The pay associated with this task.
+        </p>
+        <p>
+          This is free-form, could be anything, such as "$1000" or "$120/hr".
+        </p>
+      ]]></description>
+      <name>pay</name>
+      <required>false</required>
+      <deferred-value>
+        <type>java.lang.String</type>
+      </deferred-value>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p class="semanticcms-tag-reference-summary">
+          The cost associated with this task.
+        </p>
+        <p>
+          This is free-form, could be anything, such as "$1000" or "$60/month".
+        </p>
+      ]]></description>
+      <name>cost</name>
+      <required>false</required>
+      <deferred-value>
+        <type>java.lang.String</type>
+      </deferred-value>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p class="semanticcms-tag-reference-summary">
+          The priority of the task.
+        </p>
+        <p>
+          Defaults to "medium".
+          To provide multiple priorities use nested <a href="@{project.url}pragmatickm-task.tld/tag-priority">&lt;task:priority&gt;</a> tags.
+        </p>
+        <p>
+          Supported values are:
+          <ol>
+            <li>"future" - Task may possibly be done in the future, but should not be worked on yet.</li>
+            <li>"low" - Not much urgency, do in free time</li>
+            <li>"medium" - Default/normal priority</li>
+            <li>"high" - Generally means one step away from a serious problem</li>
+            <li>"critical" - There is a serious problem that interferes with current operations</li>
+          </ol>
+        </p>
+      ]]></description>
+      <name>priority</name>
+      <required>false</required>
+      <deferred-value>
+        <type>java.lang.String</type>
+      </deferred-value>
+    </attribute>
+    <dynamic-attributes>true</dynamic-attributes>
+  </tag>
+  <tag>
+    <!-- datePublished="2016-08-15T13:15:22-05:00" -->
+    <!-- dateModified="2017-07-27T20:59:02-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        A task may be assigned to multiple people.
+      </p>
+      <p>
+        Must be nested inside a <a href="@{project.url}pragmatickm-task.tld/tag-task">&lt;task:task&gt;</a> tag.
+      </p>
+    ]]></description>
+    <name>assignedTo</name>
+    <tag-class>com.pragmatickm.task.taglib.AssignedToTag</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+      <description><![CDATA[
+        <p class="semanticcms-tag-reference-summary">
+          The name of the person the task is assigned to.
+        </p>
+        <p>
+          Must be the name of a <code>User</code>.
+        </p>
+      ]]></description>
+      <name>who</name>
+      <required>true</required>
+      <deferred-value>
+        <type>java.lang.String</type>
+      </deferred-value>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p class="semanticcms-tag-reference-summary">
+          The number of days late before the task is assigned to this person.
+        </p>
+        <p>
+          At least one person must be assigned the "0 days" task.
+          Accepts format of:
+        </p>
+        <ol>
+          <li># day(s)</li>
+          <li># week(s)</li>
+          <li># month(s)</li>
+          <li># years(s)</li>
+        </ol>
+        <p>
+          Defaults to "0 days".
+        </p>
+      ]]></description>
+      <name>after</name>
+      <required>false</required>
+      <deferred-value>
+        <type>java.lang.String</type>
+      </deferred-value>
+    </attribute>
+  </tag>
+  <tag>
+    <!-- datePublished="2016-08-15T13:15:22-05:00" -->
+    <!-- dateModified="2017-07-27T20:59:02-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        A task may have multiple priorities.
+      </p>
+      <p>
+        Must be nested inside a <a href="@{project.url}pragmatickm-task.tld/tag-task">&lt;task:task&gt;</a> tag.
+      </p>
+    ]]></description>
+    <name>priority</name>
+    <tag-class>com.pragmatickm.task.taglib.PriorityTag</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+      <description><![CDATA[
+        <p class="semanticcms-tag-reference-summary">
+          The priority of the task.
+        </p>
+        <p>
+          Supported values are:
+        </p>
+        <ol>
+          <li>"future" - Task may possibly be done in the future, but should not be worked on yet.</li>
+          <li>"low" - Not much urgency, do in free time</li>
+          <li>"medium" - Default/normal priority</li>
+          <li>"high" - Generally means one step away from a serious problem</li>
+          <li>"critical" - There is a serious problem that interferes with current operations</li>
+        </ol>
+      ]]></description>
+      <name>priority</name>
+      <required>true</required>
+      <deferred-value>
+        <type>java.lang.String</type>
+      </deferred-value>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p class="semanticcms-tag-reference-summary">
+          The number of days late before the task is assigned this priority.
+        </p>
+        <p>
+          One and only one priority may be assigned the "0 days" task.
+          Accepts format of:
+        </p>
+        <ol>
+          <li># day(s)</li>
+          <li># week(s)</li>
+          <li># month(s)</li>
+          <li># years(s)</li>
+        </ol>
+        <p>
+          Defaults to "0 days".
+        </p>
+      ]]></description>
+      <name>after</name>
+      <required>false</required>
+      <deferred-value>
+        <type>java.lang.String</type>
+      </deferred-value>
+    </attribute>
+  </tag>
+  <tag>
+    <!-- datePublished="2016-08-15T13:15:22-05:00" -->
+    <!-- dateModified="2017-07-27T20:59:02-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Indicates another task must be done before this task.
+      </p>
+      <p>
+        When two tasks must be performed on the same day, they will be ordered
+        based on the "doBefore" settings.  By providing these value, this task will
+        be scheduled after the other tasks.
+        At least one of page or task must be provided.
+        Must be nested inside a <a href="@{project.url}pragmatickm-task.tld/tag-task">&lt;task:task&gt;</a> tag.
+      </p>
+    ]]></description>
+    <name>doBefore</name>
+    <tag-class>com.pragmatickm.task.taglib.DoBeforeTag</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+      <description><![CDATA[
+        <p class="semanticcms-tag-reference-summary">
+          The book containing the page.
+        </p>
+        <p>
+          Defaults to the book of the current JSP file.
+        </p>
+      ]]></description>
+      <name>book</name>
+      <required>false</required>
+      <deferred-value>
+        <type>java.lang.String</type>
+      </deferred-value>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p class="semanticcms-tag-reference-summary">
+          The page-relative path to the page.
+        </p>
+        <p>
+          If not provided, assumes the current page.
+        </p>
+      ]]></description>
+      <name>page</name>
+      <required>false</required>
+      <deferred-value>
+        <type>java.lang.String</type>
+      </deferred-value>
+    </attribute>
+    <attribute>
+      <description><![CDATA[
+        <p class="semanticcms-tag-reference-summary">
+          The page-unique id of the task.
+        </p>
+        <p>
+          Not allowed to reference task by generated id, set an explicit id on the task.
+        </p>
+      ]]></description>
+      <name>task</name>
+      <required>true</required>
+      <deferred-value>
+        <type>java.lang.String</type>
+      </deferred-value>
+    </attribute>
+  </tag>
+  <tag>
+    <!-- datePublished="2016-08-15T13:15:22-05:00" -->
+    <!-- dateModified="2017-07-27T20:59:02-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        A task may have any number of additional custom logging fields.
+      </p>
+      <p>
+        Must be nested inside a <a href="@{project.url}pragmatickm-task.tld/tag-task">&lt;task:task&gt;</a> tag.
+      </p>
+    ]]></description>
+    <name>customLog</name>
+    <tag-class>com.pragmatickm.task.taglib.CustomLogTag</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+      <description><![CDATA[
+        <p class="semanticcms-tag-reference-summary">
+          The name of the custom log entry.
+        </p>
+        <p>
+          Must be unique per task.
+        </p>
+      ]]></description>
+      <name>name</name>
+      <required>true</required>
+      <deferred-value>
+        <type>java.lang.String</type>
+      </deferred-value>
+    </attribute>
+  </tag>
+  <function>
+    <!-- datePublished="2016-08-15T13:15:22-05:00" -->
+    <!-- dateModified="2016-11-08T02:37:01-06:00" -->
+    <description><![CDATA[
+      <p>
+        Gets the task log given a book, page and task.
+      </p>
+    ]]></description>
+    <name>getTaskLogInBook</name>
+    <function-class>com.pragmatickm.task.taglib.Functions</function-class>
+    <function-signature>com.pragmatickm.task.model.TaskLog getTaskLogInBook(java.lang.String,java.lang.String,java.lang.String)</function-signature>
+    <example><![CDATA[<code>${task:getTaskLogInBook(book, page, taskId)}</code>]]></example>
+  </function>
+  <function>
+    <!-- datePublished="2016-08-15T13:15:22-05:00" -->
+    <!-- dateModified="2016-11-08T02:37:01-06:00" -->
+    <description><![CDATA[
+      <p>
+        Gets the task log given a page and task.
+      </p>
+    ]]></description>
+    <name>getTaskLog</name>
+    <function-class>com.pragmatickm.task.taglib.Functions</function-class>
+    <function-signature>com.pragmatickm.task.model.TaskLog getTaskLog(java.lang.String,java.lang.String)</function-signature>
+    <example><![CDATA[<code>${task:getTaskLog(page, taskId)}</code>]]></example>
+  </function>
+  <function>
+    <!-- datePublished="2016-08-15T13:15:22-05:00" -->
+    <!-- dateModified="2020-05-29T19:23:32-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Gets the most recent task log entry with the given comma-separated status(es) or <code>null</code> for none.
+      </p>
+      <p>
+        The statuses is a comma-separated list of statuses to match.
+      </p>
+    ]]></description>
+    <name>getMostRecentEntry</name>
+    <function-class>com.pragmatickm.task.servlet.TaskUtil</function-class>
+    <function-signature>com.pragmatickm.task.model.TaskLog$Entry getMostRecentEntry(com.pragmatickm.task.model.TaskLog,java.lang.String)</function-signature>
+    <example><![CDATA[<code>${task:getMostRecentEntry(taskLog, statuses)}</code>]]></example>
+  </function>
+  <function>
+    <!-- datePublished="2016-10-03T18:04:56-05:00" -->
+    <!-- dateModified="2016-11-08T02:37:01-06:00" -->
+    <description><![CDATA[
+      <p>Gets the status for the given task.</p>
+    ]]></description>
+    <name>getStatus</name>
+    <function-class>com.pragmatickm.task.taglib.Functions</function-class>
+    <function-signature>com.pragmatickm.task.servlet.StatusResult getStatus(com.pragmatickm.task.model.Task)</function-signature>
+    <example><![CDATA[<code>${task:getStatus(task)}</code>]]></example>
+  </function>
+  <function>
+    <!-- datePublished="2016-10-03T18:04:56-05:00" -->
+    <!-- dateModified="2020-05-29T14:58:40-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Gets the status for each of the provided tasks.
+      </p>
+      <p>
+        Returns the map of statuses, in the same iteration order as the provided
+        tasks.
+      </p>
+    ]]></description>
+    <name>getMultipleStatuses</name>
+    <function-class>com.pragmatickm.task.taglib.Functions</function-class>
+    <function-signature>java.util.Map getMultipleStatuses(java.util.Collection)</function-signature>
+    <!-- functionSignature="java.util.Map<com.pragmatickm.task.model.Task,com.pragmatickm.task.servlet.StatusResult> getMultipleStatuses(java.util.Collection<? extends com.pragmatickm.task.model.Task>)" -->
+    <example><![CDATA[<code>${task:getMultipleStatuses(tasks)}</code>]]></example>
+  </function>
+  <function>
+    <!-- datePublished="2016-08-15T13:15:22-05:00" -->
+    <!-- dateModified="2020-05-29T14:59:54-05:00" -->
+    <description><![CDATA[
+      <p>
+        Finds all tasks that must be done after this task.
+      </p>
+    ]]></description>
+    <name>getDoAfters</name>
+    <function-class>com.pragmatickm.task.taglib.Functions</function-class>
+    <function-signature>java.util.List getDoAfters(com.pragmatickm.task.model.Task)</function-signature>
+    <!-- functionSignature="java.util.List<com.pragmatickm.task.model.Task> getDoAfters(com.pragmatickm.task.model.Task)" -->
+    <example><![CDATA[<code>${task:getDoAfters(task)}</code>]]></example>
+  </function>
+  <function>
+    <!-- datePublished="2016-09-29T00:49:13-05:00" -->
+    <!-- dateModified="2020-05-29T15:01:49-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Finds all tasks that must be done after each of the provided tasks.
+      </p>
+      <p>
+        Returns the map of doAfters, in the same iteration order as the provided
+        tasks.  If no doAfters for a given task, will contain an empty list.
+      </p>
+    ]]></description>
+    <name>getMultipleDoAfters</name>
+    <function-class>com.pragmatickm.task.taglib.Functions</function-class>
+    <function-signature>java.util.Map getMultipleDoAfters(java.util.Collection)</function-signature>
+    <!-- functionSignature="java.util.Map<com.pragmatickm.task.model.Task,java.util.List<com.pragmatickm.task.model.Task>> getMultipleDoAfters(java.util.Collection<? extends com.pragmatickm.task.model.Task>)" -->
+    <example><![CDATA[<code>${task:getMultipleDoAfters(tasks)}</code>]]></example>
+  </function>
+  <function>
+    <!-- datePublished="2016-08-15T13:15:22-05:00" -->
+    <!-- dateModified="2017-07-27T20:59:02-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Gets the user for the current request.
+      </p>
+      <p>
+        Resolves the new user and sets the cookie.
+        A empty username will result in the <code>null</code> user.
+      </p>
+      <p>
+        The cookie is not actually set when exporting,
+        as set by the <code>X-com-semanticcms-core-exporting: true</code> header.
+      </p>
+    ]]></description>
+    <name>getUser</name>
+    <function-class>com.pragmatickm.task.taglib.Functions</function-class>
+    <function-signature>com.pragmatickm.task.model.User getUser()</function-signature>
+    <example><![CDATA[<code>${task:getUser()}</code>]]></example>
+  </function>
+  <function>
+    <!-- datePublished="2016-08-15T13:15:22-05:00" -->
+    <!-- dateModified="2020-05-29T19:06:40-05:00" -->
+    <description><![CDATA[
+      <p>Gets all users.</p>
+    ]]></description>
+    <name>getAllUsers</name>
+    <function-class>com.pragmatickm.task.servlet.TaskUtil</function-class>
+    <function-signature>java.util.Set getAllUsers()</function-signature>
+    <!-- functionSignature="java.util.Set<com.pragmatickm.task.model.User> getAllUsers()" -->
+    <example><![CDATA[<code>${task:getAllUsers()}</code>]]></example>
+  </function>
+  <function>
+    <!-- datePublished="2016-08-15T13:15:22-05:00" -->
+    <!-- dateModified="2020-05-29T15:06:24-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Prioritizes tasks by schedule and priority.
+      </p>
+      <p>
+        Scheduled tasks are before unscheduled within a single priority.
+      </p>
+      <p>
+        Priority inheritance: Tasks will inherit any higher priority
+        from tasks that either directly or indirectly must be done after
+        the task.  For example, a low priority task that must be done
+        before a high priority task will be treated as high priority.
+      </p>
+      <p>
+        If dateFirst is <code>true</code>, will sort by date then priority.  Otherwise
+        sorts by priority then date.
+      </p>
+    ]]></description>
+    <name>prioritizeTasks</name>
+    <function-class>com.pragmatickm.task.taglib.Functions</function-class>
+    <function-signature>java.util.List prioritizeTasks(java.util.Collection,boolean)</function-signature>
+    <!-- functionSignature="java.util.List<com.pragmatickm.task.model.Task> prioritizeTasks(java.util.Collection<? extends com.pragmatickm.task.model.Task>,boolean)" -->
+    <example><![CDATA[<code>${task:prioritizeTasks(tasks, dateFirst)}</code>]]></example>
+  </function>
+  <function>
+    <!-- datePublished="2016-08-15T13:15:22-05:00" -->
+    <!-- dateModified="2020-05-29T15:08:57-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Gets all tasks for a page and all sub-pages.
+      </p>
+      <p>
+        Filters for user or all when user is <code>null</code>.
+      </p>
+    ]]></description>
+    <name>getAllTasks</name>
+    <function-class>com.pragmatickm.task.taglib.Functions</function-class>
+    <function-signature>java.util.List getAllTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
+    <!-- function-signature>java.util.List<com.pragmatickm.task.model.Task> getAllTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)" -->
+    <example><![CDATA[<code>${task:getAllTasks(rootPage, user)}</code>]]></example>
+  </function>
+  <function>
+    <!-- datePublished="2016-08-15T13:15:22-05:00" -->
+    <!-- dateModified="2017-07-27T20:59:02-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Checks if the given page or any of its child pages has at least
+        one task assigned to the given user.
+      </p>
+      <p>
+        Filters for user or all when user is <code>null</code>.
+      </p>
+    ]]></description>
+    <name>hasAssignedTask</name>
+    <function-class>com.pragmatickm.task.taglib.Functions</function-class>
+    <function-signature>boolean hasAssignedTask(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
+    <example><![CDATA[<code>${p:hasAssignedTask(page, user)}</code>]]></example>
+  </function>
+  <function>
+    <!-- datePublished="2016-08-15T13:15:22-05:00" -->
+    <!-- dateModified="2020-05-29T15:10:02-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Gets all tasks for a page and all sub-pages that are ready to be done at the current
+        moment in time.
+      </p>
+      <p>
+        Filters for user or all when user is <code>null</code>.
+      </p>
+    ]]></description>
+    <name>getReadyTasks</name>
+    <function-class>com.pragmatickm.task.taglib.Functions</function-class>
+    <function-signature>java.util.List getReadyTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
+    <!-- functionSignature="java.util.List<com.pragmatickm.task.model.Task> getReadyTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)" -->
+    <example><![CDATA[<code>${task:getReadyTasks(rootPage, user)}</code>]]></example>
+  </function>
+  <function>
+    <!-- datePublished="2016-08-15T13:15:22-05:00" -->
+    <!-- dateModified="2020-05-29T15:11:24-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Gets all tasks for a page and all sub-pages that are should done at the current
+        moment in time but are waiting for another task.
+      </p>
+      <p>
+        Filters for user or all when user is <code>null</code>.
+      </p>
+    ]]></description>
+    <name>getBlockedTasks</name>
+    <function-class>com.pragmatickm.task.taglib.Functions</function-class>
+    <function-signature>java.util.List getBlockedTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
+    <!-- functionSignature="java.util.List<com.pragmatickm.task.model.Task> getBlockedTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)" -->
+    <example><![CDATA[<code>${task:getBlockedTasks(rootPage, user)}</code>]]></example>
+  </function>
+  <function>
+    <!-- datePublished="2016-08-15T13:15:22-05:00" -->
+    <!-- dateModified="2020-05-29T15:11:40-05:00" -->
+    <description><![CDATA[
+      <p class="semanticcms-tag-reference-summary">
+        Gets all tasks for a page and all sub-pages that will be done at a future
+        moment in time.
+      </p>
+      <p>
+        Filters for user or all when user is <code>null</code>.
+      </p>
+    ]]></description>
+    <name>getFutureTasks</name>
+    <function-class>com.pragmatickm.task.taglib.Functions</function-class>
+    <function-signature>java.util.List getFutureTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
+    <!-- functionSignature="java.util.List<com.pragmatickm.task.model.Task> getFutureTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)" -->
+    <example><![CDATA[<code>${task:getFutureTasks(rootPage, user)}</code>]]></example>
+  </function>
+  <function>
+    <!-- datePublished="2016-08-15T22:40:08-05:00" -->
+    <!-- dateModified="2021-06-03T22:53:21-05:00" -->
+    <description><![CDATA[
+      <p>Formats a date.</p>
+    ]]></description>
+    <name>formatDate</name>
+    <function-class>com.aoapps.lang.util.CalendarUtils</function-class>
+    <function-signature>java.lang.String formatDate(java.util.Calendar)</function-signature>
+    <example><![CDATA[<code>${task:formatDate(calendar)}</code>]]></example>
+  </function>
+  <function>
+    <!-- datePublished="2016-08-15T22:40:08-05:00" -->
+    <!-- dateModified="2021-06-03T22:53:21-05:00" -->
+    <description><![CDATA[
+      <p>Parses a date.</p>
+    ]]></description>
+    <name>parseDate</name>
+    <function-class>com.aoapps.lang.util.CalendarUtils</function-class>
+    <function-signature>java.util.Calendar parseDate(java.lang.String)</function-signature>
+    <example><![CDATA[<code>${task:parseDate("yyyy-mm-dd")}</code>]]></example>
+  </function>
+  <function>
+    <!-- datePublished="2016-08-15T22:40:08-05:00" -->
+    <!-- dateModified="2021-06-03T22:53:21-05:00" -->
+    <description><![CDATA[
+      <p>Gets today's date.</p>
+    ]]></description>
+    <name>getToday</name>
+    <function-class>com.aoapps.lang.util.CalendarUtils</function-class>
+    <function-signature>java.util.Calendar getToday()</function-signature>
+    <example><![CDATA[<code>${task:getToday()}</code>]]></example>
+  </function>
 </taglib>
