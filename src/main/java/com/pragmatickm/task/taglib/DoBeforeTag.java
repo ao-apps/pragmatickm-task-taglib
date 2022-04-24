@@ -54,21 +54,25 @@ public class DoBeforeTag extends SimpleTagSupport {
   public static final String TAG_NAME = "<task:doBefore>";
 
   private ValueExpression domain;
+
   public void setDomain(ValueExpression domain) {
     this.domain = domain;
   }
 
   private ValueExpression book;
+
   public void setBook(ValueExpression book) {
     this.book = book;
   }
 
   private ValueExpression page;
+
   public void setPage(ValueExpression page) {
     this.page = page;
   }
 
   private ValueExpression task;
+
   public void setTask(ValueExpression task) {
     this.task = task;
   }
@@ -76,33 +80,33 @@ public class DoBeforeTag extends SimpleTagSupport {
   @Override
   public void doTag() throws JspException, IOException {
     try {
-      PageContext pageContext = (PageContext)getJspContext();
+      PageContext pageContext = (PageContext) getJspContext();
       final ServletContext servletContext = pageContext.getServletContext();
-      final HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
-      final HttpServletResponse response = (HttpServletResponse)pageContext.getResponse();
+      final HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+      final HttpServletResponse response = (HttpServletResponse) pageContext.getResponse();
 
       // Find the required task
       Node currentNode = CurrentNode.getCurrentNode(request);
       if (!(currentNode instanceof Task)) {
         throw new JspTagException(TAG_NAME + " tag must be nested inside a " + TaskTag.TAG_NAME + " tag.");
       }
-      Task currentTask = (Task)currentNode;
+      Task currentTask = (Task) currentNode;
 
       assert
-        CurrentCaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
-        : "This is always contained by a task tag, so this is only invoked at captureLevel >= META";
+          CurrentCaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
+          : "This is always contained by a task tag, so this is only invoked at captureLevel >= META";
 
       // Evaluate expressions
       ELContext elContext = pageContext.getELContext();
       DomainName domainObj = DomainName.valueOf(
-        nullIfEmpty(
-          resolveValue(domain, String.class, elContext)
-        )
+          nullIfEmpty(
+              resolveValue(domain, String.class, elContext)
+          )
       );
       Path bookPath = Path.valueOf(
-        nullIfEmpty(
-          resolveValue(book, String.class, elContext)
-        )
+          nullIfEmpty(
+              resolveValue(book, String.class, elContext)
+          )
       );
       String pageStr = nullIfEmpty(resolveValue(page, String.class, elContext));
       String taskStr = resolveValue(task, String.class, elContext);
@@ -130,11 +134,11 @@ public class DoBeforeTag extends SimpleTagSupport {
           }
           // Resolve context-relative page path from page-relative
           pageRef = PageRefResolver.getPageRef(
-            servletContext,
-            request,
-            domainObj,
-            bookPath,
-            pageStr
+              servletContext,
+              request,
+              domainObj,
+              bookPath,
+              pageStr
           );
         }
       }

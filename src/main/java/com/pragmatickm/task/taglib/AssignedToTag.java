@@ -46,18 +46,20 @@ public class AssignedToTag extends SimpleTagSupport {
   public static final String TAG_NAME = "<task:assignedTo>";
 
   private ValueExpression who;
+
   public void setWho(ValueExpression who) {
     this.who = who;
   }
 
   private ValueExpression after;
+
   public void setAfter(ValueExpression after) {
     this.after = after;
   }
 
   @Override
   public void doTag() throws JspException, IOException {
-    PageContext pageContext = (PageContext)getJspContext();
+    PageContext pageContext = (PageContext) getJspContext();
     ServletRequest request = pageContext.getRequest();
 
     // Find the required task
@@ -65,11 +67,11 @@ public class AssignedToTag extends SimpleTagSupport {
     if (!(currentNode instanceof Task)) {
       throw new JspTagException(TAG_NAME + " tag must be nested inside a " + TaskTag.TAG_NAME + " tag.");
     }
-    Task currentTask = (Task)currentNode;
+    Task currentTask = (Task) currentNode;
 
     assert
-      CurrentCaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
-      : "This is always contained by a task tag, so this is only invoked at captureLevel >= META";
+        CurrentCaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
+        : "This is always contained by a task tag, so this is only invoked at captureLevel >= META";
 
     // Evaluate expressions
     ELContext elContext = pageContext.getELContext();
@@ -82,8 +84,8 @@ public class AssignedToTag extends SimpleTagSupport {
     DayDuration afterObj = afterStr == null ? DayDuration.ZERO_DAYS : DayDuration.valueOf(afterStr);
 
     currentTask.addAssignedTo(
-      whoObj,
-      afterObj
+        whoObj,
+        afterObj
     );
   }
 }

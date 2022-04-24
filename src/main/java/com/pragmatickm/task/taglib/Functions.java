@@ -52,23 +52,23 @@ public final class Functions {
 
   public static TaskLog getTaskLogInDomain(String domain, String book, String page, String taskId) throws ServletException, IOException, ValidationException {
     return TaskUtil.getTaskLogInDomain(
-      getServletContext(),
-      getRequest(),
-      DomainName.valueOf(Strings.nullIfEmpty(domain)),
-      Path.valueOf(Strings.nullIfEmpty(book)),
-      page,
-      taskId
+        getServletContext(),
+        getRequest(),
+        DomainName.valueOf(Strings.nullIfEmpty(domain)),
+        Path.valueOf(Strings.nullIfEmpty(book)),
+        page,
+        taskId
     );
   }
 
   public static TaskLog getTaskLogInBook(String book, String page, String taskId) throws ServletException, IOException, ValidationException {
     return TaskUtil.getTaskLogInDomain(
-      getServletContext(),
-      getRequest(),
-      null,
-      Path.valueOf(Strings.nullIfEmpty(book)),
-      page,
-      taskId
+        getServletContext(),
+        getRequest(),
+        null,
+        Path.valueOf(Strings.nullIfEmpty(book)),
+        page,
+        taskId
     );
   }
 
@@ -85,10 +85,10 @@ public final class Functions {
    */
   public static StatusResult getStatus(Task task) throws TaskException, ServletException, IOException {
     return TaskUtil.getStatus(
-      getServletContext(),
-      getRequest(),
-      getResponse(),
-      task
+        getServletContext(),
+        getRequest(),
+        getResponse(),
+        task
     );
   }
 
@@ -97,10 +97,10 @@ public final class Functions {
    */
   public static Map<Task, StatusResult> getMultipleStatuses(Collection<? extends Task> tasks) throws TaskException, ServletException, IOException {
     return TaskUtil.getMultipleStatuses(
-      getServletContext(),
-      getRequest(),
-      getResponse(),
-      tasks
+        getServletContext(),
+        getRequest(),
+        getResponse(),
+        tasks
     );
   }
 
@@ -109,10 +109,10 @@ public final class Functions {
    */
   public static List<Task> getDoAfters(Task task) throws ServletException, IOException {
     return TaskUtil.getDoAfters(
-      getServletContext(),
-      getRequest(),
-      getResponse(),
-      task
+        getServletContext(),
+        getRequest(),
+        getResponse(),
+        task
     );
   }
 
@@ -121,77 +121,77 @@ public final class Functions {
    */
   public static Map<Task, List<Task>> getMultipleDoAfters(Collection<? extends Task> tasks) throws ServletException, IOException {
     return TaskUtil.getMultipleDoAfters(
-      getServletContext(),
-      getRequest(),
-      getResponse(),
-      tasks
+        getServletContext(),
+        getRequest(),
+        getResponse(),
+        tasks
     );
   }
 
   public static User getUser() {
     return TaskUtil.getUser(
-      getRequest(),
-      getResponse()
+        getRequest(),
+        getResponse()
     );
   }
 
   public static List<Task> prioritizeTasks(Collection<? extends Task> tasks, boolean dateFirst) throws TaskException, ServletException, IOException {
     return TaskUtil.prioritizeTasks(
-      getServletContext(),
-      getRequest(),
-      getResponse(),
-      tasks,
-      dateFirst
+        getServletContext(),
+        getRequest(),
+        getResponse(),
+        tasks,
+        dateFirst
     );
   }
 
   public static List<Task> getAllTasks(Page rootPage, User user) throws IOException, ServletException {
     return TaskUtil.getAllTasks(
-      getServletContext(),
-      getRequest(),
-      getResponse(),
-      rootPage,
-      user
+        getServletContext(),
+        getRequest(),
+        getResponse(),
+        rootPage,
+        user
     );
   }
 
   public static boolean hasAssignedTask(Page page, User user) throws ServletException, IOException {
     return TaskUtil.hasAssignedTask(
-      getServletContext(),
-      getRequest(),
-      getResponse(),
-      page,
-      user
+        getServletContext(),
+        getRequest(),
+        getResponse(),
+        page,
+        user
     );
   }
 
   public static List<Task> getReadyTasks(Page rootPage, User user) throws IOException, ServletException {
     return TaskUtil.getReadyTasks(
-      getServletContext(),
-      getRequest(),
-      getResponse(),
-      rootPage,
-      user
+        getServletContext(),
+        getRequest(),
+        getResponse(),
+        rootPage,
+        user
     );
   }
 
   public static List<Task> getBlockedTasks(Page rootPage, User user) throws IOException, ServletException {
     return TaskUtil.getBlockedTasks(
-      getServletContext(),
-      getRequest(),
-      getResponse(),
-      rootPage,
-      user
+        getServletContext(),
+        getRequest(),
+        getResponse(),
+        rootPage,
+        user
     );
   }
 
   public static List<Task> getFutureTasks(Page rootPage, User user) throws IOException, ServletException {
     return TaskUtil.getFutureTasks(
-      getServletContext(),
-      getRequest(),
-      getResponse(),
-      rootPage,
-      user
+        getServletContext(),
+        getRequest(),
+        getResponse(),
+        rootPage,
+        user
     );
   }
 }

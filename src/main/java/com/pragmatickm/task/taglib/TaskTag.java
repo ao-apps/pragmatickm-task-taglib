@@ -66,53 +66,62 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
   public static final String TAG_NAME = "<task:task>";
 
   private ValueExpression style;
+
   public void setStyle(ValueExpression style) {
     this.style = style;
   }
 
   private ValueExpression label;
+
   public void setLabel(ValueExpression label) {
     this.label = label;
   }
 
   private ValueExpression on;
+
   public void setOn(ValueExpression on) {
     this.on = on;
   }
 
   private ValueExpression recurring;
+
   public void setRecurring(ValueExpression recurring) throws IllegalArgumentException {
     this.recurring = recurring;
   }
 
   private ValueExpression relative;
+
   public void setRelative(ValueExpression relative) throws IllegalArgumentException {
     this.relative = relative;
   }
 
   private ValueExpression assignedTo;
+
   public void setAssignedTo(ValueExpression assignedTo) {
     this.assignedTo = assignedTo;
   }
 
   private ValueExpression pay;
+
   public void setPay(ValueExpression pay) {
     this.pay = pay;
   }
 
   private ValueExpression cost;
+
   public void setCost(ValueExpression cost) {
     this.cost = cost;
   }
 
   private ValueExpression priority;
+
   public void setPriority(ValueExpression priority) {
     this.priority = priority;
   }
 
   @Override
   protected Task createElement() throws JspException {
-    final PageContext pageContext = (PageContext)getJspContext();
+    final PageContext pageContext = (PageContext) getJspContext();
     Page currentPage = CurrentPage.getCurrentPage(pageContext.getRequest());
     if (currentPage == null) {
       throw new JspTagException(TAG_NAME + " tag must be nested inside a " + PageTag.TAG_NAME + " tag.");
@@ -137,9 +146,9 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
     }
     String assignedToStr = Strings.nullIfEmpty(resolveValue(assignedTo, String.class, elContext));
     User user =
-      (assignedToStr == null)
-      ? User.Unassigned
-      : User.valueOf(assignedToStr);
+        (assignedToStr == null)
+            ? User.Unassigned
+            : User.valueOf(assignedToStr);
     if (user.isPerson()) {
       task.addAssignedTo(user, DayDuration.ZERO_DAYS);
     }
@@ -148,8 +157,8 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
     String priorityStr = Strings.nullIfEmpty(resolveValue(priority, String.class, elContext));
     if (priorityStr != null) {
       task.addPriority(
-        Priority.valueOf(priorityStr.toUpperCase(Locale.ROOT)),
-        DayDuration.ZERO_DAYS
+          Priority.valueOf(priorityStr.toUpperCase(Locale.ROOT)),
+          DayDuration.ZERO_DAYS
       );
     }
   }
@@ -171,10 +180,10 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
   @Override
   protected void doBody(Task task, CaptureLevel captureLevel) throws JspException, IOException {
     try {
-      PageContext pageContext = (PageContext)getJspContext();
+      PageContext pageContext = (PageContext) getJspContext();
       ServletContext servletContext = pageContext.getServletContext();
-      HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
-      HttpServletResponse response = (HttpServletResponse)pageContext.getResponse();
+      HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+      HttpServletResponse response = (HttpServletResponse) pageContext.getResponse();
 
       final Page currentPage = CurrentPage.getCurrentPage(request);
       if (currentPage == null) {
@@ -201,21 +210,21 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
       try {
         // TODO: Invoke from writeTo, then won't need to set document.setOut()
         tbody = TaskHtmlRenderer.writeBeforeBody(
-          servletContext,
-          pageContext.getELContext(),
-          request,
-          response,
-          captureLevel,
-          (capturedOut == null) ? null : new DocumentEE(
             servletContext,
+            pageContext.getELContext(),
             request,
             response,
-            capturedOut,
-            false, // Do not add extra newlines to JSP
-            false  // Do not add extra indentation to JSP
-          ),
-          task,
-          style
+            captureLevel,
+            (capturedOut == null) ? null : new DocumentEE(
+                servletContext,
+                request,
+                response,
+                capturedOut,
+                false, // Do not add extra newlines to JSP
+                false  // Do not add extra indentation to JSP
+            ),
+            task,
+            style
         );
       } finally {
         if (capturedOut != null) {
