@@ -41,13 +41,14 @@ public class CustomLogTag extends SimpleTagSupport {
   public static final String TAG_NAME = "<task:customLog>";
 
   private ValueExpression name;
+
   public void setName(ValueExpression name) {
     this.name = name;
   }
 
   @Override
   public void doTag() throws JspException, IOException {
-    PageContext pageContext = (PageContext)getJspContext();
+    PageContext pageContext = (PageContext) getJspContext();
     ServletRequest request = pageContext.getRequest();
 
     // Find the required task
@@ -55,14 +56,14 @@ public class CustomLogTag extends SimpleTagSupport {
     if (!(currentNode instanceof Task)) {
       throw new JspTagException(TAG_NAME + " tag must be nested inside a " + TaskTag.TAG_NAME + " tag.");
     }
-    Task currentTask = (Task)currentNode;
+    Task currentTask = (Task) currentNode;
 
     assert
-      CaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
-      : "This is always contained by a task tag, so this is only invoked at captureLevel >= META";
+        CaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
+        : "This is always contained by a task tag, so this is only invoked at captureLevel >= META";
 
     currentTask.addCustomLog(
-      resolveValue(name, String.class, pageContext.getELContext())
+        resolveValue(name, String.class, pageContext.getELContext())
     );
   }
 }
