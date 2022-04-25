@@ -13,3 +13,6 @@ b655208374f3bc853d8a461a5112de8100543af5
 
 # Tab indentation and UNIX newlines
 314820245f1a9de944f3bf5a89b845f475d247ae
+
+# Performed automatic source code clean-up with rewrite-maven-plugin
+a82e2f0f85aca08687f90ddcf7fc04a0a5a13809
