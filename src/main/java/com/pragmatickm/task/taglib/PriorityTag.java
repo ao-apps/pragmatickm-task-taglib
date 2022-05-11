@@ -23,9 +23,10 @@
 
 package com.pragmatickm.task.taglib;
 
-import com.aoapps.hodgepodge.schedule.DayDuration;
 import static com.aoapps.lang.Strings.nullIfEmpty;
 import static com.aoapps.taglib.AttributeUtils.resolveValue;
+
+import com.aoapps.hodgepodge.schedule.DayDuration;
 import com.pragmatickm.task.model.Priority;
 import com.pragmatickm.task.model.Task;
 import com.semanticcms.core.model.Node;

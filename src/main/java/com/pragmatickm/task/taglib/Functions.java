@@ -23,13 +23,14 @@
 
 package com.pragmatickm.task.taglib;
 
+import static com.aoapps.servlet.filter.FunctionContext.getRequest;
+import static com.aoapps.servlet.filter.FunctionContext.getResponse;
+import static com.aoapps.servlet.filter.FunctionContext.getServletContext;
+
 import com.aoapps.lang.Strings;
 import com.aoapps.lang.validation.ValidationException;
 import com.aoapps.net.DomainName;
 import com.aoapps.net.Path;
-import static com.aoapps.servlet.filter.FunctionContext.getRequest;
-import static com.aoapps.servlet.filter.FunctionContext.getResponse;
-import static com.aoapps.servlet.filter.FunctionContext.getServletContext;
 import com.pragmatickm.task.model.Task;
 import com.pragmatickm.task.model.TaskException;
 import com.pragmatickm.task.model.TaskLog;
@@ -43,6 +44,9 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 
+/**
+ * Tag library function implementations.
+ */
 public final class Functions {
 
   /** Make no instances. */
