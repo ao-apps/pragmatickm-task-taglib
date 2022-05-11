@@ -23,6 +23,8 @@
 
 package com.pragmatickm.task.taglib;
 
+import static com.aoapps.taglib.AttributeUtils.resolveValue;
+
 import com.aoapps.encoding.taglib.EncodingBufferedTag;
 import com.aoapps.hodgepodge.schedule.DayDuration;
 import com.aoapps.hodgepodge.schedule.Recurring;
@@ -33,7 +35,6 @@ import com.aoapps.io.buffer.BufferResult;
 import com.aoapps.io.buffer.BufferWriter;
 import com.aoapps.lang.Strings;
 import com.aoapps.lang.util.CalendarUtils;
-import static com.aoapps.taglib.AttributeUtils.resolveValue;
 import com.pragmatickm.task.model.Priority;
 import com.pragmatickm.task.model.Task;
 import com.pragmatickm.task.model.TaskException;

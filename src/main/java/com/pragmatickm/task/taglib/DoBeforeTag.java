@@ -24,8 +24,9 @@
 package com.pragmatickm.task.taglib;
 
 import static com.aoapps.lang.Strings.nullIfEmpty;
-import com.aoapps.lang.xml.XmlUtils;
 import static com.aoapps.taglib.AttributeUtils.resolveValue;
+
+import com.aoapps.lang.xml.XmlUtils;
 import com.pragmatickm.task.model.Task;
 import com.semanticcms.core.model.ElementRef;
 import com.semanticcms.core.model.Node;
@@ -69,17 +70,17 @@ public class DoBeforeTag extends SimpleTagSupport {
 
   @Override
   public void doTag() throws JspException, IOException {
-    PageContext pageContext = (PageContext) getJspContext();
+    final PageContext pageContext = (PageContext) getJspContext();
     final ServletContext servletContext = pageContext.getServletContext();
     final HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
     final HttpServletResponse response = (HttpServletResponse) pageContext.getResponse();
 
     // Find the required task
-    Node currentNode = CurrentNode.getCurrentNode(request);
+    final Node currentNode = CurrentNode.getCurrentNode(request);
     if (!(currentNode instanceof Task)) {
       throw new JspTagException(TAG_NAME + " tag must be nested inside a " + TaskTag.TAG_NAME + " tag.");
     }
-    Task currentTask = (Task) currentNode;
+    final Task currentTask = (Task) currentNode;
 
     assert
         CaptureLevel.getCaptureLevel(request).compareTo(CaptureLevel.META) >= 0
