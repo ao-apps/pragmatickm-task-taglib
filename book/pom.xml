@@ -36,15 +36,15 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
     <module.name>com.pragmatickm.task.taglib.book</module.name>
     <!-- These values are copied from the project being documented -->
     <documented.artifactId>pragmatickm-task-taglib</documented.artifactId>
-    <documented.name>PragmaticKM Task Taglib²</documented.name>
+    <documented.name>PragmaticKM Task Taglib</documented.name>
     <documented.description>Tasks nested within SemanticCMS pages and elements in a JSP environment.</documented.description>
 
     <description.html><![CDATA[Documentation for <a target="${javadoc.target}" href="${project.url}">${documented.name}</a> in <a target="${javadoc.target}" href="https://semanticcms.com/">SemanticCMS</a> format.]]></description.html>
   </properties>
 
-  <name>PragmaticKM Task Taglib² Book</name>
+  <name>PragmaticKM Task Taglib Book</name>
   <url>https://pragmatickm.com/task/taglib/</url>
-  <description>Documentation for PragmaticKM Task Taglib² in SemanticCMS format.</description>
+  <description>Documentation for PragmaticKM Task Taglib in SemanticCMS format.</description>
   <inceptionYear>2013</inceptionYear>
 
   <licenses>

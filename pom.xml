@@ -47,7 +47,7 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
     <sonar.coverage.exclusions>**.*</sonar.coverage.exclusions>
   </properties>
 
-  <name>PragmaticKM Task Taglib²</name>
+  <name>PragmaticKM Task Taglib</name>
   <url>https://pragmatickm.com/task/taglib/</url>
   <description>Tasks nested within SemanticCMS pages and elements in a JSP environment.</description>
   <inceptionYear>2013</inceptionYear>
