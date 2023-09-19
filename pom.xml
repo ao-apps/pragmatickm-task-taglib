@@ -39,8 +39,9 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
     <javadoc.breadcrumbs><![CDATA[<a target="${javadoc.target}" href="https://pragmatickm.com/">PragmaticKM</a>
 / <a target="${javadoc.target}" href="https://pragmatickm.com/task/">Task</a>
 / <a target="${javadoc.target}" href="${project.url}">Taglib</a>]]></javadoc.breadcrumbs>
-    <description.html><![CDATA[Tasks nested within <a target="${javadoc.target}" href="https://semanticcms.com/">SemanticCMS</a> pages and elements in a JSP environment.]]></description.html>
     <javadoc.taglibReference><![CDATA[<li><a target="${javadoc.target}" href="${project.url}pragmatickm-task.tld/">Taglib Reference</a></li>]]></javadoc.taglibReference>
+
+    <description.html><![CDATA[Tasks nested within <a target="${javadoc.target}" href="https://semanticcms.com/">SemanticCMS</a> pages and elements in a JSP environment.]]></description.html>
     <!-- TODO: Implement tests -->
     <sonar.coverage.exclusions>**.*</sonar.coverage.exclusions>
   </properties>
