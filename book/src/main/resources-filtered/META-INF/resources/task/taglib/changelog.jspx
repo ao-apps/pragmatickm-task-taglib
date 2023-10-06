@@ -37,7 +37,7 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2017-07-25T20:56:44-05:00"
-    dateModified="2021-07-23T00:30:11-05:00"
+    dateModified="2023-10-06T06:30:52Z"
   >
     <c:set var="latestRelease" value="1.8.0" />
     <c:if test="${
@@ -59,6 +59,7 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
               <li>New function <core:link page="pragmatickm-task.tld/function-getTaskLogInDomain" />.</li>
             </ol>
           </li>
+          <li><code>ElementTag.evaluateAttributes(…)</code> no longer throws <code>IOException</code>.</li>
         </ul>
       </changelog:release>
     </c:if>

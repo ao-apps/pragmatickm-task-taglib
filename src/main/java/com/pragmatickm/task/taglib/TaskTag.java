@@ -136,7 +136,7 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
   }
 
   @Override
-  protected void evaluateAttributes(Task task, ELContext elContext) throws JspTagException, IOException {
+  protected void evaluateAttributes(Task task, ELContext elContext) throws JspTagException {
     super.evaluateAttributes(task, elContext);
     task.setLabel(resolveValue(label, String.class, elContext));
     task.setOn(CalendarUtils.parseDate(Strings.nullIfEmpty(resolveValue(on, String.class, elContext))));
