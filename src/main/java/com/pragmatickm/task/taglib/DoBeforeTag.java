@@ -1,6 +1,6 @@
 /*
  * pragmatickm-task-taglib - Tasks nested within SemanticCMS pages and elements in a JSP environment.
- * Copyright (C) 2013, 2014, 2015, 2016, 2017, 2019, 2020, 2021, 2022, 2023  AO Industries, Inc.
+ * Copyright (C) 2013, 2014, 2015, 2016, 2017, 2019, 2020, 2021, 2022, 2023, 2025  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -118,31 +118,31 @@ public class DoBeforeTag extends SimpleTagSupport {
 
       // Resolve the book-relative page path
       final PageRef pageRef;
-        {
-          if (domainObj != null && bookPath == null) {
-            throw new JspTagException("book must be provided when domain is provided.");
-          }
-          if (pageStr == null) {
-            // Use this page when none specified
-            if (bookPath != null) {
-              throw new JspTagException("page must be provided when book is provided.");
-            }
-            pageRef = PageRefResolver.getCurrentPageRef(servletContext, request);
-          } else {
-            // Default to current domain
-            if (domainObj == null) {
-              domainObj = PageRefResolver.getCurrentPageRef(servletContext, request).getBookRef().getDomain();
-            }
-            // Resolve context-relative page path from page-relative
-            pageRef = PageRefResolver.getPageRef(
-                servletContext,
-                request,
-                domainObj,
-                bookPath,
-                pageStr
-            );
-          }
+      {
+        if (domainObj != null && bookPath == null) {
+          throw new JspTagException("book must be provided when domain is provided.");
         }
+        if (pageStr == null) {
+          // Use this page when none specified
+          if (bookPath != null) {
+            throw new JspTagException("page must be provided when book is provided.");
+          }
+          pageRef = PageRefResolver.getCurrentPageRef(servletContext, request);
+        } else {
+          // Default to current domain
+          if (domainObj == null) {
+            domainObj = PageRefResolver.getCurrentPageRef(servletContext, request).getBookRef().getDomain();
+          }
+          // Resolve context-relative page path from page-relative
+          pageRef = PageRefResolver.getPageRef(
+              servletContext,
+              request,
+              domainObj,
+              bookPath,
+              pageStr
+          );
+        }
+      }
       currentTask.addDoBefore(new ElementRef(pageRef, taskStr));
     } catch (ServletException | ValidationException e) {
       throw new JspTagException(e);
