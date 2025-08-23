@@ -174,8 +174,8 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
   }*/
 
   private BufferResult beforeBody;
-  //private Serialization serialization;
-  //private Doctype doctype;
+  // private Serialization serialization;
+  // private Doctype doctype;
   private AnyTBODY_c<?, ? extends AnyTABLE_c<?, ?, ?>, ?> tbody;
 
   @Override
@@ -234,8 +234,8 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
       }
       if (capturedOut != null) {
         beforeBody = capturedOut.getResult();
-        //serialization = SerializationEE.get(servletContext, request);
-        //doctype = DoctypeEE.get(servletContext, request);
+        // serialization = SerializationEE.get(servletContext, request);
+        // doctype = DoctypeEE.get(servletContext, request);
         tbody.getDocument().setOut(null); // Will set again before closing tbody
       } else {
         beforeBody = null;
@@ -252,9 +252,9 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
     assert tbody != null;
     beforeBody.writeTo(out);
     // Must replace the document's out since it was initially capturing.
-    //Document document = new Document(serialization, doctype, out);
-    //document.setAutonli(false); // Do not add extra newlines to JSP
-    //document.setIndent(false);  // Do not add extra indentation to JSP
+    // Document document = new Document(serialization, doctype, out);
+    // document.setAutonli(false); // Do not add extra newlines to JSP
+    // document.setIndent(false);  // Do not add extra indentation to JSP
     tbody.getDocument().setOut(out);
     TaskHtmlRenderer.writeAfterBody(getElement(), tbody, context);
   }
