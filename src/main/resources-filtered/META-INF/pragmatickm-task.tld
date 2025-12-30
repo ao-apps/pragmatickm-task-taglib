@@ -629,7 +629,7 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
     <name>prioritizeTasks</name>
     <function-class>com.pragmatickm.task.taglib.Functions</function-class>
     <function-signature>java.util.List prioritizeTasks(java.util.Collection,boolean)</function-signature>
-    <!-- functionSignature>java.util.List<com.pragmatickm.task.model.Task> prioritizeTasks(java.util.Collection<? extends com.pragmatickm.task.model.Task>,boolean)" -->
+    <!-- functionSignature="java.util.List<com.pragmatickm.task.model.Task> prioritizeTasks(java.util.Collection<? extends com.pragmatickm.task.model.Task>,boolean)" -->
     <example><![CDATA[<code>${task:prioritizeTasks(tasks, dateFirst)}</code>]]></example>
   </function>
   <function>
