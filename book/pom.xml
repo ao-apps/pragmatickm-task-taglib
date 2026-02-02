@@ -29,7 +29,7 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
     <relativePath>../../../parent/pom.xml</relativePath>
   </parent>
 
-  <groupId>com.pragmatickm</groupId><artifactId>pragmatickm-task-taglib-book</artifactId><version>1.9.0-SNAPSHOT</version>
+  <groupId>com.pragmatickm</groupId><artifactId>pragmatickm-task-taglib-book</artifactId><version>1.19.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <properties>
@@ -141,7 +141,7 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
             <configuration>
               <artifactItems>
                 <artifactItem>
-                  <groupId>com.pragmatickm</groupId><artifactId>pragmatickm-task-taglib</artifactId><version>1.9.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+                  <groupId>com.pragmatickm</groupId><artifactId>pragmatickm-task-taglib</artifactId><version>1.19.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
                   <type>jar</type>
                   <includes>META-INF/pragmatickm-task.tld</includes>
                 </artifactItem>
@@ -151,7 +151,7 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
         </executions>
         <dependencies>
           <dependency>
-            <groupId>com.pragmatickm</groupId><artifactId>pragmatickm-task-taglib</artifactId><version>1.9.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+            <groupId>com.pragmatickm</groupId><artifactId>pragmatickm-task-taglib</artifactId><version>1.19.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
             <type>jar</type>
             <exclusions><exclusion><groupId>*</groupId><artifactId>*</artifactId></exclusion></exclusions>
           </dependency>
