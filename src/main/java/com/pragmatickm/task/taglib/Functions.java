@@ -1,6 +1,6 @@
 /*
  * pragmatickm-task-taglib - Tasks nested within SemanticCMS pages and elements in a JSP environment.
- * Copyright (C) 2013, 2014, 2015, 2016, 2017, 2021, 2022, 2025, 2026  AO Industries, Inc.
+ * Copyright (C) 2013, 2014, 2015, 2016, 2017, 2020, 2021, 2022, 2025, 2026  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -27,10 +27,10 @@ import static com.aoapps.servlet.filter.FunctionContext.getRequest;
 import static com.aoapps.servlet.filter.FunctionContext.getResponse;
 import static com.aoapps.servlet.filter.FunctionContext.getServletContext;
 
+import com.aoapps.lang.Strings;
 import com.pragmatickm.task.model.Task;
 import com.pragmatickm.task.model.TaskException;
 import com.pragmatickm.task.model.TaskLog;
-import com.pragmatickm.task.model.User;
 import com.pragmatickm.task.servlet.StatusResult;
 import com.pragmatickm.task.servlet.TaskUtil;
 import com.semanticcms.core.model.Page;
@@ -112,7 +112,7 @@ public final class Functions {
     );
   }
 
-  public static User getUser() {
+  public static String getUser() {
     return TaskUtil.getUser(
         getRequest(),
         getResponse()
@@ -129,53 +129,53 @@ public final class Functions {
     );
   }
 
-  public static List<Task> getAllTasks(Page rootPage, User user) throws IOException, ServletException {
+  public static List<Task> getAllTasks(Page rootPage, String user) throws IOException, ServletException {
     return TaskUtil.getAllTasks(
         getServletContext(),
         getRequest(),
         getResponse(),
         rootPage,
-        user
+        Strings.nullIfEmpty(user)
     );
   }
 
-  public static boolean hasAssignedTask(Page page, User user) throws ServletException, IOException {
+  public static boolean hasAssignedTask(Page page, String user) throws ServletException, IOException {
     return TaskUtil.hasAssignedTask(
         getServletContext(),
         getRequest(),
         getResponse(),
         page,
-        user
+        Strings.nullIfEmpty(user)
     );
   }
 
-  public static List<Task> getReadyTasks(Page rootPage, User user) throws IOException, ServletException {
+  public static List<Task> getReadyTasks(Page rootPage, String user) throws IOException, ServletException {
     return TaskUtil.getReadyTasks(
         getServletContext(),
         getRequest(),
         getResponse(),
         rootPage,
-        user
+        Strings.nullIfEmpty(user)
     );
   }
 
-  public static List<Task> getBlockedTasks(Page rootPage, User user) throws IOException, ServletException {
+  public static List<Task> getBlockedTasks(Page rootPage, String user) throws IOException, ServletException {
     return TaskUtil.getBlockedTasks(
         getServletContext(),
         getRequest(),
         getResponse(),
         rootPage,
-        user
+        Strings.nullIfEmpty(user)
     );
   }
 
-  public static List<Task> getFutureTasks(Page rootPage, User user) throws IOException, ServletException {
+  public static List<Task> getFutureTasks(Page rootPage, String user) throws IOException, ServletException {
     return TaskUtil.getFutureTasks(
         getServletContext(),
         getRequest(),
         getResponse(),
         rootPage,
-        user
+        Strings.nullIfEmpty(user)
     );
   }
 }

@@ -38,7 +38,6 @@ import com.aoapps.lang.util.CalendarUtils;
 import com.pragmatickm.task.model.Priority;
 import com.pragmatickm.task.model.Task;
 import com.pragmatickm.task.model.TaskException;
-import com.pragmatickm.task.model.User;
 import com.pragmatickm.task.servlet.impl.TaskImpl;
 import com.semanticcms.core.model.ElementContext;
 import com.semanticcms.core.model.Page;
@@ -133,11 +132,11 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
       task.setRelative(relativeObj);
     }
     String assignedToStr = Strings.nullIfEmpty(resolveValue(assignedTo, String.class, elContext));
-    User user =
+    String user =
         (assignedToStr == null)
-            ? User.Unassigned
-            : User.valueOf(assignedToStr);
-    if (user.isPerson()) {
+            ? Task.UNASSIGNED
+            : assignedToStr;
+    if (Task.isPerson(user)) {
       task.addAssignedTo(user, DayDuration.ZERO_DAYS);
     }
     task.setPay(resolveValue(pay, String.class, elContext));
