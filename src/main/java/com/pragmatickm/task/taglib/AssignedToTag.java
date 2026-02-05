@@ -28,7 +28,6 @@ import static com.aoapps.servlet.el.ElUtils.resolveValue;
 
 import com.aoapps.hodgepodge.schedule.DayDuration;
 import com.pragmatickm.task.model.Task;
-import com.pragmatickm.task.model.User;
 import com.semanticcms.core.model.Node;
 import com.semanticcms.core.pages.CaptureLevel;
 import com.semanticcms.core.pages.local.CurrentCaptureLevel;
@@ -76,16 +75,16 @@ public class AssignedToTag extends SimpleTagSupport {
 
     // Evaluate expressions
     ELContext elContext = pageContext.getELContext();
-    User whoObj = User.valueOf(resolveValue(who, String.class, elContext));
+    String whoStr = resolveValue(who, String.class, elContext);
     String afterStr = nullIfEmpty(resolveValue(after, String.class, elContext));
 
-    if (!whoObj.isPerson()) {
-      throw new IllegalArgumentException("Not a person: " + whoObj);
+    if (!Task.isPerson(whoStr)) {
+      throw new IllegalArgumentException("Not a person: " + whoStr);
     }
     DayDuration afterObj = afterStr == null ? DayDuration.ZERO_DAYS : DayDuration.valueOf(afterStr);
 
     currentTask.addAssignedTo(
-        whoObj,
+        whoStr,
         afterObj
     );
   }

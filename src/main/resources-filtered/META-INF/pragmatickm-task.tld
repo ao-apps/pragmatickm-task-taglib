@@ -575,7 +575,7 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
   </function>
   <function>
     <!-- datePublished="2016-08-15T13:15:22-05:00" -->
-    <!-- dateModified="2017-07-27T20:59:02-05:00" -->
+    <!-- dateModified="2026-02-04T22:50:50Z" -->
     <description><![CDATA[
       <p class="semanticcms-tag-reference-summary">
         Gets the user for the current request.
@@ -591,20 +591,29 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
     ]]></description>
     <name>getUser</name>
     <function-class>com.pragmatickm.task.taglib.Functions</function-class>
-    <function-signature>com.pragmatickm.task.model.User getUser()</function-signature>
+    <function-signature>java.lang.String getUser()</function-signature>
     <example><![CDATA[<code>${task:getUser()}</code>]]></example>
   </function>
   <function>
     <!-- datePublished="2016-08-15T13:15:22-05:00" -->
-    <!-- dateModified="2020-05-29T19:06:40-05:00" -->
+    <!-- dateModified="2026-02-04T22:50:50Z" -->
     <description><![CDATA[
-      <p>Gets all users.</p>
+      <p class="semanticcms-tag-reference-summary">
+        Gets all users found in all assignments for the given tasks.
+      </p>
+      <p>
+        When <code>allUsers</code> is non-null, adds users to the provided set.
+        Otherwise creates a new set.
+      </p>
+      <p>
+        Returns the set of all users.
+      </p>
     ]]></description>
     <name>getAllUsers</name>
     <function-class>com.pragmatickm.task.renderer.html.TaskUtil</function-class>
-    <function-signature>java.util.Set getAllUsers()</function-signature>
-    <!-- functionSignature="java.util.Set<com.pragmatickm.task.model.User> getAllUsers()" -->
-    <example><![CDATA[<code>${task:getAllUsers()}</code>]]></example>
+    <function-signature>java.util.SortedSet getAllUsers(java.util.SortedSet,java.lang.Iterable)</function-signature>
+    <!-- functionSignature="java.util.SortedSet<java.lang.String> getAllUsers(java.util.SortedSet<java.lang.String>,java.lang.Iterable<? extends com.pragmatickm.task.model.Task>)" -->
+    <example><![CDATA[<code>${task:getAllUsers(allUsers, tasks)}</code>]]></example>
   </function>
   <function>
     <!-- datePublished="2016-08-15T13:15:22-05:00" -->
@@ -635,7 +644,7 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
   </function>
   <function>
     <!-- datePublished="2016-08-15T13:15:22-05:00" -->
-    <!-- dateModified="2020-05-29T15:08:57-05:00" -->
+    <!-- dateModified="2026-02-04T22:50:50Z" -->
     <description><![CDATA[
       <p class="semanticcms-tag-reference-summary">
         Gets all tasks for a page and all sub-pages.
@@ -646,13 +655,13 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
     ]]></description>
     <name>getAllTasks</name>
     <function-class>com.pragmatickm.task.taglib.Functions</function-class>
-    <function-signature>java.util.List getAllTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
-    <!-- functionSignature="java.util.List<com.pragmatickm.task.model.Task> getAllTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)" -->
+    <function-signature>java.util.List getAllTasks(com.semanticcms.core.model.Page,java.lang.String)</function-signature>
+    <!-- functionSignature="java.util.List<com.pragmatickm.task.model.Task> getAllTasks(com.semanticcms.core.model.Page,java.lang.String)" -->
     <example><![CDATA[<code>${task:getAllTasks(rootPage, user)}</code>]]></example>
   </function>
   <function>
     <!-- datePublished="2016-08-15T13:15:22-05:00" -->
-    <!-- dateModified="2017-07-27T20:59:02-05:00" -->
+    <!-- dateModified="2026-02-04T22:50:50Z" -->
     <description><![CDATA[
       <p class="semanticcms-tag-reference-summary">
         Checks if the given page or any of its child pages has at least
@@ -664,12 +673,12 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
     ]]></description>
     <name>hasAssignedTask</name>
     <function-class>com.pragmatickm.task.taglib.Functions</function-class>
-    <function-signature>boolean hasAssignedTask(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
+    <function-signature>boolean hasAssignedTask(com.semanticcms.core.model.Page,java.lang.String)</function-signature>
     <example><![CDATA[<code>${p:hasAssignedTask(page, user)}</code>]]></example>
   </function>
   <function>
     <!-- datePublished="2016-08-15T13:15:22-05:00" -->
-    <!-- dateModified="2020-05-29T15:10:02-05:00" -->
+    <!-- dateModified="2026-02-04T22:50:50Z" -->
     <description><![CDATA[
       <p class="semanticcms-tag-reference-summary">
         Gets all tasks for a page and all sub-pages that are ready to be done at the current
@@ -681,13 +690,13 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
     ]]></description>
     <name>getReadyTasks</name>
     <function-class>com.pragmatickm.task.taglib.Functions</function-class>
-    <function-signature>java.util.List getReadyTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
-    <!-- functionSignature="java.util.List<com.pragmatickm.task.model.Task> getReadyTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)" -->
+    <function-signature>java.util.List getReadyTasks(com.semanticcms.core.model.Page,java.lang.String)</function-signature>
+    <!-- functionSignature="java.util.List<com.pragmatickm.task.model.Task> getReadyTasks(com.semanticcms.core.model.Page,java.lang.String)" -->
     <example><![CDATA[<code>${task:getReadyTasks(rootPage, user)}</code>]]></example>
   </function>
   <function>
     <!-- datePublished="2016-08-15T13:15:22-05:00" -->
-    <!-- dateModified="2020-05-29T15:11:24-05:00" -->
+    <!-- dateModified="2026-02-04T22:50:50Z" -->
     <description><![CDATA[
       <p class="semanticcms-tag-reference-summary">
         Gets all tasks for a page and all sub-pages that are should done at the current
@@ -699,13 +708,13 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
     ]]></description>
     <name>getBlockedTasks</name>
     <function-class>com.pragmatickm.task.taglib.Functions</function-class>
-    <function-signature>java.util.List getBlockedTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
-    <!-- functionSignature="java.util.List<com.pragmatickm.task.model.Task> getBlockedTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)" -->
+    <function-signature>java.util.List getBlockedTasks(com.semanticcms.core.model.Page,java.lang.String)</function-signature>
+    <!-- functionSignature="java.util.List<com.pragmatickm.task.model.Task> getBlockedTasks(com.semanticcms.core.model.Page,java.lang.String>)" -->
     <example><![CDATA[<code>${task:getBlockedTasks(rootPage, user)}</code>]]></example>
   </function>
   <function>
     <!-- datePublished="2016-08-15T13:15:22-05:00" -->
-    <!-- dateModified="2020-05-29T15:11:40-05:00" -->
+    <!-- dateModified="2026-02-04T22:50:50Z" -->
     <description><![CDATA[
       <p class="semanticcms-tag-reference-summary">
         Gets all tasks for a page and all sub-pages that will be done at a future
@@ -717,8 +726,8 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
     ]]></description>
     <name>getFutureTasks</name>
     <function-class>com.pragmatickm.task.taglib.Functions</function-class>
-    <function-signature>java.util.List getFutureTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)</function-signature>
-    <!-- functionSignature="java.util.List<com.pragmatickm.task.model.Task> getFutureTasks(com.semanticcms.core.model.Page,com.pragmatickm.task.model.User)" -->
+    <function-signature>java.util.List getFutureTasks(com.semanticcms.core.model.Page,java.lang.String)</function-signature>
+    <!-- functionSignature="java.util.List<com.pragmatickm.task.model.Task> getFutureTasks(com.semanticcms.core.model.Page,java.lang.String)" -->
     <example><![CDATA[<code>${task:getFutureTasks(rootPage, user)}</code>]]></example>
   </function>
   <function>

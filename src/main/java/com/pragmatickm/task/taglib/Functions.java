@@ -34,7 +34,6 @@ import com.aoapps.net.Path;
 import com.pragmatickm.task.model.Task;
 import com.pragmatickm.task.model.TaskException;
 import com.pragmatickm.task.model.TaskLog;
-import com.pragmatickm.task.model.User;
 import com.pragmatickm.task.renderer.html.StatusResult;
 import com.pragmatickm.task.renderer.html.TaskUtil;
 import com.semanticcms.core.model.Page;
@@ -132,7 +131,7 @@ public final class Functions {
     );
   }
 
-  public static User getUser() {
+  public static String getUser() {
     return TaskUtil.getUser(
         getRequest(),
         getResponse()
@@ -149,53 +148,53 @@ public final class Functions {
     );
   }
 
-  public static List<Task> getAllTasks(Page rootPage, User user) throws IOException, ServletException {
+  public static List<Task> getAllTasks(Page rootPage, String user) throws IOException, ServletException {
     return TaskUtil.getAllTasks(
         getServletContext(),
         getRequest(),
         getResponse(),
         rootPage,
-        user
+        Strings.nullIfEmpty(user)
     );
   }
 
-  public static boolean hasAssignedTask(Page page, User user) throws ServletException, IOException {
+  public static boolean hasAssignedTask(Page page, String user) throws ServletException, IOException {
     return TaskUtil.hasAssignedTask(
         getServletContext(),
         getRequest(),
         getResponse(),
         page,
-        user
+        Strings.nullIfEmpty(user)
     );
   }
 
-  public static List<Task> getReadyTasks(Page rootPage, User user) throws IOException, ServletException {
+  public static List<Task> getReadyTasks(Page rootPage, String user) throws IOException, ServletException {
     return TaskUtil.getReadyTasks(
         getServletContext(),
         getRequest(),
         getResponse(),
         rootPage,
-        user
+        Strings.nullIfEmpty(user)
     );
   }
 
-  public static List<Task> getBlockedTasks(Page rootPage, User user) throws IOException, ServletException {
+  public static List<Task> getBlockedTasks(Page rootPage, String user) throws IOException, ServletException {
     return TaskUtil.getBlockedTasks(
         getServletContext(),
         getRequest(),
         getResponse(),
         rootPage,
-        user
+        Strings.nullIfEmpty(user)
     );
   }
 
-  public static List<Task> getFutureTasks(Page rootPage, User user) throws IOException, ServletException {
+  public static List<Task> getFutureTasks(Page rootPage, String user) throws IOException, ServletException {
     return TaskUtil.getFutureTasks(
         getServletContext(),
         getRequest(),
         getResponse(),
         rootPage,
-        user
+        Strings.nullIfEmpty(user)
     );
   }
 }
