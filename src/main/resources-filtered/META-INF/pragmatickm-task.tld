@@ -732,35 +732,35 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
   </function>
   <function>
     <!-- datePublished="2016-08-15T22:40:08-05:00" -->
-    <!-- dateModified="2021-06-03T22:53:21-05:00" -->
+    <!-- dateModified="2026-02-05T01:53:20Z" -->
     <description><![CDATA[
       <p>Formats a date.</p>
     ]]></description>
     <name>formatDate</name>
-    <function-class>com.aoapps.lang.util.CalendarUtils</function-class>
-    <function-signature>java.lang.String formatDate(java.util.Calendar)</function-signature>
-    <example><![CDATA[<code>${task:formatDate(calendar)}</code>]]></example>
+    <function-class>com.pragmatickm.task.taglib.Functions</function-class>
+    <function-signature>java.lang.String formatDate(java.time.LocalDate)</function-signature>
+    <example><![CDATA[<code>${task:formatDate(date)}</code>]]></example>
   </function>
   <function>
     <!-- datePublished="2016-08-15T22:40:08-05:00" -->
-    <!-- dateModified="2021-06-03T22:53:21-05:00" -->
+    <!-- dateModified="2026-02-05T01:53:20Z" -->
     <description><![CDATA[
       <p>Parses a date.</p>
     ]]></description>
     <name>parseDate</name>
-    <function-class>com.aoapps.lang.util.CalendarUtils</function-class>
-    <function-signature>java.util.Calendar parseDate(java.lang.String)</function-signature>
+    <function-class>com.pragmatickm.task.taglib.Functions</function-class>
+    <function-signature>java.time.LocalDate parseDate(java.lang.String)</function-signature>
     <example><![CDATA[<code>${task:parseDate("yyyy-mm-dd")}</code>]]></example>
   </function>
   <function>
     <!-- datePublished="2016-08-15T22:40:08-05:00" -->
-    <!-- dateModified="2021-06-03T22:53:21-05:00" -->
+    <!-- dateModified="2026-02-05T01:53:20Z" -->
     <description><![CDATA[
       <p>Gets today's date.</p>
     ]]></description>
     <name>getToday</name>
-    <function-class>com.aoapps.lang.util.CalendarUtils</function-class>
-    <function-signature>java.util.Calendar getToday()</function-signature>
+    <function-class>java.time.LocalDate</function-class>
+    <function-signature>java.time.LocalDate now()</function-signature>
     <example><![CDATA[<code>${task:getToday()}</code>]]></example>
   </function>
 </taglib>

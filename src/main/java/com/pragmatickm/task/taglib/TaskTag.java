@@ -34,7 +34,6 @@ import com.aoapps.html.servlet.DocumentEE;
 import com.aoapps.io.buffer.BufferResult;
 import com.aoapps.io.buffer.BufferWriter;
 import com.aoapps.lang.Strings;
-import com.aoapps.lang.util.CalendarUtils;
 import com.pragmatickm.task.model.Priority;
 import com.pragmatickm.task.model.Task;
 import com.pragmatickm.task.model.TaskException;
@@ -59,6 +58,7 @@ import jakarta.servlet.jsp.JspTagException;
 import jakarta.servlet.jsp.PageContext;
 import java.io.IOException;
 import java.io.Writer;
+import java.time.LocalDate;
 import java.util.Locale;
 
 public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
@@ -138,7 +138,8 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
   protected void evaluateAttributes(Task task, ELContext elContext) throws JspTagException {
     super.evaluateAttributes(task, elContext);
     task.setLabel(resolveValue(label, String.class, elContext));
-    task.setOn(CalendarUtils.parseDate(Strings.nullIfEmpty(resolveValue(on, String.class, elContext))));
+    String onStr = Strings.nullIfEmpty(resolveValue(on, String.class, elContext));
+    task.setOn(onStr == null ? null : LocalDate.parse(onStr));
     task.setRecurring(Recurring.parse(Strings.nullIfEmpty(resolveValue(recurring, String.class, elContext))));
     Boolean relativeObj = resolveValue(relative, Boolean.class, elContext);
     if (relativeObj != null) {

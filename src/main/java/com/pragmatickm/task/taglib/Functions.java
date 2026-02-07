@@ -39,6 +39,7 @@ import com.pragmatickm.task.renderer.html.TaskUtil;
 import com.semanticcms.core.model.Page;
 import jakarta.servlet.ServletException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -196,5 +197,25 @@ public final class Functions {
         rootPage,
         Strings.nullIfEmpty(user)
     );
+  }
+
+  /**
+   * Formats a date in "YYYY-MM-DD" format.
+   *
+   * @return the formatted date or {@code null} if the parameter is {@code null}
+   */
+  public static String formatDate(LocalDate date) {
+    return date == null ? null : date.toString();
+  }
+
+  /**
+   * Gets the date from the "YYYY-MM-DD" format or {@code null} if the parameter is {@code null}.
+   *
+   * @param text  The date in YYYY-MM-DD format.
+   *
+   * @see  LocalDate#parse(java.lang.CharSequence)
+   */
+  public static LocalDate parseDate(String text) throws IllegalArgumentException {
+    return text == null ? null : LocalDate.parse(text);
   }
 }
