@@ -29,12 +29,12 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
     <relativePath>../../../parent/pom.xml</relativePath>
   </parent>
 
-  <groupId>com.pragmatickm</groupId><artifactId>pragmatickm-task-taglib-book</artifactId><version>2.0.0</version>
+  <groupId>com.pragmatickm</groupId><artifactId>pragmatickm-task-taglib-book</artifactId><version>2.0.0-POST-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <properties>
     <!-- Must be set to ${git.commit.time} for snapshots or ISO 8601 timestamp for releases. -->
-    <project.build.outputTimestamp>2026-02-10T18:03:01Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>${git.commit.time}</project.build.outputTimestamp>
     <module.name>com.pragmatickm.task.taglib.book</module.name>
     <subproject.subpath>book/</subproject.subpath>
     <!-- These values are copied from the project being documented -->
@@ -83,7 +83,7 @@ along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>
     <connection>scm:git:git://github.com/ao-apps/pragmatickm-task-taglib.git</connection>
     <developerConnection>scm:git:git@github.com:ao-apps/pragmatickm-task-taglib.git</developerConnection>
     <url>https://github.com/ao-apps/pragmatickm-task-taglib</url>
-    <tag>pragmatickm-task-taglib-book-2.0.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <issueManagement>
