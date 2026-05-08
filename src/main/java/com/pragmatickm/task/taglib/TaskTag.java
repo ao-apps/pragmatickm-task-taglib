@@ -168,10 +168,10 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
   @Override
   protected void doBody(Task task, CaptureLevel captureLevel) throws JspException, IOException {
     try {
-      PageContext pageContext = (PageContext) getJspContext();
-      ServletContext servletContext = pageContext.getServletContext();
-      HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
-      HttpServletResponse response = (HttpServletResponse) pageContext.getResponse();
+      final PageContext pageContext = (PageContext) getJspContext();
+      final ServletContext servletContext = pageContext.getServletContext();
+      final HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+      final HttpServletResponse response = (HttpServletResponse) pageContext.getResponse();
 
       final Page currentPage = CurrentPage.getCurrentPage(request);
       if (currentPage == null) {
