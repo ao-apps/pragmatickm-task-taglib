@@ -151,14 +151,13 @@ public class TaskTag extends ElementTag<Task> /*implements StyleAttribute*/ {
     }
   }
 
-  /*
-  void addDoBefore(ElementRef doBefore) {
-    getElement().addDoBefore(doBefore);
-  }
-
-  void addCustomLog(String name) {
-    getElement().addCustomLog(name);
-  }*/
+  // void addDoBefore(ElementRef doBefore) {
+  //   getElement().addDoBefore(doBefore);
+  // }
+  //
+  // void addCustomLog(String name) {
+  //   getElement().addCustomLog(name);
+  // }
 
   private BufferResult beforeBody;
   // private Serialization serialization;
