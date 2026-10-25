@@ -21,8 +21,6 @@
  * along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>.
  */
 module com.pragmatickm.task.taglib.book {
-  exports com.pragmatickm.task.taglib.book;
-  provides jakarta.servlet.ServletContainerInitializer with com.pragmatickm.task.taglib.book.PragmaticKmTaskTldInitializer;
   // Direct
   requires com.aoapps.badges; // <groupId>com.aoapps</groupId><artifactId>ao-badges</artifactId>
   requires com.aoapps.lang; // <groupId>com.aoapps</groupId><artifactId>ao-lang</artifactId>
@@ -36,4 +34,8 @@ module com.pragmatickm.task.taglib.book {
   requires com.semanticcms.core.taglib; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-taglib</artifactId>
   requires com.semanticcms.section.taglib; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-section-taglib</artifactId>
   requires com.semanticcms.tagreference; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-tag-reference</artifactId>
+
+  exports com.pragmatickm.task.taglib.book;
+
+  provides jakarta.servlet.ServletContainerInitializer with com.pragmatickm.task.taglib.book.PragmaticKmTaskTldInitializer;
 }

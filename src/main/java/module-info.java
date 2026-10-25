@@ -21,7 +21,6 @@
  * along with pragmatickm-task-taglib.  If not, see <https://www.gnu.org/licenses/>.
  */
 module com.pragmatickm.task.taglib {
-  exports com.pragmatickm.task.taglib;
   // Direct
   requires com.aoapps.encoding.taglib; // <groupId>com.aoapps</groupId><artifactId>ao-encoding-taglib</artifactId>
   requires com.aoapps.html.any; // <groupId>com.aoapps</groupId><artifactId>ao-fluent-html-any</artifactId>
@@ -39,4 +38,6 @@ module com.pragmatickm.task.taglib {
   requires com.semanticcms.core.model; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-model</artifactId>
   requires com.semanticcms.core.servlet; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-servlet</artifactId>
   requires com.semanticcms.core.taglib; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-taglib</artifactId>
+
+  exports com.pragmatickm.task.taglib;
 }
